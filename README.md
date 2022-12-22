@@ -15,7 +15,7 @@ A website comparing grocery store items.
 
 ## Usage
 - cd into client folder then run ```npm run dev``` to run react
-- At root folder, run ```python api/app.py``` to run flask
+- At root folder, run ```python api/main.py``` to run flask
 
 - Goto http://127.0.0.1:5173/ for client side
 - Goto http://127.0.0.1:5000 for server side
