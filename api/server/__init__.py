@@ -20,9 +20,9 @@ def create_app():
     app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
     CORS(app)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
+    # app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
     # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    db.init_app(app)
+    # db.init_app(app)
 
     from .views import views
     from .users import users
