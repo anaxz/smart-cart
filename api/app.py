@@ -8,5 +8,10 @@ CORS(app)
 def default():
     return 'Welcome back'
 
+@app.route('/test')
+def test():
+    temp = ["data1", "data2"]
+    return temp
+
 if __name__ == '__main__':
     app.run(debug=True)
