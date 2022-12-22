@@ -20,5 +20,5 @@ sqlparse==0.4.3
 tldextract==3.4.0
 tzdata==2022.7
 urllib3==1.26.13
-waitress==2.1.2
+waitress
 Werkzeug==2.2.2

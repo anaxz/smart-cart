@@ -3,12 +3,21 @@
 A website comparing grocery store items.
 
 ## Installation
+- git clone this repo and cd inside it
+
+### React 
+- Go into client folder
+- Then ```npm i``` to install dependencies
+
+### Flask
+- Goto api folder
+- Then run ```pip install -r requirements.txt``` to install dependencies
 
 ## Usage
-- Run ```npm run dev``` inside client folder to run react
-- Run ```python api/app.py``` to run flask
+- cd into client folder then run ```npm run dev``` to run react
+- At root folder, run ```python api/app.py``` to run flask
 
-- http://127.0.0.1:5173/ for client
+- Goto http://127.0.0.1:5173/ for client side
 - Goto http://127.0.0.1:5000 for server side
 
 ## Changelog
