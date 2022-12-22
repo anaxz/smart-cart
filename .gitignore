@@ -1,0 +1,11 @@
+# react
+
+
+# flask
+.Python
+__pycache__
+instance
+
+# other
+.git
+.env
