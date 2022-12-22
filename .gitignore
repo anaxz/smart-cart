@@ -1,5 +1,7 @@
 # react
-
+node_modules
+build
+coverage
 
 # flask
 .Python
@@ -8,4 +10,4 @@ instance
 
 # other
 .git
-.env
+.DS_Store
