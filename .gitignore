@@ -33,3 +33,4 @@ instance
 *.njsproj
 *.sln
 *.sw?
+.env
