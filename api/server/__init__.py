@@ -44,9 +44,14 @@ def create_app():
     login_manager.login_view = 'auth.login' 
     login_manager.init_app(app)
 
+    # tells flask how to load user
+    # get by default looks for PK
+    @login_manager.user_loader
+    def load_user(id):
+        return User.query.get(int(id))
+
     return app
 
-# if db not created, create it
 def create_database(app):
     if not path.exists('./server/instance/' + DB_NAME):
         with app.app_context():
