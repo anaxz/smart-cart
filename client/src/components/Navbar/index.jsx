@@ -3,7 +3,7 @@ import './index.css'
 
 const Navbar = () => {
     return (
-        <div className="navbar-cont">
+        <div className="navcont">
             <div className="navbrand">
                 <h3>Smart-Cart</h3>
             </div>
