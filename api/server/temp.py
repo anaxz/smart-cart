@@ -21,6 +21,20 @@ def get_user(email):
     response = cur.fetchall()
     print(response)
 
+def update_user(data):
+    query = f"UPDATE Users SET name={data.name} email={data.email} password={data.password} WHERE = {data.id}"
+    cur.execute(query)
+    response = cur.fetchall()
+    return response
+
+def delete_user(id):
+    query = f"DELETE FROM users WHERE id = {id}"
+    cur.execute(query)
+    response = cur.fetchall()
+    return response
+
+#-------
+
 def get_list(id):
     query = f"SELECT * FROM Shopping_List WHERE list_id = {id}"
     cur.execute(query)
@@ -45,7 +59,7 @@ def get_products():
     response = cur.fetchall()
     print(response)
 
-get_user(1)
-get_favourites(1)
-get_list(1)
-get_all_lists(1)
+# get_user(1)
+# get_favourites(1)
+# get_list(1)
+# get_all_lists(1)
