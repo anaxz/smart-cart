@@ -13,15 +13,15 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
 
-    user = User.query.filter_by(email=email).first()
-    if user:
-        if check_password_hash(user.password, password):
-            login_user(user, remember=True)
-            return print('render views.home')
+        user = User.query.filter_by(email=email).first()
+        if user:
+            if check_password_hash(user.password, password):
+                login_user(user, remember=True)
+                return print('render views.home')
+            else:
+                print('Incorrect password, try again.')
         else:
-            print('Incorrect password, try again.')
-    else:
-        print('Email does not exist.')
+            print('Email does not exist.')
 
 @auth.route('/logout')
 @login_required
@@ -33,6 +33,7 @@ def logout():
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
+        name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
@@ -41,6 +42,8 @@ def sign_up():
             print('Email already exists.')
         elif len(email) < 4:
             print('Email must be greater than 3 characters.')
+        elif len(name) < 2:
+            print('First name must be greater than 1 character.')
         elif password1 != password2:
             print('Passwords don\'t match.')
         elif len(password1) < 7:
