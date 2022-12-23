@@ -4,4 +4,5 @@ import pytest
 app = create_app
 
 def api():
-    client = app.test_client()
+    api = app.test_client()
+    return api
