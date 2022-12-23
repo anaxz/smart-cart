@@ -8,12 +8,13 @@ const Navbar = () => {
                 <h3>Smart-Cart</h3>
             </div>
             <div className="navlinks">
-                <ol>
+                <ul>
                     <li><a>Home</a></li>
                     <li><a>About</a></li>
-                    <li><a><i class="bi bi-search"></i></a></li>
-                    <li><a><i class="bi bi-cart2"></i></a></li>
-                </ol>
+                    <label htmlFor="navsearch"><i className="bi bi-search"></i></label>
+                    <input type="text" id="navsearch"/>
+                    <li><a><i className="bi bi-cart2"></i></a></li>
+                </ul>
             </div>
         </div>
     )
