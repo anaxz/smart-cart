@@ -8,8 +8,14 @@ conn = psycopg2.connect(url)
 cur = conn.cursor()
 search = ' SELECT * FROM Users; '
 
-def get_user(id):
-    query = f"SELECT * FROM Users WHERE id = {id}"
+def add_user(data):
+    query = f"INSERT INTO Users (name, email, password) VALUES ('{data.name}', '{data.email}', '{data.password}')"
+    cur.execute(query)
+    res = cur.fetchall()
+    print(res)
+
+def get_user(email):
+    query = f"SELECT * FROM Users WHERE email = {email}"
     cur.execute(query)
     res = cur.fetchall()
     print(res)
@@ -28,6 +34,12 @@ def get_all_lists(id):
 
 def get_favourites(id):
     query = f"SELECT * FROM Favourites WHERE user_id = {id}"
+    cur.execute(query)
+    res = cur.fetchall()
+    print(res)
+
+def get_products():
+    query = "SELECT * FROM Products"
     cur.execute(query)
     res = cur.fetchall()
     print(res)
