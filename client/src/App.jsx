@@ -1,7 +1,7 @@
 import './assets/App.css'
 import "./assets/index.css"
-import { Welcome } from './pages'
-import {Navbar} from "./components"
+import { Welcome, About } from './pages'
+import {Navbar, Auth} from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Darknavbar } from './layout';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -12,12 +12,14 @@ function App() {
   return (
     <>
     <Darknavbar className="sticky-top"/>
-    <div className="App">
+    {/* <div className="App">
       <Navbar />
-    </div>
+    </div> */}
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Welcome />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/Auth" element={<Auth />} />
     </Routes>
     </BrowserRouter>
     </>
