@@ -1,4 +1,4 @@
-from temp import cur
+from ..temp import cur
 
 class Product():
     def get_products():

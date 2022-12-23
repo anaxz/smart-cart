@@ -1,4 +1,4 @@
-from temp import cur
+from ..temp import cur
 
 class Shoppinglist():
     def get_list(id):

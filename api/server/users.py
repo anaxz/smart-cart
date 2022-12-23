@@ -1,9 +1,9 @@
 from flask import Flask, Blueprint, request
-from flask_login import login_required, current_user
+from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from .temp import *
 from .models.User import User
+from .models.Shoppinglist import Shoppinglist
 
 users = Blueprint('users', __name__)
 
@@ -31,7 +31,7 @@ def updateUser(id):
                 return 'New password not the same'
             else:
                 user.password = generate_password_hash(new_pass, method='sha256')
-                update_user(user)
+                User.update_user(user)
                 return ('Successfully updated')
 
         except Exception as error:
@@ -53,7 +53,7 @@ def delete(id):
 def fav(id):
     if request.method == 'GET':
         try:
-            fav = get_favourites(id)
+            fav = User.get_favourites(id)
             return fav.json()
         except Exception as error:
             return f"Cannot get user's favourites. Error: {error}"
@@ -70,7 +70,7 @@ def fav(id):
 @login_required
 def shoplist(id):
     try:
-        data = get_list(id)
+        data = Shoppinglist.get_list(id)
         return data.json()
     except Exception as error:
         return f"Cannot get user's shopping list. Error: {error}"
@@ -79,7 +79,7 @@ def shoplist(id):
 @login_required
 def all_shoplist(id):
     try:
-        data = get_all_lists(id)
+        data = Shoppinglist.get_all_lists(id)
         return data.json()
     except Exception as error:
             return f"Cannot get all of user's shopping list. Error: {error}"

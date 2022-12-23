@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from temp import cur
+from ..temp import cur
 
 class User():
     def __init__(self, name, email, password):
