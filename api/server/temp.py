@@ -11,38 +11,39 @@ search = ' SELECT * FROM Users; '
 def add_user(data):
     query = f"INSERT INTO Users (name, email, password) VALUES ('{data.name}', '{data.email}', '{data.password}')"
     cur.execute(query)
-    res = cur.fetchall()
-    print(res)
+    response = cur.fetchall()
+    print(response)
+    return response
 
 def get_user(email):
     query = f"SELECT * FROM Users WHERE email = {email}"
     cur.execute(query)
-    res = cur.fetchall()
-    print(res)
+    response = cur.fetchall()
+    print(response)
 
 def get_list(id):
     query = f"SELECT * FROM Shopping_List WHERE list_id = {id}"
     cur.execute(query)
-    res = cur.fetchall()
-    print(res)
+    response = cur.fetchall()
+    print(response)
 
 def get_all_lists(id):
     query = f"SELECT product_id FROM Shopping_List JOIN Users_Shopping ON Shopping_List.list_id = Users_Shopping.id WHERE Users_Shopping.user_id = {id}"
     cur.execute(query)
-    res = cur.fetchall()
-    print(res)
+    response = cur.fetchall()
+    print(response)
 
 def get_favourites(id):
     query = f"SELECT * FROM Favourites WHERE user_id = {id}"
     cur.execute(query)
-    res = cur.fetchall()
-    print(res)
+    response = cur.fetchall()
+    print(response)
 
 def get_products():
     query = "SELECT * FROM Products"
     cur.execute(query)
-    res = cur.fetchall()
-    print(res)
+    response = cur.fetchall()
+    print(response)
 
 get_user(1)
 get_favourites(1)
