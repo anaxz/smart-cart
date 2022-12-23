@@ -1,1 +1,1 @@
-export { default as Darknavbar } from './NavBar';
+export { default as Darknavbar } from './Darknavbar';
