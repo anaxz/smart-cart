@@ -107,3 +107,16 @@ print(soup.title)
 
 items = soup.findAll('a', attrs={"class":"co-product__anchor"})
 print(items)
+
+# Google Maps API Nearby Supermarkets
+
+import requests
+
+url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.609929%2C0.109067&radius=1500&type=convenience_store&key=AIzaSyAAOpsLqUS8AFih-Fp2QgeldirT-Eoc0zg"
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
