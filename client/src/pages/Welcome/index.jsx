@@ -1,9 +1,5 @@
-import React from "react";
-import { Navbar } from './components'
+import React from 'react';
 
+const Welcome = () => <h1>Welcome</h1>
 
-const Welcome = () => {
-    return (
-        <Navbar />
-    )
-}
+export default Welcome;
