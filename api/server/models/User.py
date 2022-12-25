@@ -15,6 +15,7 @@ class User():
         query = f"INSERT INTO Users (name, email, password) VALUES ('{data.name}', '{data.email}', '{data.password}')"
         cur.execute(query)
         response = cur.fetchall()
+        new_user = User(data.name,data.email, data.password)
         print(response)
         return response
 
@@ -22,6 +23,7 @@ class User():
         query = f"SELECT * FROM Users WHERE email = {email}"
         cur.execute(query)
         response = cur.fetchall()
+        print(response)
         return response
 
     def update_user(data):

@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request
+from flask import Flask, Blueprint, request, jsonify
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -9,60 +9,55 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login',  methods=['POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
+        # email = request.form.get('email')
+        # password = request.form.get('password')
+        email = "anah12@gmail.com"
 
-        # user = User.query.filter_by(email=email).first()
-        user = User.get_user(email)
-        if user:
-            if check_password_hash(user.password, password):
-                login_user(user, remember=True)
-                print('login succesfully')
-                return 200
+        try: 
+            user = User.get_user(email)
+            if user:
+                if check_password_hash(user.password, "password"):
+                    login_user(user, remember=True)
+                    return 'login succesfully', 200
+                else:
+                    return 'Incorrect password, try again.', 403
+        except:
+            return 'Email does not exist.', 404
 
-            else:
-                print('Incorrect password, try again.')
-                return 403
-        else:
-            print('Email does not exist.')
-            return 404
+    user=current_user
+    return user, 200
 
 @auth.route('/logout')
 @login_required
 def logout():
     logout_user()
-    print('logout successfull')
-    return 200
+    return 'logout successfull', 200
 
 @auth.route('/signup', methods=['POST'])
 def sign_up():
     if request.method == 'POST':
-        email = request.form.get('email')
-        name = request.form.get('firstName')
-        password1 = request.form.get('password1')
-        password2 = request.form.get('password2')
+        # email = request.form.get('email')
+        # name = request.form.get('name')
+        # password1 = request.form.get('password1')
+        # password2 = request.form.get('password2')
+        name='aaaa'
+        email = "anah12@gmail.com"
+        password = "password1"
 
-        # user = User.query.filter_by(email=email).first()
-        user = User.get_user(email)
-        if user:
-            print('Email already exists.')
-        elif len(email) < 4:
-            print('Email must be greater than 3 characters.')
-        elif len(name) < 2:
-            print('First name must be greater than 1 character.')
-        elif password1 != password2:
-            print('Passwords don\'t match.')
-        elif len(password1) < 7:
-            print('Password must be at least 7 characters.')
-        else:
-            password = generate_password_hash(password1, method='sha256')
-            new_user = User(name, email, password)
+        try:
+            user = User.get_user(email)
+            if user:
+                return ('Email already exists.'), 200
+        except:
+            hashed_password = generate_password_hash(password, method='sha256')
 
-            response = User.add_user(new_user)
+            print('add new user..')
+            new_user = User(name, email, hashed_password)
+            data = { name, email, hashed_password }
+
+            response = User.add_user(data)
             login_user(new_user, remember=True)
-            print('Account created!')
-            return 201
+            return 'Account created!', 201
 
-    print("render sign_up.html")
-    user=current_user
-    return user, 200
+    # user=current_user 
+    # return user, 200
