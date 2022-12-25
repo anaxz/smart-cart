@@ -31,7 +31,7 @@ class User():
         return response
 
     def delete_user(id):
-        query = f"DELETE FROM users WHERE id = {id}"
+        query = f"DELETE FROM Users WHERE id = {id}"
         cur.execute(query)
         response = cur.fetchall()
         return response
