@@ -14,9 +14,9 @@ def updateUser(id):
 
     if request.method == 'GET':
         try:
-            return (user.name).json()
+            return (user.name).json(), 200
         except:
-            return 'Issue retreiving your name'
+            return 'Issue retreiving your name', 404
 
     elif request.method == 'POST':
         user.name = request.form['name']
@@ -26,13 +26,13 @@ def updateUser(id):
 
         try:
             if not check_password_hash(user.password, old_pass):
-                return 'Old password incorrect'
+                return 'Old password incorrect', 404
             elif new_pass != repeat_pass:
-                return 'New password not the same'
+                return 'New password not the same', 404
             else:
                 user.password = generate_password_hash(new_pass, method='sha256')
                 User.update_user(user)
-                return ('Successfully updated')
+                return ('Successfully updated'), 204
 
         except Exception as error:
             return f'Fail to update. Error: {error}'
@@ -43,7 +43,7 @@ def delete(id):
     try: 
         user = User.get_user(id)
         User.delete_user(user.id)
-        return ('User deleted')
+        return ('User deleted'), 204
 
     except Exception as error:
         return f'Cannot delete user. Error: {error}'
@@ -69,17 +69,19 @@ def fav(id):
 @users.route('/users/<int:id>/shopping-list', methods=['GET', 'POST'])
 @login_required
 def shoplist(id):
-    try:
-        data = Shoppinglist.get_list(id)
-        return data.json()
-    except Exception as error:
-        return f"Cannot get user's shopping list. Error: {error}"
+    if request.method == 'GET':
+        try:
+            data = Shoppinglist.get_list(id)
+            return data.json(), 200
+        except Exception as error:
+            return f"Cannot get user's shopping list. Error: {error}"
 
 @users.route('/users/<int:id>/all-shoplist', methods=['GET', 'POST'])
 @login_required
 def all_shoplist(id):
-    try:
-        data = Shoppinglist.get_all_lists(id)
-        return data.json()
-    except Exception as error:
-            return f"Cannot get all of user's shopping list. Error: {error}"
+    if request.method == 'GET':
+        try:
+            data = Shoppinglist.get_all_lists(id)
+            return data.json(), 200
+        except Exception as error:
+                return f"Cannot get all of user's shopping list. Error: {error}"

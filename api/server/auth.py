@@ -31,7 +31,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    print('login successfull')
+    print('logout successfull')
     return 200
 
 @auth.route('/signup', methods=['POST'])
@@ -55,17 +55,14 @@ def sign_up():
         elif len(password1) < 7:
             print('Password must be at least 7 characters.')
         else:
-            # new_user = User(email=email, password=generate_password_hash(
-            #     password1, method='sha256'))
-
             password = generate_password_hash(password1, method='sha256')
             new_user = User(name, email, password)
 
-            User.add_user(new_user)
+            response = User.add_user(new_user)
             login_user(new_user, remember=True)
             print('Account created!')
-            return 200
+            return 201
 
     print("render sign_up.html")
     user=current_user
-    return user
+    return user, 200
