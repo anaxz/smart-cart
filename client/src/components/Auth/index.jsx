@@ -3,6 +3,11 @@ import { redirect } from "react-router-dom";
 
 const Auth = (props) => {
   let [authMode, setAuthMode] = useState("signin")
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [password1, setPassword1] = useState('')
+  const [password2, setPassword2] = useState('')
 
   const changeAuthMode = () => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
@@ -11,7 +16,7 @@ const Auth = (props) => {
   const loginSubmit = async (e) => {
     e.preventDefault();
     const url = 'http://127.0.0.1:5000'
-    const data = {email: 'anah12@gmail.com', password: 'password'}
+    const data = {email: email, password: password}
 
     try {
       const response = await fetch(`${url}/login`, {
@@ -19,10 +24,13 @@ const Auth = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       })
+      console.log('--login response')
       console.log(response)
 
       if(response.ok) {
-        console.log('worked')
+        console.log('redireact to home page')
+        setEmail('')
+        setPassword('')
         return redirect("/");
       }
     } catch(err){
@@ -30,8 +38,31 @@ const Auth = (props) => {
     }
   }
 
-  const signupSubmit = (e) => {
-    const response = fetch('/signup')
+  const signupSubmit = async (e) => {
+    e.preventDefault();
+    const url = 'http://127.0.0.1:5000'
+    const data = {name: name, email: email, password: password}
+
+    try {
+      const response = await fetch(`${url}/signup`,  {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      console.log('--signup response')
+      console.log(response)
+
+      if(response.ok) {
+        console.log('redireact to ???')
+        setName('')
+        setEmail('')
+        setPassword1('')
+        setPassword2('')
+        return redirect("/auth");
+      }
+    } catch(err){
+      console.log(err)
+    }
   }
 
   if (authMode === "signin") {
@@ -49,21 +80,21 @@ const Auth = (props) => {
             <div className="form-group mt-3">
               <label htmlFor='email'>Email address</label>
               <input
-                type="email"
-                name="email"
-                id="email"
+                type="email" name="email"
+                id="email" value={email}
                 className="form-control mt-1"
                 placeholder="Enter email"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="form-group mt-3">
               <label htmlFor="password">Password</label>
               <input
-                type="password"
-                name="password"
-                id="password"
+                type="password" name="password"
+                id="password" value={password}
                 className="form-control mt-1"
                 placeholder="Enter password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="d-grid gap-2 mt-3">
@@ -83,7 +114,7 @@ const Auth = (props) => {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form"  method="POST">
+      <form className="Auth-form">
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
@@ -95,41 +126,41 @@ const Auth = (props) => {
           <div className="form-group mt-3">
             <label htmlFor="name">Full Name</label>
             <input
-              type="text"
-              name="name"
-              id="name"
+              type="text" name="name"
+              id="name" value={name}
               className="form-control mt-1"
               placeholder="e.g Abdul Kamara"
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="form-group mt-3">
             <label htmlFor="email">Email address</label>
             <input
-              type="email"
-              name="email"
-              id="email"
+              type="email" name="email"
+              id="email" value={email}
               className="form-control mt-1"
               placeholder="Email Address"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group mt-3">
             <label htmlFor="password1">Password</label>
             <input
-              type="password"
-              name="password1"
-              id="password1"
+              type="password" name="password1"
+              id="password1" value={password1}
               className="form-control mt-1"
               placeholder="Password"
+              onChange={(e) => setPassword1(e.target.value)}
             />
           </div>
           <div className="form-group mt-3">
             <label htmlFor="password2">Repeat Password</label>
             <input
-              type="password"
-              name="password2"
-              id="password2"
+              type="password" name="password2"
+              id="password2" value={password2}
               className="form-control mt-1"
               placeholder="Repeat Password"
+              onChange={(e) => setPassword2(e.target.value)}
             />
           </div>
           <div className="d-grid gap-2 mt-3">

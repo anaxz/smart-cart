@@ -9,14 +9,14 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login',  methods=['POST'])
 def login():
     if request.method == 'POST':
-        # email = request.form.get('email')
-        # password = request.form.get('password')
-        email = "anah12@gmail.com"
+        email = request.form.get('email')
+        password = request.form.get('password')
+        # email = "anah12@gmail.com"
 
         try: 
             user = User.get_user(email)
             if user:
-                if check_password_hash(user.password, "password"):
+                if check_password_hash(user.password, password):
                     login_user(user, remember=True)
                     return 'login succesfully', 200
                 else:
@@ -36,13 +36,18 @@ def logout():
 @auth.route('/signup', methods=['POST'])
 def sign_up():
     if request.method == 'POST':
-        # email = request.form.get('email')
-        # name = request.form.get('name')
-        # password1 = request.form.get('password1')
-        # password2 = request.form.get('password2')
-        name='aaaa'
-        email = "anah12@gmail.com"
-        password = "password1"
+        # get_data = request.get_json
+        # name = get_data['name']
+        # email = get_data['email']
+        # password = get_data['password']
+
+        email = request.form.get('email')
+        name = request.form.get('name')
+        password = request.form.get('password')
+
+        # name='aaaa'
+        # email = "anah12@gmail.com"
+        # password = "password1"
 
         try:
             user = User.get_user(email)
@@ -59,5 +64,5 @@ def sign_up():
             login_user(new_user, remember=True)
             return 'Account created!', 201
 
-    # user=current_user 
-    # return user, 200
+    user=current_user 
+    return user, 200
