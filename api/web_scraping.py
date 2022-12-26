@@ -15,55 +15,45 @@ from bs4 import BeautifulSoup
 soup = BeautifulSoup(response.text, 'html.parser')
 print(soup.title)
 
-# Web Scraping for Aldi
-import requests
-from bs4 import BeautifulSoup
-
-HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.67 Safari/537.36 Edg/87.0.664.47','Connection': 'keep-alive','Cache-Control': 'max-age=0','Upgrade-Insecure-Requests': '1',
-'Accept-Encoding': 'gzip, deflate',
-'Accept-Language': 'en-US,en;q=0.9',
-'Cookie': 'AuthSession=dddddd'}
-
-r = requests.get('https://www.ocado.com/search?entry=butter', headers=HEADERS)
-
-soup = BeautifulSoup(r.text, 'html.parser')
-print(soup.title)
-
-items = soup.findAll('div', attrs={"class":"fop-item"})
-print(items)
-for item in items:
-    name = item.find("h4", class_="fop-title")
-    price = item.find("span", class_="fop-price")
-
-    print(name.text)
-    print(price.text)
-    print('\n')
-
-print(r)
-
 supermarkets = [
     {
       'shop': 'Tesco',
-      'item': 'product-list--list-item',
-      'name': 'ldbwMG',
-      'price': 'jWPEtj',
+      'item': {'element': 'li', 'class':'product-list--list-item'},
+      'name': {'element': 'span', 'class':'ldbwMG'},
+      'price': {'element': 'p', 'class':'jWPEtj'},
       'url': 'https://www.tesco.com/groceries/en-GB/search?query='
     },
     {
       'shop': 'M&S',
-      'item': 'fop-item',
-      'name': 'fop-title',
-      'price': 'fop-price',
+      'item': {'element': 'li', 'class':'fops-item'},
+      'name': {'element': 'h4', 'class':'fop-title'},
+      'price': {'element': 'p', 'class':'fop-price'},
       'url': 'https://www.ocado.com/search?entry='
     }, 
-    'Asda',
-    'Waitrose', 
-    'M&S',
-    'Coop', 
-    'Sainsburys', 
-    'Morrisons', 
-    'Iceland'
+    {
+      'shop': 'Morrisons',
+      'item': {'element': 'div', 'class':'fop-item'},
+      'name': {'element': 'h4', 'class':'fop-title'},
+      'price': {'element': 'span', 'class':'fop-price'},
+      'url': 'https://groceries.morrisons.com/search?entry='
+    },
+    {
+      'shop': 'Iceland',
+      'item': {'element': 'li', 'class':'grid-tile'},
+      'name': {'element': 'a', 'class':'name-link'},
+      'price': {'element': 'span', 'class':'product-sales-price'},
+      'url': 'https://groceries.morrisons.com/search?entry='
+    },
+    {
+      'shop': 'Waitrose',
+      'item': {'element': 'div', 'class':'content___3kznT'},
+      'name': {'element': 'span', 'class':'name___h83Rn'},
+      'price': {'element': 'span', 'class':'itemPrice___ieIBH'},
+      'url': 'https://www.waitrose.com/ecom/shop/search?&searchTerm='
+    }
     ]
+  
+products = ['bread', 'butter', 'milk', 'eggs']
 
 # Web Scraping for Tesco
 import requests
@@ -74,22 +64,36 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/5
 'Accept-Language': 'en-US,en;q=0.9',
 'Cookie': 'AuthSession=dddddd'}
 
-r = requests.get('https://www.tesco.com/groceries/en-GB/search?query=bread', headers=HEADERS)
+shop = supermarkets[2]
+results = []
 
-soup = BeautifulSoup(r.text, 'html.parser')
-print(soup.title)
+for product in products:
+  r = requests.get(shop['url']+product, headers=HEADERS)
 
-items = soup.findAll('li', attrs={"class":"product-list--list-item"})
-print(items)
-for item in items:
-    name = item.find("span", class_="ldbwMG")
-    price = item.find("p", class_="jWPEtj")
+  soup = BeautifulSoup(r.text, 'html.parser')
+  print(soup.title)
+  prices = []
+  items = soup.findAll(shop['item']['element'], attrs={"class":shop['item']['class']})
+  print(items)
+  for item in items:
+      name = item.find(shop['name']['element'], class_=shop['name']['class'])
+      price = item.find(shop['price']['element'], class_=shop['price']['class'])
 
-    print(name.text)
-    print(price.text)
-    print('\n')
+      if name and price:
+        print(name.text)
+        print(price.text)
+        # print(float(price.text.replace('£','')))
+        if 'p' in price.text:
+          print('0.'+price.text.replace('p',''))
+          prices.append(float('0.'+price.text.replace('p','')))
+        else:
+          prices.append(float(price.text.replace('£',''))) 
+        # print('\n')
+  print(prices)
+  # print('Average: '+str(round(sum(prices)/len(prices),2)))
+  results.append({product, str(round(sum(prices)/len(prices),2))})
 
-print(r)
+print(results)
 
 import requests
 
