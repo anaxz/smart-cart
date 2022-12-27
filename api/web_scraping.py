@@ -25,9 +25,9 @@ supermarkets = [
     },
     {
       'shop': 'M&S',
-      'item': {'element': 'li', 'class':'fops-item'},
+      'item': {'element': 'div', 'class':'fop-item'},
       'name': {'element': 'h4', 'class':'fop-title'},
-      'price': {'element': 'p', 'class':'fop-price'},
+      'price': {'element': 'span', 'class':'fop-price'},
       'url': 'https://www.ocado.com/search?entry='
     }, 
     {
@@ -42,7 +42,7 @@ supermarkets = [
       'item': {'element': 'li', 'class':'grid-tile'},
       'name': {'element': 'a', 'class':'name-link'},
       'price': {'element': 'span', 'class':'product-sales-price'},
-      'url': 'https://groceries.morrisons.com/search?entry='
+      'url': 'https://www.iceland.co.uk/search?q='
     },
     {
       'shop': 'Waitrose',
@@ -54,7 +54,6 @@ supermarkets = [
     ]
   
 products = ['bread', 'butter', 'milk', 'eggs']
-
 # Web Scraping for Tesco
 import requests
 from bs4 import BeautifulSoup
@@ -64,37 +63,51 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/5
 'Accept-Language': 'en-US,en;q=0.9',
 'Cookie': 'AuthSession=dddddd'}
 
-shop = supermarkets[2]
+#shop = supermarkets[4]
 results = []
+for i in range(len(supermarkets)):
+  obj = {}
+  obj['name'] = supermarkets[i]['shop']
+  results.append(obj)
+  for product in products:
+    
+    r = requests.get(supermarkets[i]['url']+product, headers=HEADERS)
 
-for product in products:
-  r = requests.get(shop['url']+product, headers=HEADERS)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    print(soup.title)
+    prices = []
+    items = soup.findAll(supermarkets[i]['item']['element'], attrs={"class":supermarkets[i]['item']['class']})
+    print(items)
+    for item in items:
+        name = item.find(supermarkets[i]['name']['element'], class_=supermarkets[i]['name']['class'])
+        price = item.find(supermarkets[i]['price']['element'], class_=supermarkets[i]['price']['class'])
 
-  soup = BeautifulSoup(r.text, 'html.parser')
-  print(soup.title)
-  prices = []
-  items = soup.findAll(shop['item']['element'], attrs={"class":shop['item']['class']})
-  print(items)
-  for item in items:
-      name = item.find(shop['name']['element'], class_=shop['name']['class'])
-      price = item.find(shop['price']['element'], class_=shop['price']['class'])
-
-      if name and price:
-        print(name.text)
-        print(price.text)
-        # print(float(price.text.replace('£','')))
-        if 'p' in price.text:
-          print('0.'+price.text.replace('p',''))
-          prices.append(float('0.'+price.text.replace('p','')))
-        else:
-          prices.append(float(price.text.replace('£',''))) 
-        # print('\n')
-  print(prices)
-  # print('Average: '+str(round(sum(prices)/len(prices),2)))
-  results.append({product, str(round(sum(prices)/len(prices),2))})
+        if name and price:
+          if supermarkets[i]['shop'] == 'Waitrose':
+            # print(name.text)
+            # print(price.span.text)
+            # print(float(price.text.replace('£','')))
+            if 'p' in price.span.text:
+              # print('0.'+price.span.text.replace('p',''))
+              prices.append(float('0.'+price.span.text.replace('p','')))
+            else:
+              prices.append(float(price.span.text.replace('£',''))) 
+            # print('\n')
+          else:
+            # print(name.text)
+            # print(price.text)
+            # print(float(price.text.replace('£','')))
+            if 'p' in price.text:
+              # print('0.'+price.text.replace('p',''))
+              prices.append(float('0.'+price.text.replace('p','')))
+            else:
+              prices.append(float(price.text.replace('£',''))) 
+            # print('\n')
+    # print(prices)
+    # print('Average: '+str(round(sum(prices)/len(prices),2)))
+    results[i][product] = str(round(sum(prices)/len(prices),2))
 
 print(results)
-
 import requests
 
 response = requests.get(
