@@ -125,15 +125,26 @@ print(soup.title)
 items = soup.findAll('a', attrs={"class":"co-product__anchor"})
 print(items)
 
-# Google Maps API Nearby Supermarkets
-
+# Get Location
 import requests
+import json
+from urllib.request import urlopen
 
-url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=51.609929%2C0.109067&radius=1500&type=convenience_store&key=AIzaSyAAOpsLqUS8AFih-Fp2QgeldirT-Eoc0zg"
+url='http://ipinfo.io/json'
+response = urlopen(url)
+data = json.load(response)
+
+print(data)
+latlon = data['loc'].split(',')
+print(latlon)
+
+api_url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={latlon[0]}%2C{latlon[1]}&radius=1500&type=convenience_store&key=AIzaSyAAOpsLqUS8AFih-Fp2QgeldirT-Eoc0zg"
 
 payload={}
 headers = {}
 
-response = requests.request("GET", url, headers=headers, data=payload)
+response = requests.request("GET", api_url, headers=headers, data=payload).json()
 
-print(response.text)
+shops = response['results']
+for shop in shops:
+  print(shop['name'])
