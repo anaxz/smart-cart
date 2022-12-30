@@ -1,12 +1,12 @@
 from flask_login import UserMixin
 from ..temp import cur
 
-class User():
+class User(UserMixin):
     def __init__(self, name, email, password):
+        self.id = ''
         self.name = name
         self.email = email
         self.password = password
-        UserMixin
 
     def __repr__(self):
         return f"User {self.name}, {self.email}"
@@ -16,14 +16,18 @@ class User():
         cur.execute(query)
         response = cur.fetchall()
         new_user = User(data.name, data.email, data.password)
-        print(response)
+        return response
+
+    def get_user_by_id(id):
+        query = f"SELECT * FROM Users WHERE id = {id};"
+        cur.execute(query)
+        response = cur.fetchall()
         return response
 
     def get_user(email):
         query = f"SELECT * FROM Users WHERE email = {email};"
         cur.execute(query)
         response = cur.fetchall()
-        print(response)
         return response
 
     def update_user(data):
@@ -51,7 +55,7 @@ class User():
         return response
 
     def delete_favourites(id):
-        query = f"DELETE FROM Favourites WHERE id = {id};"
+        query = f"DELETE FROM Favourites WHERE product_id = {id};"
         cur.execute(query)
         response = cur.fetchall()
         return response

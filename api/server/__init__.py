@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager 
 
 from os import path
 import os
@@ -20,6 +21,8 @@ def create_app():
     app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
     CORS(app)
 
+    app.config['SECRET_KEY'] = 'randomsecretsadasdsjd'
+
     # app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
     # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     # db.init_app(app)
@@ -29,8 +32,16 @@ def create_app():
     from .auth import auth
 
     app.register_blueprint(views, url_prefix='/')
-    app.register_blueprint(users, url_prefix='/')
+    app.register_blueprint(users, url_prefix='/users')
     app.register_blueprint(auth, url_prefix='/')
+
+    login_manager = LoginManager(app)
+
+    from .models.User import User
+
+    @login_manager.user_loader
+    def load_user(id):
+        return User.get_user_by_id(int(id))
 
     return app
 
