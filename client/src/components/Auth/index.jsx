@@ -1,8 +1,10 @@
 import React, { useState } from "react"
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Auth = (props) => {
   let [authMode, setAuthMode] = useState("signin")
+  const navigate = useNavigate();
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,56 +21,58 @@ const Auth = (props) => {
     const data = {email: email, password: password}
 
     try {
-      const response = await fetch(`${url}/login`, {
+      await fetch(`${url}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      })
-      console.log('--login response')
-      console.log(response)
-
-      if(response.ok) {
-        console.log('redireact to home page')
-        setEmail('')
-        setPassword('')
-        return redirect("/");
-      }
+      }).then(resp => resp.json())
+        .then(data => {
+            console.log('--login response')
+            console.log(data)
+            setEmail('')
+            setPassword('')
+            navigate('/')
+        })
     } catch(err){
       console.log(err)
     }
+
   }
 
-  const signupSubmit = async (e) => {
+  const signupSubmit = (e) => {
     e.preventDefault();
-    const url = 'http://127.0.0.1:5000'
     const data = {name: name, email: email, password: password}
+    
+    if(password1 !== password2) console.log('repeated password dont match')
+    else fetchSignup(data)
+  }
 
+  async function fetchSignup(data){
     try {
-      const response = await fetch(`${url}/signup`,  {
+      const url = 'http://127.0.0.1:5000'
+      await fetch(`${url}/signup`,  {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
+      }).then(resp => resp.json())
+      .then(data => {
+        console.log('--signup response')
+          console.log(data)
+          setEmail('')
+          setPassword1('')
+          setPassword2('')
+          navigate('/auth')
       })
-      console.log('--signup response')
-      console.log(response)
-
-      if(response.ok) {
-        console.log('redireact to ???')
-        setName('')
-        setEmail('')
-        setPassword1('')
-        setPassword2('')
-        return redirect("/auth");
-      }
     } catch(err){
       console.log(err)
     }
   }
+  
 
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container">
-        <form className="Auth-form" >
+        <form className="Auth-form" onSubmit={loginSubmit} >
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Sign In</h3>
             <div className="text-center">
@@ -98,8 +102,7 @@ const Auth = (props) => {
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary"
-               onClick={loginSubmit} >
+              <button type="submit" className="btn btn-primary" >
                 Submit
               </button>
             </div>
@@ -114,7 +117,7 @@ const Auth = (props) => {
 
   return (
     <div className="Auth-form-container">
-      <form className="Auth-form">
+      <form className="Auth-form" onSubmit={signupSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
           <div className="text-center">
@@ -164,8 +167,7 @@ const Auth = (props) => {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary"
-             onClick={signupSubmit} >
+            <button type="submit" className="btn btn-primary" >
               Submit
             </button>
           </div>
