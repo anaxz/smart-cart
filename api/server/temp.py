@@ -59,7 +59,40 @@ def get_products():
     response = cur.fetchall()
     print(response)
 
+
+def store_items():
+    query = '''
+    DROP TABLE IF EXISTS Prices;
+    CREATE TABLE Prices (
+        product_id int,
+        tesco varchar(10),
+        morrisons varchar(10),
+        waitrose varchar(10),
+        ms varchar(10)
+    );'''
+    cur.execute(query)
+    # response = cur.fetchall()
+    # print(response)
+
+    ins = ''' 
+    INSERT INTO Prices (product_id, tesco, morrisons, waitrose, ms) 
+    VALUES
+    (1, '1.86', '1.97', '1.84', '1.96');
+    '''
+    cur.execute(ins)
+    # resp = cur.fetchall()
+    # print(resp)
+    
+
+def select():
+    query = "SELECT * FROM Prices"
+    cur.execute(query)
+    response = cur.fetchall()
+    print(response)
+
 # get_user(1)
 # get_favourites(1)
 # get_list(1)
 # get_all_lists(1)
+# store_items()
+select()
