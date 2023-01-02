@@ -28,8 +28,11 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
-    logout_user()
-    return {'200' : 'Logout successfull.'}
+    try:
+        logout_user()
+        return {'200' : 'Logout successfull.'}
+    except Exception as error:
+            return {'message' : f'Error: {error}'}
 
 @auth.route('/signup', methods=['POST'])
 def sign_up():

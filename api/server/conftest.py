@@ -5,15 +5,8 @@ from .auth import *
 
 app = create_app()
 
+# general api -> make separate api func if you are using monkeypatch
 @pytest.fixture
-def auth_api(monkeypatch):
-    test_data = { 
-        "name": "test1", 
-        "email": "test1@email.com", 
-        "password": "pass1" 
-    }
-
-    monkeypatch.setattr(login, "login", test_data)
-
+def api():
     api = app.test_client()
     return api

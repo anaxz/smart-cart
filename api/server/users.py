@@ -9,7 +9,7 @@ users = Blueprint('users', __name__)
 
 @users.route('/<int:id>', methods=['GET', 'POST'])
 @login_required
-def getUser(id):
+def get_user(id):
     user = User.get_user_by_id(id)
 
     try:
@@ -19,7 +19,7 @@ def getUser(id):
 
 @users.route('/<int:id>', methods=['GET', 'POST'])
 @login_required
-def updateUser(id):
+def update_user(id):
     user = User.get_user_by_id(id)
 
     if request.method == 'POST':

@@ -30,6 +30,7 @@ A website comparing grocery store items.
 - Else: Goto api/server/test folder
 - Then run ```pytest script_name.py```
 - Inside anywhere in api folder ```pytest --cov``` to display coverage
+- Inside api folder run ```pytest --cov-report term-missing --cov=.``` to display missing lines
 
 ## Changelog
 
