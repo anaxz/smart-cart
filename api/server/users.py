@@ -9,16 +9,20 @@ users = Blueprint('users', __name__)
 
 @users.route('/<int:id>', methods=['GET', 'POST'])
 @login_required
+def getUser(id):
+    user = User.get_user_by_id(id)
+
+    try:
+        return {'name' : user.name}, 200
+    except:
+        return {'404' : 'Issue retreiving your name'}
+
+@users.route('/<int:id>', methods=['GET', 'POST'])
+@login_required
 def updateUser(id):
     user = User.get_user_by_id(id)
 
-    if request.method == 'GET':
-        try:
-            return {'name' : user.name}, 200
-        except:
-            return {'404' : 'Issue retreiving your name'}
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         try:
             request_data = json.loads(request.data)
             if not check_password_hash(user.password, request_data['old password']):

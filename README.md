@@ -21,12 +21,15 @@ A website comparing grocery store items.
 - Goto http://127.0.0.1:5000 for server side
 
 ### React test
-```npm run test script-name```
+- ```npm run test script-name```
+- OR ```npm run test``` to run all
+- ```npm run coverage``` to run coverage
 
 ### Flask pytest
 - For mac: ```pytest script_name.py```
 - Else: Goto api/server/test folder
 - Then run ```pytest script_name.py```
+- Inside anywhere in api folder ```pytest --cov``` to display coverage
 
 ## Changelog
 

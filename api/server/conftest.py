@@ -12,7 +12,8 @@ def auth_api(monkeypatch):
         "email": "test1@email.com", 
         "password": "pass1" 
     }
-    monkeypatch.setattr(auth, "request_data", test_data)
+
+    monkeypatch.setattr(login, "login", test_data)
 
     api = app.test_client()
     return api
