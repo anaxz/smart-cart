@@ -9,10 +9,6 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login',  methods=['POST'])
 def login():
     if request.method == 'POST':
-        # email = request.form.get('email')
-        # password = request.form.get('password')
-        # email = "anah12@gmail.com"
-
         request_data = json.loads(request.data)
 
         try: 
@@ -26,8 +22,8 @@ def login():
         except Exception as error:
             return {'message' : f'Error: {error}'}
 
-    user=current_user
-    return {'200' : user }
+    # user=current_user
+    # return {'200' : user }
 
 @auth.route('/logout')
 @login_required
@@ -57,5 +53,5 @@ def sign_up():
         except Exception as error:
             return {'message' : f'Error: {error}'}
 
-    user=current_user 
-    return {'200' : user}
+    # user=current_user 
+    # return {'200' : user}

@@ -20,6 +20,14 @@ A website comparing grocery store items.
 - Goto http://127.0.0.1:5173/ for client side
 - Goto http://127.0.0.1:5000 for server side
 
+### React test
+```npm run test script-name```
+
+### Flask pytest
+- For mac: ```pytest script_name.py```
+- Else: Goto api/server/test folder
+- Then run ```pytest script_name.py```
+
 ## Changelog
 
 ## Wins
