@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 function Darknavbar() {
   return (
     <>
-      <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
         <Container>
           <Navbar.Brand href="#home">Smart-Cart <i class="bi bi-cart2"></i></Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -28,7 +28,7 @@ function Darknavbar() {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-primary">Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
