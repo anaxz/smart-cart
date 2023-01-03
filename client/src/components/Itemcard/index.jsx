@@ -1,18 +1,23 @@
 import React from "react";
 
-const Itemcard = () => {
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import './index.css';
+
+function Itemcard({ data }) {
+    console.log('Item card')
+    console.log(data)
     return (
-        <div className="cardcont">
-            <img src="" alt="" />
-            <h4 className="itemname"></h4>
-            <p className="price"></p>
-            <div className="quantity">
-                <label htmlFor="quantbutton"></label>
-                <button id="quantbutton"></button>
-            </div>
-            <button className="addtocart"></button>
-        </div>
-    )
+        <CardGroup>
+            <Card style={{ width: '18rem' }} border="primary">
+                <Card.Body>
+                    <Card.Title>{data[1]}</Card.Title>
+                    <Button variant="primary"><i class="bi bi-cart-plus"></i></Button>
+                </Card.Body>
+            </Card>
+        </CardGroup>
+    );
 }
 
 export default Itemcard;
