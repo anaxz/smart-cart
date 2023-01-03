@@ -27,11 +27,10 @@ function Darknavbar() {
           } */}
           
             <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="#profile">Profile</Nav.Link>
-              <Nav.Link href="/about">About</Nav.Link>
-              <Nav.Link href="/Auth">Login</Nav.Link>
-              {/* <Nav.Link onClick={logout} to="/Auth">Logout</Nav.Link> */}
+              <Nav.Link href="/"><i class="bi bi-house"></i> Home</Nav.Link>
+              <Nav.Link href="/profile"><i class="bi bi-person"></i> Profile</Nav.Link>
+              <Nav.Link href="/about"><i class="bi bi-question-circle"></i> About</Nav.Link>
+              <Nav.Link href="/Auth"><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
             </Nav>
         
             {/* <Nav className="me-auto">
