@@ -7,6 +7,11 @@ from .models.Shoppinglist import Shoppinglist
 
 users = Blueprint('users', __name__)
 
+
+@users.route('/m', methods=['GET', 'POST'])
+def test():
+    Shoppinglist.get_price_by_supermarket(['Bleach', 'Milk'], 'Tesco')
+
 @users.route('/<int:id>', methods=['GET'])
 @login_required
 def get_user(id):
