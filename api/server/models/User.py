@@ -52,11 +52,12 @@ class User(UserMixin):
 
     def update_user(data):
         print('--update_user')
-        query = f"UPDATE Users SET name='{data['name']}' email='{data['email']}' password='{data['password']}' WHERE id = {data[id]};"
+        query = f"UPDATE Users SET name='{data['name']}', email='{data['email']}', password='{data['password']}' WHERE id = {data['id']};"
         print(query)
         cur.execute(query)
         conn.commit()
-        User.update({data['name']}, {data['email']}, {data['password']})
+        print('committed')
+        # User.update({data['name']}, {data['email']}, {data['password']})
         return 'Updated User'
 
     def delete_user(id):
@@ -73,7 +74,7 @@ class User(UserMixin):
         return response
 
     def add_favourites(data):
-        query = f"INSERT INTO Favourites (name) VALUES ('{data['name']}');"
+        query = f"INSERT INTO Favourites (user_id, product_id) VALUES ({data['user_id']}, '{data['product_id']}');"
         cur.execute(query)
         conn.commit()
         return 'Add new Favourites'

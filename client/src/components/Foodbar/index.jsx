@@ -43,7 +43,7 @@ function Foodbar() {
                 <ShowItems data={productData} category={'Meat'} />
             </Tab>
             <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
-                <ShowItems data={productData} category={'Fruit & Veg'} />
+                <ShowItems data={productData} category={'Fruit_Veg'} />
             </Tab>
             <Tab eventKey="household" title="Household">
                 <ShowItems data={productData} category={'Household'} />

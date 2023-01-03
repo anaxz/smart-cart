@@ -28,7 +28,7 @@ def get_user(id):
 #         return {'404' : 'Issue retreiving users'}
 
 @users.route('/<int:id>', methods=['POST'])
-# @login_required
+@login_required
 def update_user(id):
     user = User.get_user_by_id(id)
 
@@ -44,10 +44,7 @@ def update_user(id):
             print(user[3])
             print(old_password)
 
-        ## NOT WORKING-- "message": "Fail to update. Error: <built-in function id>"
-
             if(user[3] != old_password):
-            # if not check_password_hash(user[3], request_data['old password']):
                 print('not correct pass')
                 return {'404' : 'Old password incorrect'}
             else:
@@ -72,7 +69,7 @@ def delete(id):
         return {'message' : f'Cannot delete user. Error: {error}'}
 
 @users.route('/<int:user_id>/favs', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def fav(user_id):
     list_favs = User.get_favourites(user_id)
 
@@ -85,14 +82,14 @@ def fav(user_id):
         except Exception as error:
             return {'message' : f"Cannot get user's favourites. Error: {error}"}
 
-    # elif request.method == 'POST':
-    #     try:
-    #         request_data = json.loads(request.data)
-    #         User.add_favourites(request_data)
-    #         return {'204' : 'Successfully updated'}
+    elif request.method == 'POST':
+        try:
+            request_data = json.loads(request.data)
+            User.add_favourites(request_data)
+            return {'204' : 'Successfully updated'}
 
-    #     except Exception as error:
-    #         return {'message' : f"Cannot update user's favourites. Error: {error}"}
+        except Exception as error:
+            return {'message' : f"Cannot update user's favourites. Error: {error}"}
 
 @users.route('/<int:id>/shopping-list', methods=['GET', 'POST'])
 @login_required
