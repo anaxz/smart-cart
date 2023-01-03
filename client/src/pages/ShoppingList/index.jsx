@@ -1,52 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-//product_id
 let dummyData = [
-    { 'id': 1, 'product_id': 2, 'price': 2.5 },
-    {'id': 2, 'product_id': 2, 'price': 3 },
-    {'id': 3, 'product_id': 2, 'price': 5 }
+    { 'id': 1, 'product_id': 2, },
+    {'id': 2, 'product_id': 3, },
+    {'id': 3, 'product_id': 1 }
 ]
 
+// replace dummyData with shoplist - shoplist will be a prop
 const ShoppingList = ({  }) => {
-    const [shopList, setShopList] = useState()
+    const [productList, setProductList] = useState()
+    const [priceList, setPriceList] = useState()
+    const [isLoading, setIsLoading] = useState(true)
 
-    async function getShoplist() {
+    useEffect(() => {
+        
+        // getProductList()
+    }, [])
+
+    async function getProduct(productID) {
         try {
             const url = 'http://127.0.0.1:5000'
-            const result = await fetch(`${url}/shopping-list`)
-                .then(response => response.json())
-                // .then(data => setShopList(data))
-            setShopList(result)
+            const resp = await fetch(`${url}/products/${productID}`)
+                .then(response => response.json() )
+                .then(data => {
+                    console.log('--getProduct data')
+                    console.log(data)
+
+                    setProductList(data)
+                })
         } catch(err){
             console.log(err)
             return err
         }
     }
 
-    const populateList = () => {
+    const getProductList = () => {
+        console.log('loading')
+
+        dummyData.map(async e => {
+            console.log('--dummyData')
+            console.log(e)
+
+            const result = await getProduct(e.product_id)
+            console.log('--getProductList resp')
+            console.log(result)
+            // console.log(Object.keys(result) )
+            // if(result !== undefined){
+            //     console.log('>>inside if statem..')
+            //     console.log(result)
+            //     setProductList(result)
+            // }
+
+            
+            // console.log(productList)
+        })
+
+        // if(dummyData.length === productList.length){
+        //     setIsLoading(false)
+        //     console.log('loading done')
+        // }
         
+        setIsLoading(false)
     }
 
+    const displayData = () => {
+        console.log('loaded')
+
+         // return <>
+        //     { dummyData.map((e, i) => <div key={i}>
+        //         <p>test</p>
+        //     <p>product_id: {e.product_id}</p>
+        //     {/* <p>name: {getProduct(e.product_id)}</p> */}
+        // </div>
+        // )} </>
+    }
+
+   
+
     return <div>
-        {/* {getShoplist()}
-        {console.log(shopList)} */}
         <h3>Shopping List</h3>
         <div className='shop-list-items'>
             <p>item title</p>
             <p>price</p>
         </div>
-        {dummyData.map((e, i) => <div key={i}>
-            <p>{e.product_id}</p>
-            <p>Price: {e.price}</p>
-        </div>
-        )}
 
+        { isLoading ? getProductList() : displayData() }
         
     </div>
 };
 
 export default ShoppingList;
-
-/**
- * displayes shoppinglist even users that arent logged in
- */

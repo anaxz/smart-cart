@@ -13,6 +13,13 @@ def default():
 def products():
     return Product.get_products()
 
+@views.route('/products/<int:id>')
+def one_products(id):
+    try:
+        return {'200' : Product.get_one_product(id)}
+    except Exception as error:
+        return {'message' : f'Error: {error}'}
+
 @views.route('/price', methods=['POST'])
 def get_price():
     data = json.loads(request.data)
