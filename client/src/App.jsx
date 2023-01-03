@@ -1,6 +1,6 @@
 import './assets/App.css'
 import "./assets/index.css"
-import { Welcome, About, Homepage } from './pages'
+import { Welcome, About, Homepage, Comparison } from './pages'
 import { Auth } from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -18,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/home" element={<Homepage />} />
+          <Route path="/comparison" element={<Comparison />} />
           <Route path="/about" element={<About />} />
           <Route path="/Auth" element={<Auth />} />
         </Routes>
