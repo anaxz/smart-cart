@@ -36,7 +36,7 @@ const Auth = (props) => {
           console.log(data)
           setEmail('')
           setPassword('')
-          navigate('/')
+          navigate('/home')
       })
     } catch(err){
       console.log(err)
