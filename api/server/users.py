@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, json
+from flask import Blueprint, request, json
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -7,25 +7,51 @@ from .models.Shoppinglist import Shoppinglist
 
 users = Blueprint('users', __name__)
 
-@users.route('/<int:id>', methods=['GET', 'POST'])
+
+
+
+@users.route('/<int:id>', methods=['GET'])
 @login_required
-def updateUser(id):
+def get_user(id):
+    try:
+        user = User.get_user_by_id(id)
+        return {'200' : user}
+    except:
+        return {'404' : 'Issue retreiving user'}
+
+# @users.route('/')
+# def get_all_users():
+#     try:
+#         users = User.get_all_users()
+#         return {'200' : users}
+#     except:
+#         return {'404' : 'Issue retreiving users'}
+
+@users.route('/<int:id>', methods=['POST'])
+@login_required
+def update_user(id):
     user = User.get_user_by_id(id)
 
-    if request.method == 'GET':
-        try:
-            return {'name' : user.name}, 200
-        except:
-            return {'404' : 'Issue retreiving your name'}
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         try:
             request_data = json.loads(request.data)
-            if not check_password_hash(user.password, request_data['old password']):
-                return 'Old password incorrect', 404
+            email = request_data['email']
+            name = request_data['name']
+            old_password = request_data['old password']
+            new_password = request_data['new password']
+
+            print('db user - pass')
+            print(user[3])
+            print(old_password)
+
+            if(user[3] != old_password):
+                print('not correct pass')
+                return {'404' : 'Old password incorrect'}
             else:
-                user.password = generate_password_hash(request_data['new password'], method='sha256')
-                User.update_user(user)
+                hashed_password = generate_password_hash(new_password, method='sha256')
+                print('hash password generated')
+                data = {'id': user[0],'name': name, 'email': email, 'password': hashed_password }
+                User.update_user(data)
                 return {'204' : 'Successfully updated'}
 
         except Exception as error:
@@ -35,8 +61,8 @@ def updateUser(id):
 @login_required
 def delete(id):
     try: 
-        user = User.get_user(id)
-        User.delete_user(user.id)
+        user = User.get_user_by_id(id)
+        User.delete_user(user[0])
         return {'204' : 'User deleted'}
 
     except Exception as error:
@@ -47,20 +73,23 @@ def delete(id):
 def fav(user_id):
     list_favs = User.get_favourites(user_id)
 
+    print('list_favs')
+    print(list_favs)
+
     if request.method == 'GET':
         try:
             return {'200' : list_favs}
         except Exception as error:
             return {'message' : f"Cannot get user's favourites. Error: {error}"}
 
-    # elif request.method == 'POST':
-    #     try:
-    #         request_data = json.loads(request.data)
-    #         User.add_favourites(request_data)
-    #         return {'204' : 'Successfully updated'}
+    elif request.method == 'POST':
+        try:
+            request_data = json.loads(request.data)
+            User.add_favourites(request_data)
+            return {'204' : 'Successfully updated'}
 
-    #     except Exception as error:
-    #         return {'message' : f"Cannot update user's favourites. Error: {error}"}
+        except Exception as error:
+            return {'message' : f"Cannot update user's favourites. Error: {error}"}
 
 @users.route('/<int:id>/shopping-list', methods=['GET', 'POST'])
 @login_required

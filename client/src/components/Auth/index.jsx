@@ -15,60 +15,71 @@ const Auth = (props) => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
 
-  const loginSubmit = async (e) => {
+  const loginSubmit = async(e) => {
     e.preventDefault();
-    const url = 'http://127.0.0.1:5000'
     const data = {email: email, password: password}
 
+    const result = await fetchLogin(data)
+    console.log(Object.keys(result))
+
+    if(Object.keys(result) == 200){
+      console.log('--login response')
+      setEmail('')
+      setPassword('')
+      navigate('/')
+    }
+    else console.log('login fail')
+  }
+
+  async function fetchLogin(data){
     try {
-      await fetch(`${url}/login`, {
+      const url = 'http://127.0.0.1:5000'
+
+      return await fetch(`${url}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      }).then(resp => resp.json())
-        .then(data => {
-            console.log('--login response')
-            console.log(data)
-            setEmail('')
-            setPassword('')
-            navigate('/')
-        })
-    } catch(err){
-      console.log(err)
-    }
+      }).then(response => response.json())
 
+    } catch(err){
+        console.log(err)
+        return err
+    }
   }
 
-  const signupSubmit = (e) => {
+  const signupSubmit = async(e) => {
     e.preventDefault();
     const data = {name: name, email: email, password: password}
     
     if(password1 !== password2) console.log('repeated password dont match')
-    else fetchSignup(data)
+    else {
+      const result = await fetchSignup(data)
+      console.log(Object.keys(result))
+
+      if(Object.keys(result) == 201){
+        console.log('--signup response')
+        setEmail('')
+        setPassword1('')
+        setPassword2('')
+      }
+    }
   }
 
   async function fetchSignup(data){
     try {
       const url = 'http://127.0.0.1:5000'
-      await fetch(`${url}/signup`,  {
+
+      return await fetch(`${url}/signup`,  {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      }).then(resp => resp.json())
-      .then(data => {
-        console.log('--signup response')
-          console.log(data)
-          setEmail('')
-          setPassword1('')
-          setPassword2('')
-          navigate('/auth')
-      })
+      }).then(response => response.json())
     } catch(err){
-      console.log(err)
+        console.log(err)
+        return err
     }
   }
   
-
   if (authMode === "signin") {
     return (
       <div className="Auth-form-container">
