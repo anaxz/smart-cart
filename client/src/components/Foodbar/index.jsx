@@ -22,9 +22,9 @@ function Foodbar() {
                 .then(result => setProductData(result))
         }
         getItemData()
-    },[])
+    }, [])
 
-    
+
     return (
         <Tabs
             defaultActiveKey="profile"
@@ -34,28 +34,28 @@ function Foodbar() {
             variant='pills'
         >
             <Tab eventKey="bakery" title="Bakery">
-                <ShowItems data={ productData } category={ 'Bakery' } />
+                <ShowItems data={productData} category={'Bakery'} />
             </Tab>
             <Tab eventKey="dairy" title="Dairy">
                 <ShowItems data={productData} category={'Dairy'} />
             </Tab>
             <Tab eventKey="meat" title="Meat">
-
+                <ShowItems data={productData} category={'Meat'} />
             </Tab>
             <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
-
+                <ShowItems data={productData} category={'Fruit & Veg'} />
             </Tab>
             <Tab eventKey="household" title="Household">
-
+                <ShowItems data={productData} category={'Household'} />
             </Tab>
             <Tab eventKey="toiletries" title="Toiletries">
-
+                <ShowItems data={productData} category={'Toiletries'} />
             </Tab>
             <Tab eventKey="drinks" title="Drinks">
-
+                <ShowItems data={productData} category={'Drinks'} />
             </Tab>
             <Tab eventKey="other" title="Other">
-
+                <ShowItems data={productData} category={'Other'} />
             </Tab>
 
         </Tabs>
