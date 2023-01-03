@@ -30,12 +30,12 @@ function Foodbar() {
             <Tabs
                 defaultActiveKey="profile"
                 id="fill-tab-example"
-                className="mb-3"
+                className="m-5"
                 fill
                 variant='pills'
             >
                 <Tab eventKey="bakery" title="Bakery">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={ productData } category={ 'Bakery' } />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} />
                 </Tab>
                 <Tab eventKey="dairy" title="Dairy">
                     <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} />
