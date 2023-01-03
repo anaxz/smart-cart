@@ -49,7 +49,7 @@ class Shoppinglist():
                 # print(y['shop'])
                 if shop_name == y:
                     price = Shoppinglist.get_price_by_supermarket(list,y)
-                    results.append({y : price})
+                    results.append({"supermarket": y, "total": price})
                     
         return results
 
