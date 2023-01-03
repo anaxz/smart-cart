@@ -4,7 +4,6 @@ import { Welcome, About, Homepage, Comparison, Profile } from './pages'
 import { Auth } from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-// import Login from './components/Login';
 
 function App() {
 
