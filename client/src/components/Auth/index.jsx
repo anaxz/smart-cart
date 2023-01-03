@@ -26,7 +26,7 @@ const Auth = (props) => {
       console.log('--login response')
       setEmail('')
       setPassword('')
-      navigate('/')
+      navigate('/home')
     }
     else console.log('login fail')
   }
