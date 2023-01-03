@@ -1,4 +1,7 @@
 from ..temp import cur, conn
+import requests
+import json
+from urllib.request import urlopen
 
 class Shoppinglist():
     def get_list(id):
@@ -19,19 +22,12 @@ class Shoppinglist():
             query = f"SELECT {supermarket} FROM Products JOIN Prices ON Prices.product_id = Products.id WHERE Products.name = '{item}'"
             cur.execute(query)
             response = cur.fetchone()
-            print(response)
             total += response[0]
-        print(total)
-        return total
+        return round(total,2)
 
     def get_price_by_nearby_supermarket(list, ip):
-        total = 0
 
-        import requests
-        import json
-        from urllib.request import urlopen
-
-        url='http://ipinfo.io/json'
+        url=f'https://ipinfo.io/{ip}?token=dd2e8a795d1efb'
         response = urlopen(url)
         data = json.load(response)
 
@@ -41,18 +37,31 @@ class Shoppinglist():
 
         api_url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={latlon[0]}%2C{latlon[1]}&radius=1500&type=convenience_store&key=AIzaSyAAOpsLqUS8AFih-Fp2QgeldirT-Eoc0zg"
 
-        payload={}
-        headers = {}
-
-        response = requests.request("GET", api_url, headers=headers, data=payload).json()
-
+        response = requests.request("GET", api_url, headers={}, data={}).json()
 
         supermarkets = ['Tesco', 'Sainsburys', 'Aldi', 'Asda', 'Waitrose', 'Iceland', 'Morrisons', 'M&S']
-        for item in list:
-            query = f"SELECT {supermarket} FROM Products JOIN Prices ON Prices.product_id = Products.id WHERE Products.name = '{item}'"
-            cur.execute(query)
-            response = cur.fetchone()
-            print(response)
-            total += response[0]
-        print(total)
-        return total
+        results = []
+        shops = response['results']
+        for shop in shops:
+            shop_name = shop['name'].split(' ')[0].replace("'", "")
+            for y in supermarkets:
+                # print(shop['name'])
+                # print(y['shop'])
+                if shop_name == y:
+                    price = Shoppinglist.get_price_by_supermarket(list,y)
+                    results.append({y : price})
+                    
+        return results
+
+
+
+
+
+        # for item in list:
+        #     query = f"SELECT {supermarket} FROM Products JOIN Prices ON Prices.product_id = Products.id WHERE Products.name = '{item}'"
+        #     cur.execute(query)
+        #     response = cur.fetchone()
+        #     print(response)
+        #     total += response[0]
+        # print(total)
+        # return total
