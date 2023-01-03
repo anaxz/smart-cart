@@ -20,6 +20,8 @@ coverage
 .Python
 __pycache__
 instance
+.pytest_cache
+.coverage
 
 # other
 .git
@@ -33,3 +35,4 @@ instance
 *.njsproj
 *.sln
 *.sw?
+.env

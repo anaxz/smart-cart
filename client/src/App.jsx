@@ -5,7 +5,7 @@ import {Foodbar2, Auth} from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Darknavbar } from './layout';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from './components/login';
+import Login from './components/Login';
 
 function App() {
 
