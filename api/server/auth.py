@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, json
+from flask import Blueprint, request, json
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -13,12 +13,17 @@ def login():
 
         try: 
             user = User.get_user(request_data['email'])
+            print(user)
+
             if user:
                 if check_password_hash(user.password, request_data['password']):
                     login_user(user, remember=True)
+                    print('Login successfull.')
                     return {'200' : 'Login successfull.'}
                 else:
+                    print('Incorrect password')
                     return {'403' : 'Incorrect password, try again.'}
+            
         except Exception as error:
             return {'message' : f'Error: {error}'}
 
@@ -34,6 +39,13 @@ def logout():
     except Exception as error:
             return {'message' : f'Error: {error}'}
 
+def get_user(email):
+    try:
+        user = User.get_user(email)
+        return user
+    except:
+        return '404'
+
 @auth.route('/signup', methods=['POST'])
 def sign_up():
     if request.method == 'POST':
@@ -42,17 +54,24 @@ def sign_up():
         name = request_data['name']
         password = request_data['password']
 
+        print(email)
+
         try:
-            user = User.get_user(email)
-            hashed_password = generate_password_hash(password, method='sha256')
+            response = get_user(email)
+            print(response)
 
-            print('add new user..')
-            user = User(name, email, hashed_password)
-            data = { name, email, hashed_password }
+            if response != '404':
+                hashed_password = generate_password_hash(password, method='sha256')
 
-            User.add_user(data)
-            login_user(user, remember=True)
-            return {'201' : 'Account created!'}
+                print('add new user..')
+                user = User(name, email, hashed_password)
+                data = { name, email, hashed_password }
+
+                User.add_user(data)
+                login_user(user, remember=True)
+                return {'201' : 'Account created!'}
+            else:
+                return {'404' : 'Email already exists!'}
         except Exception as error:
             return {'message' : f'Error: {error}'}
 

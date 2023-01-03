@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, json
+from flask import Blueprint, request, json
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -13,9 +13,9 @@ def get_user(id):
     user = User.get_user_by_id(id)
 
     try:
-        return {'name' : user.name}, 200
+        return {'200' : user}
     except:
-        return {'404' : 'Issue retreiving your name'}
+        return {'404' : 'Issue retreiving user'}
 
 @users.route('/<int:id>', methods=['GET', 'POST'])
 @login_required

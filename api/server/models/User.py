@@ -16,6 +16,7 @@ class User(UserMixin):
         cur.execute(query)
         response = cur.fetchall()
         new_user = User(data.name, data.email, data.password)
+        print(new_user)
         return response
 
     def get_user_by_id(id):
