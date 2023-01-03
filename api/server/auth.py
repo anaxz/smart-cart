@@ -37,7 +37,7 @@ def logout():
         logout_user()
         return {'200' : 'Logout successfull.'}
     except Exception as error:
-            return {'message' : f'Error: {error}'}
+        return {'message' : f'Error: {error}'}
 
 def get_user(email):
     try:
@@ -46,7 +46,7 @@ def get_user(email):
         print(user)
         return user
     except:
-        return '404'
+        return False
 
 @auth.route('/signup', methods=['POST'])
 def sign_up():
@@ -63,7 +63,7 @@ def sign_up():
             print('Test')
             print(response)
 
-            if response != '404':
+            if response != False:
                 hashed_password = generate_password_hash(password, method='sha256')
 
                 print('add new user..')
