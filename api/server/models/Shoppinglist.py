@@ -1,10 +1,10 @@
-from ..temp import cur
+from ..temp import cur, conn
 
 class Shoppinglist():
     def get_list(id):
         query = f"SELECT * FROM Shopping_List WHERE list_id = {id}"
         cur.execute(query)
-        response = cur.fetchall()
+        response = cur.fetchone()
         print(response)
 
     def get_all_lists(id):
