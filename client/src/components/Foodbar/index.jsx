@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -10,17 +10,20 @@ import './index.css'
 function Foodbar() {
 
     const [showItems, setShowItems] = useState([]);
+    const [productData, setProductData] = useState([]);
 
     useEffect(() => {
         async function getItemData() {
-            const url = 
-            const response = url.get()
+            const url = 'https://127.0.0.1:5000/products'
+            // const response = url.get()
+            fetch(url)
+                .then(resp => resp.json())
+                .then(result => console.log(result))
         }
-    })
+        getItemData()
+    },[])
 
-    function displayItems() {
-        return showItems.filter()
-    }
+    
     return (
         <Tabs
             defaultActiveKey="profile"
@@ -30,7 +33,7 @@ function Foodbar() {
             variant='pills'
         >
             <Tab eventKey="bakery" title="Bakery">
-
+                <ShowItems data={ productData } category={ 'Bakery' } />
             </Tab>
             <Tab eventKey="dairy" title="Dairy">
 

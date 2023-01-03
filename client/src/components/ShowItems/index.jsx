@@ -1,11 +1,18 @@
 import React from "react";
 import Itemcard from "../Itemcard";
 
-const ShowItems = ({ data }) => {
+const ShowItems = ({ product_data, category }) => {
     return (
-        <div>
-            <Itemcard />
-        </div>
+        // <div>
+        //     <Itemcard />
+        // </div>
+        <>
+            {
+                product_data
+                .filter(product => product.category == category)
+                    .map(product => <Itemcard data={product } />)
+            }
+        </>
     )
 }
 
