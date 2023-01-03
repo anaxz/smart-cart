@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Itemcard from '../Itemcard';
+import ShowItems from '../ShowItems';
 import './index.css'
 
 
@@ -14,11 +15,11 @@ function Foodbar() {
 
     useEffect(() => {
         async function getItemData() {
-            const url = 'https://127.0.0.1:5000/products'
+            const url = 'http://127.0.0.1:5000/products'
             // const response = url.get()
-            fetch(url)
+            fetch('http://127.0.0.1:5000/products')
                 .then(resp => resp.json())
-                .then(result => console.log(result))
+                .then(result => setProductData(result))
         }
         getItemData()
     },[])
@@ -36,7 +37,7 @@ function Foodbar() {
                 <ShowItems data={ productData } category={ 'Bakery' } />
             </Tab>
             <Tab eventKey="dairy" title="Dairy">
-
+                <ShowItems data={productData} category={'Dairy'} />
             </Tab>
             <Tab eventKey="meat" title="Meat">
 
