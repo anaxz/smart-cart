@@ -20,7 +20,7 @@ function Darknavbar() {
     <>
       <Navbar collapseOnSelect expand="md" bg="primary" variant="dark" className="mx-5">
         <Container>
-          <Navbar.Brand href="#home"><i className="bi bi-cart2"></i> Smart-Cart</Navbar.Brand>
+          <Navbar.Brand href="#home"><i class="bi bi-cart-check"></i> Smart-Cart</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             {/* {

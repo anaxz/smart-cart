@@ -1,4 +1,9 @@
 #basket {
     margin: 0 5rem;
     float: right;
+    font-size: 20px;
+}
+
+#cartitems {
+    list-style-type: circle;
 }
