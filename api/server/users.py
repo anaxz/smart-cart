@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, json
+from flask import Blueprint, request, json
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -7,18 +7,27 @@ from .models.Shoppinglist import Shoppinglist
 
 users = Blueprint('users', __name__)
 
+
+@users.route('/m', methods=['GET', 'POST'])
+def test():
+    Shoppinglist.get_price_by_supermarket(['Bleach', 'Milk'], 'Tesco')
+
 @users.route('/<int:id>', methods=['GET', 'POST'])
 @login_required
-def updateUser(id):
+def get_user(id):
     user = User.get_user_by_id(id)
 
-    if request.method == 'GET':
-        try:
-            return {'name' : user.name}, 200
-        except:
-            return {'404' : 'Issue retreiving your name'}
+    try:
+        return {'200' : user}
+    except:
+        return {'404' : 'Issue retreiving user'}
 
-    elif request.method == 'POST':
+@users.route('/<int:id>', methods=['GET', 'POST'])
+@login_required
+def update_user(id):
+    user = User.get_user_by_id(id)
+
+    if request.method == 'POST':
         try:
             request_data = json.loads(request.data)
             if not check_password_hash(user.password, request_data['old password']):

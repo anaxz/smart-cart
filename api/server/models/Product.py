@@ -6,6 +6,7 @@ class Product():
         cur.execute(query)
         response = cur.fetchall()
         print(response)
+        return response
 
     def add_products(data):
         query = f"INSERT INTO Products (name, category) VALUES ('{data.name}', '{data.category}')"

@@ -1,11 +1,16 @@
 from flask import Flask, Blueprint, request, jsonify
 from . import db
+from .models.Product import Product
 
 views = Blueprint('views', __name__)
 
 @views.route('/')
 def default():
     return 'Welcome back'
+
+@views.route('/products')
+def products():
+    return Product.get_products()
 
 @views.route('/test')
 def test():

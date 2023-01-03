@@ -1,5 +1,5 @@
 from flask_login import UserMixin
-from ..temp import cur
+from ..temp import cur, conn
 
 class User(UserMixin):
     def __init__(self, name, email, password):
@@ -12,11 +12,14 @@ class User(UserMixin):
         return f"User {self.name}, {self.email}"
 
     def add_user(data):
-        query = f"INSERT INTO Users (name, email, password) VALUES ('{data.name}', '{data.email}', '{data.password}');"
+        
+        query = f"INSERT INTO Users (name, email, password) VALUES ('{data['name']}', '{data['email']}', '{data['password']}');"
         cur.execute(query)
-        response = cur.fetchall()
-        new_user = User(data.name, data.email, data.password)
-        return response
+        conn.commit()
+        print('Inserted')
+        new_user = User(data['name'], data['email'], data['password'])
+        print(new_user)
+        return 'User Created'
 
     def get_user_by_id(id):
         query = f"SELECT * FROM Users WHERE id = {id};"
@@ -25,9 +28,11 @@ class User(UserMixin):
         return response
 
     def get_user(email):
-        query = f"SELECT * FROM Users WHERE email = {email};"
+        query = f"SELECT email, password FROM Users WHERE email = '{email}';"
+        print(query)
         cur.execute(query)
-        response = cur.fetchall()
+        response = cur.fetchone()
+        print(response)
         return response
 
     def update_user(data):

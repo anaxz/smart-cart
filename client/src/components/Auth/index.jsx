@@ -25,16 +25,22 @@ const Auth = (props) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      }).then(resp => resp.json())
-        .then(data => {
-            console.log('--login response')
-            console.log(data)
-            setEmail('')
-            setPassword('')
-            navigate('/')
-        })
+      }).then(response => {
+        if(response.ok){
+          response.json()
+        } 
+        else console.log(response.text())
+      })
+      .then(data => {
+          console.log('--login response')
+          console.log(data)
+          setEmail('')
+          setPassword('')
+          navigate('/')
+      })
     } catch(err){
       console.log(err)
+      return err
     }
 
   }
@@ -44,27 +50,40 @@ const Auth = (props) => {
     const data = {name: name, email: email, password: password}
     
     if(password1 !== password2) console.log('repeated password dont match')
-    else fetchSignup(data)
+    else {
+      fetchSignup(data)
+    }
   }
 
   async function fetchSignup(data){
     try {
       const url = 'http://127.0.0.1:5000'
-      await fetch(`${url}/signup`,  {
+      const response = await fetch(`${url}/signup`,  {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-      }).then(resp => resp.json())
-      .then(data => {
-        console.log('--signup response')
-          console.log(data)
-          setEmail('')
-          setPassword1('')
-          setPassword2('')
-          navigate('/auth')
       })
+
+      let result = null;
+      if(response.ok){
+        result = response.json()
+      } else {
+        console.log('--signup fail response')
+        console.log(response.data)
+      }
+
+      if(result != null){
+        console.log('--signup response')
+        console.log(response.data)
+        setEmail('')
+        setPassword1('')
+        setPassword2('')
+        // navigate('/auth')
+      }
+
     } catch(err){
-      console.log(err)
+        console.log(err)
+        return err
     }
   }
   
