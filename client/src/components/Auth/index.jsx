@@ -40,7 +40,6 @@ const Auth = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       }).then(response => response.json())
-
     } catch(err){
         console.log(err)
         return err

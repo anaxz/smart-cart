@@ -1,9 +1,8 @@
 import './assets/App.css'
 import "./assets/index.css"
-import { Welcome, About } from './pages'
-import {Navbar, Auth} from "./components"
+import { Welcome, About, Homepage, Comparison, Profile } from './pages'
+import { Auth } from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Darknavbar } from './layout';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from './components/Login';
 
@@ -11,17 +10,20 @@ function App() {
 
   return (
     <>
-    <Darknavbar className="sticky-top"/>
-    {/* <div className="App">
+
+      {/* <div className="App">
       <Navbar />
     </div> */}
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/Auth" element={<Auth />} />
-    </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/home" element={<Homepage />} />
+          <Route path="/comparison" element={<Comparison />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/Auth" element={<Auth />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
