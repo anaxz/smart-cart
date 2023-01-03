@@ -12,6 +12,7 @@ function Foodbar() {
 
     const [showItems, setShowItems] = useState([]);
     const [productData, setProductData] = useState([]);
+    const [shopping, setShopping] = useState([]);
 
     useEffect(() => {
         async function getItemData() {
@@ -22,43 +23,43 @@ function Foodbar() {
                 .then(result => setProductData(result))
         }
         getItemData()
-    },[])
+    }, [])
 
-    
     return (
-        <Tabs
-            defaultActiveKey="profile"
-            id="fill-tab-example"
-            className="mb-3"
-            fill
-            variant='pills'
-        >
-            <Tab eventKey="bakery" title="Bakery">
-                <ShowItems data={ productData } category={ 'Bakery' } />
-            </Tab>
-            <Tab eventKey="dairy" title="Dairy">
-                <ShowItems data={productData} category={'Dairy'} />
-            </Tab>
-            <Tab eventKey="meat" title="Meat">
-                <ShowItems data={productData} category={'Meat'} />
-            </Tab>
-            <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
-                <ShowItems data={productData} category={'Fruit_Veg'} />
-            </Tab>
-            <Tab eventKey="household" title="Household">
-                <ShowItems data={productData} category={'Household'} />
-            </Tab>
-            <Tab eventKey="toiletries" title="Toiletries">
-                <ShowItems data={productData} category={'Toiletries'} />
-            </Tab>
-            <Tab eventKey="drinks" title="Drinks">
-                <ShowItems data={productData} category={'Drinks'} />
-            </Tab>
-            <Tab eventKey="other" title="Other">
-                <ShowItems data={productData} category={'Other'} />
-            </Tab>
-
-        </Tabs>
+        <>
+            <Tabs
+                defaultActiveKey="profile"
+                id="fill-tab-example"
+                className="mb-3"
+                fill
+                variant='pills'
+            >
+                <Tab eventKey="bakery" title="Bakery">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={ productData } category={ 'Bakery' } />
+                </Tab>
+                <Tab eventKey="dairy" title="Dairy">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} />
+                </Tab>
+                <Tab eventKey="meat" title="Meat">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} />
+                </Tab>
+                <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} />
+                </Tab>
+                <Tab eventKey="household" title="Household">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} />
+                </Tab>
+                <Tab eventKey="toiletries" title="Toiletries">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} />
+                </Tab>
+                <Tab eventKey="drinks" title="Drinks">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} />
+                </Tab>
+                <Tab eventKey="other" title="Other">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} />
+                </Tab>
+            </Tabs>
+        </>
     );
 }
 

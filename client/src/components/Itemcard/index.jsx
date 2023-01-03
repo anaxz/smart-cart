@@ -5,15 +5,16 @@ import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
 import './index.css';
 
-function Itemcard({ data }) {
+function Itemcard({ shopping, setShopping, data }) {
     console.log('Item card')
     console.log(data)
 
-    let items = []
-
     function addToCart(name) {
-        items.push(name)
-        console.log(name)
+        let arr = []
+        arr = shopping
+        arr.push(name)
+        setShopping(arr)
+        console.log(shopping)
     }
 
     return (
