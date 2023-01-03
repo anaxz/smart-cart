@@ -1,7 +1,7 @@
 import './assets/App.css'
 import "./assets/index.css"
 import { Welcome, About } from './pages'
-import {Navbar, Auth} from "./components"
+import {Foodbar2, Auth} from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Darknavbar } from './layout';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-    <Darknavbar className="sticky-top"/>
+    <Foodbar2 />
     {/* <div className="App">
       <Navbar />
     </div> */}
