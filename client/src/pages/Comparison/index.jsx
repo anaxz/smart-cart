@@ -5,15 +5,37 @@ const Comparison = () => {
 
     let items = ['Bread', 'Milk', 'Onion']
 
-    const [nearby, setNearby] = useState([])
-
+    const [topPrices, setTopPrices] = useState([])
+    const [data, setData] = useState([])
 
     useEffect(() => {
-        // fetch('https://jsonip.com/')
-        //     .then(resp => resp.json())
-        //     .then(res => setNearby(comparison(res.ip)['total']))
-        topSupermarkets()
-    },[])
+        fetch("http://127.0.0.1:5000/top", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "shopping": items,
+                })
+        }).then(res => res.json()).then(res => setTopPrices(res));
+        function nearby() {
+            let ip = ''
+
+            fetch("http://ip-api.com/json/").then(res => res.json()).then(res => ip = res.query);
+
+            fetch("http://127.0.0.1:5000/nearby", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(
+                    {
+                        "shopping": items,
+                        "ip": ip
+                    })
+            }).then(res => res.json()).then(res => setData(res));
+        }
+    nearby()
+    }, [data])
+    
+    
 
     function comparison(supermarket) {
         fetch("http://127.0.0.1:5000/price", {
@@ -28,23 +50,19 @@ const Comparison = () => {
     }
 
     function topSupermarkets() {
-        let supermarkets = ['Tesco', 'Waitrose']
         let results = []
 
-        for (let i = 0; i < supermarkets.length; i++) {
-            console.log(supermarkets[i])
-            fetch("http://127.0.0.1:5000/price", {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(
-                    {
-                        "shopping": items,
-                        "supermarket": supermarkets[i]
-                    })
-            })
-                .then(res => res.json())
-                .then(res => { console.log(res); results.push(res); console.log(results) });
-        }
+        fetch("http://127.0.0.1:5000/top", {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+                {
+                    "shopping": items,
+                })
+        })
+            .then(res => res.json())
+            .then(res => results = res);
+        
         console.log(results)
         return results
     }
@@ -52,10 +70,13 @@ const Comparison = () => {
     return (
         <>
             <h1>Comparison Page</h1>
-            <button onClick={() => comparison('Tesco')}>Tesco</button>
-            <button onClick={() => comparison('Sainsburys')}>Sainsbury's</button>
-            <button onClick={() => comparison('Waitrose')}>Waitrose</button>
-            {nearby.map(obj => console.log(obj)) }
+            {...items}
+            {data.map(obj => <p>{obj}</p>)}
+            <p >Tesco - {comparison('Tesco') }</p>
+            <p onClick={() => comparison('Sainsburys')}>Sainsbury's</p>
+            <p onClick={() => comparison('Waitrose')}>Waitrose</p>
+            <h2>Top Supermarkets</h2>
+            {topPrices.map((obj, i) => <p key={i}>{obj.supermarket} - {obj.total}</p>) }
         </>
     )
 }

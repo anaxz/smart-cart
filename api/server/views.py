@@ -25,7 +25,7 @@ def get_price():
 def get_nearby():
     data = json.loads(request.data)
     print(data)
-    results = Shoppinglist.get_price_by_nearby_supermarket(data['shopping'], '86.7.250.38')
+    results = Shoppinglist.get_price_by_nearby_supermarket(data['shopping'], data['ip'])
     print(results)
     return {'total':results}
     
