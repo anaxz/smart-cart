@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -7,20 +8,32 @@ import './index.css'
 
 
 function Foodbar() {
+
+    const [showItems, setShowItems] = useState([]);
+
+    useEffect(() => {
+        async function getItemData() {
+            const url = 
+            const response = url.get()
+        }
+    })
+
+    function displayItems() {
+        return showItems.filter()
+    }
     return (
         <Tabs
             defaultActiveKey="profile"
             id="fill-tab-example"
             className="mb-3"
             fill
-            justify
             variant='pills'
         >
             <Tab eventKey="bakery" title="Bakery">
-                <Itemcard />
+
             </Tab>
             <Tab eventKey="dairy" title="Dairy">
-                <Itemcard />
+
             </Tab>
             <Tab eventKey="meat" title="Meat">
 
