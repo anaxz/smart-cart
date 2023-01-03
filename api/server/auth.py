@@ -16,10 +16,10 @@ def login():
             print(user)
 
             if user:
-                if check_password_hash(user.password, request_data['password']):
+                if check_password_hash(user[1], request_data['password']):
                     login_user(user, remember=True)
-                    print('Login successfull.')
-                    return {'200' : 'Login successfull.'}
+                    print('Login successful.')
+                    return {'200' : 'Login successful.'}
                 else:
                     print('Incorrect password')
                     return {'403' : 'Incorrect password, try again.'}
@@ -42,6 +42,8 @@ def logout():
 def get_user(email):
     try:
         user = User.get_user(email)
+        print('test')
+        print(user)
         return user
     except:
         return '404'
@@ -58,6 +60,7 @@ def sign_up():
 
         try:
             response = get_user(email)
+            print('Test')
             print(response)
 
             if response != '404':
@@ -65,9 +68,10 @@ def sign_up():
 
                 print('add new user..')
                 user = User(name, email, hashed_password)
-                data = { name, email, hashed_password }
-
+                data = {'name': name, 'email': email, 'password': hashed_password }
+                print(data)
                 User.add_user(data)
+                print(data)
                 login_user(user, remember=True)
                 return {'201' : 'Account created!'}
             else:
