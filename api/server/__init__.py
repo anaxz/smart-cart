@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager 
 
 from os import path
 import os
@@ -21,6 +21,8 @@ def create_app():
     app = Flask(__name__, static_folder='../client/dist', static_url_path='/')
     CORS(app)
 
+    app.config['SECRET_KEY'] = 'randomsecretsadasdsjd'
+
     # app.config['SQLALCHEMY_DATABASE_URI'] = DB_URL
     # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     # db.init_app(app)
@@ -30,25 +32,16 @@ def create_app():
     from .auth import auth
 
     app.register_blueprint(views, url_prefix='/')
-    app.register_blueprint(users, url_prefix='/')
+    app.register_blueprint(users, url_prefix='/users')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User
+    login_manager = LoginManager(app)
 
-    # create_database(app)
+    from .models.User import User
 
-    #this has to be below db creation
-    login_manager = LoginManager()
-    #if not logged, redirect users to here
-    #name of templ & func / auth file login func
-    login_manager.login_view = 'auth.login' 
-    login_manager.init_app(app)
-
-    # tells flask how to load user
-    # get by default looks for PK
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(int(id))
+        return User.get_user_by_id(int(id))
 
     return app
 

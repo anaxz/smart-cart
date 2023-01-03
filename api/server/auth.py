@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request
+from flask import Flask, Blueprint, request, json
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -9,63 +9,52 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login',  methods=['POST'])
 def login():
     if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
+        request_data = json.loads(request.data)
 
-        # user = User.query.filter_by(email=email).first()
-        user = User.get_user(email)
-        if user:
-            if check_password_hash(user.password, password):
-                login_user(user, remember=True)
-                print('login succesfully')
-                return 200
+        try: 
+            user = User.get_user(request_data['email'])
+            if user:
+                if check_password_hash(user.password, request_data['password']):
+                    login_user(user, remember=True)
+                    return {'200' : 'Login successfull.'}
+                else:
+                    return {'403' : 'Incorrect password, try again.'}
+        except Exception as error:
+            return {'message' : f'Error: {error}'}
 
-            else:
-                print('Incorrect password, try again.')
-                return 403
-        else:
-            print('Email does not exist.')
-            return 404
+    # user=current_user
+    # return {'200' : user }
 
 @auth.route('/logout')
 @login_required
 def logout():
-    logout_user()
-    print('login successfull')
-    return 200
+    try:
+        logout_user()
+        return {'200' : 'Logout successfull.'}
+    except Exception as error:
+            return {'message' : f'Error: {error}'}
 
 @auth.route('/signup', methods=['POST'])
 def sign_up():
     if request.method == 'POST':
-        email = request.form.get('email')
-        name = request.form.get('firstName')
-        password1 = request.form.get('password1')
-        password2 = request.form.get('password2')
+        request_data = json.loads(request.data)
+        email = request_data['email']
+        name = request_data['name']
+        password = request_data['password']
 
-        # user = User.query.filter_by(email=email).first()
-        user = User.get_user(email)
-        if user:
-            print('Email already exists.')
-        elif len(email) < 4:
-            print('Email must be greater than 3 characters.')
-        elif len(name) < 2:
-            print('First name must be greater than 1 character.')
-        elif password1 != password2:
-            print('Passwords don\'t match.')
-        elif len(password1) < 7:
-            print('Password must be at least 7 characters.')
-        else:
-            # new_user = User(email=email, password=generate_password_hash(
-            #     password1, method='sha256'))
+        try:
+            user = User.get_user(email)
+            hashed_password = generate_password_hash(password, method='sha256')
 
-            password = generate_password_hash(password1, method='sha256')
-            new_user = User(name, email, password)
+            print('add new user..')
+            user = User(name, email, hashed_password)
+            data = { name, email, hashed_password }
 
-            User.add_user(new_user)
-            login_user(new_user, remember=True)
-            print('Account created!')
-            return 200
+            User.add_user(data)
+            login_user(user, remember=True)
+            return {'201' : 'Account created!'}
+        except Exception as error:
+            return {'message' : f'Error: {error}'}
 
-    print("render sign_up.html")
-    user=current_user
-    return user
+    # user=current_user 
+    # return {'200' : user}
