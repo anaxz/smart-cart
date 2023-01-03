@@ -1,18 +1,44 @@
 import React from "react";
 
-const Itemcard = () => {
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup'
+
+function Itemcard() {
     return (
-        <div className="cardcont">
-            <img src="" alt="" />
-            <h4 className="itemname"></h4>
-            <p className="price"></p>
-            <div className="quantity">
-                <label htmlFor="quantbutton"></label>
-                <button id="quantbutton"></button>
-            </div>
-            <button className="addtocart"></button>
-        </div>
-    )
+        <CardGroup>
+            <Card style={{ width: '18rem' }} border="primary">
+                <Card.Body>
+                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text>
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+            </Card>
+            <Card style={{ width: '18rem' }} border="primary">
+                <Card.Body>
+                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text>
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+            </Card>
+            <Card style={{ width: '18rem' }} border="primary">
+                <Card.Body>
+                    <Card.Title>Card Title</Card.Title>
+                    <Card.Text>
+                        Some quick example text to build on the card title and make up the
+                        bulk of the card's content.
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                </Card.Body>
+            </Card>
+        </CardGroup>
+    );
 }
 
 export default Itemcard;
