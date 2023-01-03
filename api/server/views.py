@@ -17,18 +17,26 @@ def products():
 def get_price():
     data = json.loads(request.data)
     print(data)
-    total = Shoppinglist.get_price_by_supermarket(data['shopping'], data['supermarket'])
-    print(total)
-    return {'total':total}
+    results = Shoppinglist.get_price_by_supermarket(data['shopping'], data['supermarket'])
+    print(results)
+    return {'total':results}
     
 @views.route('/nearby', methods=['POST'])
 def get_nearby():
     data = json.loads(request.data)
     print(data)
-    total = Shoppinglist.get_price_by_nearby_supermarket(data['shopping'], '86.7.250.38')
-    print(total)
-    return {'total':total}
+    results = Shoppinglist.get_price_by_nearby_supermarket(data['shopping'], '86.7.250.38')
+    print(results)
+    return {'total':results}
     
+@views.route('/top', methods=['POST'])
+def get_top_prices():
+    data = json.loads(request.data)
+    print(data)
+    results = Shoppinglist.get_price_by_top_supermarkets(data['shopping'])
+    print('Before')
+    print(results)
+    return results
 
 @views.route('/test')
 def test():

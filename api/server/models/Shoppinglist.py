@@ -53,7 +53,13 @@ class Shoppinglist():
                     
         return results
 
-
+    def get_price_by_top_supermarkets(list):
+        results = []
+        supermarkets = ['Tesco', 'Sainsburys', 'Aldi', 'Asda', 'Waitrose', 'Iceland', 'Morrisons', 'MnS']
+        for supermarket in supermarkets:
+            print(supermarket, Shoppinglist.get_price_by_supermarket(list, supermarket))
+            results.append({"supermarket": supermarket, "total": Shoppinglist.get_price_by_supermarket(list, supermarket)})
+        return results
 
 
 
