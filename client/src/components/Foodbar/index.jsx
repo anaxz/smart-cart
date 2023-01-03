@@ -2,7 +2,7 @@ import React from 'react';
 
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
+import './index.css'
 
 
 function Foodbar() {
@@ -12,6 +12,8 @@ function Foodbar() {
       id="fill-tab-example"
       className="mb-3"
       fill
+      justify
+      variant='pills'
     >
       <Tab eventKey="bakery" title="Bakery">
         
