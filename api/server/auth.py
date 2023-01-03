@@ -17,7 +17,7 @@ def login():
 
             if user:
                 if check_password_hash(user[1], request_data['password']):
-                    login_user(user, remember=True)
+                    # login_user(user, remember=True)
                     print('Login successful.')
                     return {'200' : 'Login successful.'}
                 else:
