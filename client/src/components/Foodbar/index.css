@@ -5,3 +5,8 @@
     background-color: #212529;
     border-radius: 5px;
 } */
+
+.tab-content {
+    width: 80%;
+    margin: 0 auto;
+}
