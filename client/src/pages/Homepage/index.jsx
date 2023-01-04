@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Foodbar, SearchResults } from "../../components";
+import { Foodbar } from "../../components";
 import { Darknavbar } from "../../layout";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -28,8 +28,6 @@ const Homepage = (props) => {
     return (
         <>
             <Darknavbar />
-            { showSearch ? <SearchResults searchItem={searchItem} /> : 
-            <>
             <Button id="basket" variant="danger" onClick={handleShow}><i className="bi bi-cart"></i></Button>
             <Foodbar />
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
@@ -50,8 +48,6 @@ const Homepage = (props) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            </>
-            }
         </>
     )
 }

@@ -16,7 +16,7 @@ class Product():
         return response
 
     def get_all_product(name):
-        query = f"SELECT * FROM Products WHERE name='{name}'"
+        query = f"SELECT * FROM Products WHERE name='{name.title()}'"
         cur.execute(query)
         response = cur.fetchall()
         print(response)
