@@ -63,7 +63,7 @@ function Itemcard({ data, fav }) {
                     <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px' }} className="text-center">{data[1]}</Card.Title>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <Button variant="primary" ref={target} onClick={() => { dispatch(addItem(data[1])), setShow(!show) }}><i className="bi bi-cart-plus"></i></Button>
-                        {localStorage.getItem('user') && fav.find(obj => obj[1] == data[1]) ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button> : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button>}
+                        {localStorage.getItem('user') ? fav.find(obj => obj[1] == data[1]) ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button> : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button> : ''}
                     </div>
 
                     <Overlay target={target.current} show={show} placement="right">

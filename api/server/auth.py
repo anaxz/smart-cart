@@ -70,10 +70,10 @@ def sign_up():
                 user = User(name, email, hashed_password)
                 data = {'name': name, 'email': email, 'password': hashed_password }
                 print(data)
-                User.add_user(data)
+                id = User.add_user(data)
                 print(data)
-                login_user(user, remember=True)
-                return {'201' : 'Account created!'}
+                # login_user(user, remember=True)
+                return {'201' : id}
             else:
                 return {'404' : 'Email already exists!'}
         except Exception as error:

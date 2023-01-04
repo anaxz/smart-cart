@@ -17,13 +17,15 @@ class User(UserMixin):
         self.password = password
 
     def add_user(data):
-        query = f"INSERT INTO Users (name, email, password) VALUES ('{data['name']}', '{data['email']}', '{data['password']}');"
+        query = f"INSERT INTO Users (name, email, password) VALUES ('{data['name']}', '{data['email']}', '{data['password']}') RETURNING *;"
         cur.execute(query)
         conn.commit()
         print('Inserted')
+        response = cur.fetchone()
+        print(response[0])
         new_user = User(data['name'], data['email'], data['password'])
         print(new_user)
-        return 'User Created'
+        return response[0]
 
     def get_user_by_id(id):
         query = f"SELECT * FROM Users WHERE id = {id};"
