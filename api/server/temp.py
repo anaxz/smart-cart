@@ -47,11 +47,12 @@ def get_all_lists(id):
     response = cur.fetchall()
     print(response)
 
-def get_favourites(id):
-    query = f"SELECT * FROM Favourites WHERE user_id = {id}"
+def get_favourites(email):
+    query = f"SELECT * FROM Favourites JOIN Users ON User.id = Favourites.user_id WHERE email = {email}"
     cur.execute(query)
     response = cur.fetchall()
     print(response)
+    return response
 
 def get_products():
     query = "SELECT * FROM Products"
