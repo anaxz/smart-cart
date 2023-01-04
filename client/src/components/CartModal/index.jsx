@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import { deleteItem } from '../../reducer'
+
 
 function CartModal(props) {
 
@@ -14,6 +16,17 @@ function CartModal(props) {
     const navigate = useNavigate()
 
     let items = useSelector(state => state).arr
+
+    function saveList() { 
+        let id = localStorage.getItem('user')
+        console.log(id)
+        console.log(items)
+        fetch(`${url}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+    }
 
     return (
 
@@ -32,6 +45,16 @@ function CartModal(props) {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
+                    {
+                        localStorage.getItem('user')
+                            ?
+                            <Button variant="secondary" onClick={() => saveList()}>
+                                Save List
+                            </Button>
+                            :
+                            ''
+                    }
+                    
                     <Button variant="primary" onClick={() => navigate('/comparison')}>
                         Compare Prices!
                     </Button>
