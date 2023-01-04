@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addItem } from '../../reducer'
 import './index.css';
 
-function Itemcard({ data }) {
+function Itemcard({ data, fav }) {
     // console.log('Item card')
     // console.log(data)
     const [show, setShow] = useState(false);
