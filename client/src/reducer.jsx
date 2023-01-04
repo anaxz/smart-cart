@@ -27,9 +27,6 @@ export const logoutUser = () => {
 }
 
 export const findItem = (data) => {
-    console.log('works')
-    console.log(data)
-
     return {
         type: 'search',
         payload: data
@@ -40,11 +37,6 @@ export const findItem = (data) => {
 
 export function useItems() {
     return useSelector(state => state)
-}
-
-function remove(state, item) { 
-    state.arr.splice(state.arr.indexOf(item), 1)
-    return state.arr
 }
 
 function remove(state, item) { 

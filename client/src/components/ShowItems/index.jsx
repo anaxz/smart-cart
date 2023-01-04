@@ -13,7 +13,7 @@ const ShowItems = ({ shopping, setShopping, data, category }) => {
             {
                 data
                     .filter(product => product[2] == category)
-                    .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} /></Col>))
+                    .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard data={product} /></Col>))
             }
         </Row>
     )

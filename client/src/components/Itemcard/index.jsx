@@ -6,20 +6,20 @@ import { useSelector, useDispatch } from 'react-redux'
 import { addItem } from '../../reducer'
 import './index.css';
 
-function Itemcard({ shopping, setShopping, data }) {
+function Itemcard({ data }) {
     // console.log('Item card')
     // console.log(data)
 
-    function addToCart(name) {
-        let arr = []
-        arr = shopping
-        arr.push(name)
-        setShopping(arr)
-        console.log(shopping)
+    // function addToCart(name) {
+    //     let arr = []
+    //     arr = shopping
+    //     arr.push(name)
+    //     setShopping(arr)
+    //     console.log(shopping)
 
 
 
-    }
+    // }
 
     function favourite(item) {
         const id = localStorage.getItem('user')

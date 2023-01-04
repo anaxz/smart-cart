@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 
+import { Darknavbar } from "../../layout";
+import Itemcard from "../../components/Itemcard";
+
 const datalist = [1, 'Bread', 'Bakery']
 const SearchResults = ({  }) => {
-
-    const [item, setItem] = useState()
 
     const dispatch = useDispatch()
     const items = useSelector(state => state)
 
-    function getItem(){
+    function getItem(type){
         const arr = Object.values(items)
-        setItem(arr[2])
-        return item
+        let product = arr[2]
+        let category = arr[2][2]
+
+        if(type === 'product') return product
+        else if(type === 'category')  return category
+        else return -1
     }
 
-    
-
     return <>
+        <Darknavbar />
         <h3>Search Results</h3>
-        <p>{console.log(getItem())}</p>
-        {datalist.map((e, i) => <div key={i}>
-            <p>{e}</p>
-        </div>
-        )}
+        <Itemcard data={getItem('product')} />
     </>
 }
 

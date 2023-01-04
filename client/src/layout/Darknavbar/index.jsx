@@ -35,13 +35,11 @@ function Darknavbar({ }) {
     const val = searchItem.charAt(0).toUpperCase() + searchItem.slice(1);
     setSearchItem(val)
 
-    console.log('> search clicked')
-
     if (searchItem !== '') {
       const itemData = handleSearch(searchItem)
 
       if(itemData !== undefined){
-        dispatch(findItem(searchItem));
+        // dispatch(findItem(searchItem));
         setSearchItem('')
         navigate('/search-results')
       }
@@ -51,10 +49,8 @@ function Darknavbar({ }) {
   async function handleSearch(item) {
     const result = await getProduct(item)
     let itemData = Object.values(result)
-    console.log('asdsa')
-    console.log(itemData[0][0])
-
-    return itemData[0][0];
+    dispatch(findItem(itemData[0][0]))
+    return itemData[0][0]
   }
 
   async function getProduct(name) {
@@ -80,7 +76,7 @@ function Darknavbar({ }) {
 
 
             <Nav className="me-auto">
-              <Nav.Link href="/"><i class="bi bi-house"></i> Home</Nav.Link>
+              <Nav.Link href="/home"><i class="bi bi-house"></i> Home</Nav.Link>
               <Nav.Link href="/about"><i class="bi bi-question-circle"></i> About</Nav.Link>
               {!user ? (
                 <Nav.Link href="/Auth"><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
