@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // import { profile, about } from './pages'
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -15,6 +15,49 @@ function Darknavbar() {
   // const logout=()=>{
   //   localStorage.clear();
   //   navigate("/Auth")
+
+  const [searchItem, setSearchItem] = useState()
+
+  function handleSubmit(e){
+    e.preventDefault()
+
+    const val = searchItem.charAt(0).toUpperCase() + searchItem.slice(1);
+    setSearchItem(val)
+
+    console.log('search clicked')
+    console.log(searchItem)
+
+    if(searchItem !== null) {
+      handleSearch()
+      // setSearchItem(null)
+    }
+    
+  }
+  // after btn click, goto another page display the product and category
+
+  async function handleSearch(){
+    const result = await getProduct(searchItem)
+    
+    console.log(Object.values(result) )
+  }
+
+  async function getProduct(name) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // const val = name.charAt(0).toUpperCase() + name.slice(1);
+        // console.log(val)
+
+        const url = 'http://127.0.0.1:5000'
+        const resp = await fetch(`${url}/products/${name}`)
+          .then(response => response.json() )
+        console.log(resp)
+        resolve(resp)
+      } catch(err){
+          console.log(err)
+          return err
+      }
+    })
+}
 
   return (
     <>
@@ -44,8 +87,9 @@ function Darknavbar() {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                onChange={(e) => setSearchItem(e.target.value)} value={searchItem} 
               />
-              <Button variant="warning">Search</Button>
+              <Button variant="warning" onClick={handleSubmit} >Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

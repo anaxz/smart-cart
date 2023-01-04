@@ -1,5 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from "react-router-dom";
 
 const Comparison = () => {
 
@@ -8,6 +10,11 @@ const Comparison = () => {
     const [topPrices, setTopPrices] = useState([])
     const [data, setData] = useState([])
     const [received, setReceived] = useState(false)
+
+    // const dispatch = useDispatch()
+    items = useSelector(state => state).arr
+    console.log('Redux')
+    console.log(items.arr)
 
     useEffect(() => {
 

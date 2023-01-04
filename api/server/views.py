@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, jsonify, json
+from flask import Flask, Blueprint, request, jsonify, json, send_from_directory, render_template
 from . import db
 from .models.Product import Product
 from .models.Shoppinglist import Shoppinglist
@@ -17,6 +17,13 @@ def products():
 def one_products(id):
     try:
         return {'200' : Product.get_one_product(id)}
+    except Exception as error:
+        return {'message' : f'Error: {error}'}
+
+@views.route('/products/<string:name>')
+def products_by_name(name):
+    try:
+        return {'200' : Product.get_all_product(name)}
     except Exception as error:
         return {'message' : f'Error: {error}'}
 
@@ -45,14 +52,8 @@ def get_top_prices():
     print(results)
     return results
 
-@views.route('/test')
-def test():
-    temp = ["data1", "data2"]
-    return temp
 
-@views.route('/test2', methods=['GET', 'POST'])
-def test2():
-    data = { "name": 'ana', "email": "annah@gmail.com", "password": "password" }
+@views.route('/react')
+def react():
+    return render_template('index.html')
 
-    # if request.method == 'POST':
-    return jsonify(data)

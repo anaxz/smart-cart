@@ -3,6 +3,8 @@ import { Foodbar } from "../../components";
 import { Darknavbar } from "../../layout";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
 import './index.css'
 
 const Homepage = (props) => {
@@ -11,6 +13,11 @@ const Homepage = (props) => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const navigate = useNavigate()
+    let items = useSelector(state => state).arr
+    console.log('Redux')
+    console.log(items)
 
     return (
         <>
@@ -23,18 +30,14 @@ const Homepage = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <ul id="cartitems">
-                        <li>Eggs</li>
-                        <li>Bacon</li>
-                        <li>Bread</li>
-                        <li>Ribeye</li>
-                        <li>Milk</li>
+                        {items.map(item => <li>{item}</li>)}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={() => navigate('/comparison')}>
                         Compare Prices!
                     </Button>
                 </Modal.Footer>
