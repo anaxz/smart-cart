@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 
 
 @users.route('/<int:id>', methods=['GET'])
-@login_required
+# @login_required
 def get_user(id):
     try:
         user = User.get_user_by_id(id)
@@ -69,7 +69,7 @@ def delete(id):
         return {'message' : f'Cannot delete user. Error: {error}'}
 
 @users.route('/<int:user_id>/favs', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def fav(user_id):
     list_favs = User.get_favourites(user_id)
 

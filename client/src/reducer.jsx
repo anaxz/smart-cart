@@ -42,6 +42,16 @@ export function useItems() {
     return useSelector(state => state)
 }
 
+function remove(state, item) { 
+    state.arr.splice(state.arr.indexOf(item), 1)
+    return state.arr
+}
+
+function remove(state, item) { 
+    state.arr.splice(state.arr.indexOf(item), 1)
+    return state.arr
+}
+
 export const itemReducer = (state = { arr: [], user: '', item: []}, action) => {
     switch (action.type) {
         case 'add':
@@ -53,9 +63,7 @@ export const itemReducer = (state = { arr: [], user: '', item: []}, action) => {
         case 'delete':
             return {
                 ...state,
-                arr: state.arr.filter(function (item) {
-                    return item !== action.payload
-                })
+                arr: remove(state, action.payload)
             }
         case 'login':
             return {

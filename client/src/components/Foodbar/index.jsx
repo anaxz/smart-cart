@@ -15,6 +15,7 @@ function Foodbar() {
     const [productData, setProductData] = useState([]);
     const [shopping, setShopping] = useState([]);
     const navigate = useNavigate()
+    const user = localStorage.getItem('user')
 
     useEffect(() => {
         async function getItemData() {
@@ -25,12 +26,10 @@ function Foodbar() {
                 .then(result => setProductData(result))
         }
 
-        async function getFavourites() { 
-            fetch("http://127.0.0.1:5000/users/2/favs", {
-                method: "GET",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(2)
-            }).then(res => res.json()).then(res => console.log(res));
+        async function getFavourites() {
+            fetch(`http://127.0.0.1:5000/users/${user}/favs`)
+                .then(res => res.json())
+                .then(res => console.log(res));
         }
 
         getItemData()
@@ -38,7 +37,17 @@ function Foodbar() {
     }, [])
 
     return (
-        <>
+        <div style={{
+            margin: '0 auto',
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+            padding: '1rem 5px',
+            borderRadius: '10px',
+            width: '70%',
+            backgroundColor: 'lightblue'
+        }}>
             <Tabs
                 defaultActiveKey="profile"
                 id="fill-tab-example"
@@ -71,7 +80,8 @@ function Foodbar() {
                     <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} />
                 </Tab>
             </Tabs>
-        </>
+
+        </div>
     );
 }
 
