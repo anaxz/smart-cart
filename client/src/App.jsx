@@ -4,15 +4,12 @@ import { Welcome, About, Homepage, Comparison, Profile, SearchResults } from './
 import { Auth } from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-<<<<<<< HEAD
-=======
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser, logoutUser } from '../src/reducer'
 import { useSelector } from 'react-redux'
 
->>>>>>> frontend
 
 function App() {
 
