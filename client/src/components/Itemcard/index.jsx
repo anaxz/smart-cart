@@ -36,8 +36,7 @@ function Itemcard({ shopping, setShopping, data }) {
                 <Card.Body>
                     <Card.Title className="text-center">{data[1]}</Card.Title>
                     <Button variant="primary" onClick={() => { dispatch(addItem(data[1])) }}><i className="bi bi-cart-plus"></i></Button>
-                    {localStorage.getItem('user') && <Button variant="primary" onClick={() => { console.log(data[1]); }}><i class="bi bi-star"></i></Button>}
-                    <Button variant="primary" onClick={() => { console.log(localStorage.getItem('name')) }}>Get</Button>
+                    {localStorage.getItem('user') && <Button variant="primary" onClick={() => { console.log(data[1]);}}><i class="bi bi-star"></i></Button>}
                 </Card.Body>
             </Card>
         </CardGroup>

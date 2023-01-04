@@ -35,7 +35,7 @@ class User(UserMixin):
         return response
 
     def get_user(email):
-        query = f"SELECT email, password FROM Users WHERE email = '{email}';"
+        query = f"SELECT * FROM Users WHERE email = '{email}';"
         print(query)
         cur.execute(query)
         response = cur.fetchone()
