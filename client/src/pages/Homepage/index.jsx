@@ -16,7 +16,6 @@ const Homepage = () => {
     return (
         <>
             <Darknavbar />
-
             <Foodbar />
         </>
     )

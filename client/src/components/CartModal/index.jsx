@@ -24,8 +24,8 @@ function CartModal(props) {
                     <Modal.Title>Your Smart-Cart</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ul id="cartitems">
-                        {items.map(item => <><li>{item}</li><button onClick={() => dispatch(deleteItem(item))}>Remove</button></>)}
+                    <ul id="cartitems" style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
+                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0' }}><li>{item}</li><Button variant="danger" style={{ float: 'right' }} onClick={() => dispatch(deleteItem(item))}>Remove</Button></div>)}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>
