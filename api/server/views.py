@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, jsonify, json
+from flask import Flask, Blueprint, request, jsonify, json, send_from_directory, render_template
 from . import db
 from .models.Product import Product
 from .models.Shoppinglist import Shoppinglist
@@ -56,3 +56,7 @@ def test2():
 
     # if request.method == 'POST':
     return jsonify(data)
+
+@views.route('/react')
+def react():
+    return render_template('index.html')
