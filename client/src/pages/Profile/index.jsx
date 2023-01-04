@@ -12,30 +12,34 @@ const Profile = () => {
                 email: "abc@123.com",
                 password: "abc123",
             },
-            list: ['eggs', 'bacon', 'bread'],
+            list: [
+                ['eggs'],
+                [' bacon'], 
+                [' bread'],]
         },
-        {
-            id: 2,
-            user: {
-                name: 'John',
-                email: "xyz@123.com",
-                password: "xyz123",
-            },
-            list: ['beans', 'bacon'],
-        },
+    //     {
+    //         id: 2,
+    //         user: {
+    //             name: 'John',
+    //             email: "xyz@123.com",
+    //             password: "xyz123",
+    //         },
+    //         list: [
+    //             [' beans'], 
+    //             [' bacon'],]
+    //     },
     ];
     // const { details } = useParams();
 
     return (
         <>
         <Darknavbar />
-            {details.map(detail => {
+            {details.map((detail, index) => {
             return (
-                <div key={detail.id}>
+                <div key={index}>
                     <div className="profilecontainer">
                         <h1>Profile Page: {detail.user.name}</h1>
-                        <h3>Your favourite items: {detail.favourites}</h3>
-                        <h3>Previous shopping lists:</h3>
+                        <h3>Your previous shopping items: {(index ? ', ' : '') + detail.list}</h3>
                     </div>
                 </div>
             )
