@@ -4,8 +4,8 @@ import CardGroup from 'react-bootstrap/CardGroup';
 
 const ShowItems = ({ shopping, setShopping, data, category }) => {
 
-    console.log(data)
-    console.log(category)
+    // console.log(data)
+    // console.log(category)
     return (
         <CardGroup id="cardgroup">
             {
