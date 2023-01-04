@@ -76,13 +76,13 @@ function Darknavbar({ }) {
 
 
             <Nav className="me-auto">
-              <Nav.Link href="/home"><i class="bi bi-house"></i> Home</Nav.Link>
-              <Nav.Link href="/about"><i class="bi bi-question-circle"></i> About</Nav.Link>
+              <Nav.Link onClick={() => navigate('/home')}><i class="bi bi-house"></i> Home</Nav.Link>
+              <Nav.Link onClick={() => navigate('/about')}><i class="bi bi-question-circle"></i> About</Nav.Link>
               {!user ? (
-                <Nav.Link href="/Auth"><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
+                <Nav.Link onClick={() => navigate('/Auth')}><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
               ) : (
                 <>
-                  <Nav.Link href="/profile"><i class="bi bi-person"></i> Profile</Nav.Link>
+                    <Nav.Link onClick={() => navigate('/profile')}><i class="bi bi-person"></i> Profile</Nav.Link>
                   <Nav.Link onClick={() => { dispatch(logoutUser()); localStorage.setItem('user', '') }}><i class="bi bi-box-arrow-in-right"></i> Log Out</Nav.Link>
 
                 </>
