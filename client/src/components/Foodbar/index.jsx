@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import Nav from 'react-bootstrap/Nav';
+import { useNavigate } from "react-router-dom"
+import CartModal from '../CartModal';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Itemcard from '../Itemcard';
@@ -25,7 +25,7 @@ function Foodbar() {
         async function getFavourites() {
             fetch(`http://127.0.0.1:5000/users/${user}/favs`)
                 .then(res => res.json())
-                .then(res => { setFavs(Object.values(res)[0]); console.log('test'); console.log(Object.values(res))});
+                .then(res => { setFavs(Object.values(res)[0]); console.log('test'); console.log(Object.values(res)) });
         }
 
         async function getItemData() {
@@ -36,7 +36,7 @@ function Foodbar() {
                 .then(result => { setProductData(result); getFavourites() })
         }
 
-        
+
 
         getItemData()
     }, [fav.length])
@@ -64,32 +64,32 @@ function Foodbar() {
                 style={{ backgroundColor: 'lightyellow', borderRadius: '10px' }}
             >
                 <Tab eventKey="bakery" title="Bakery">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav}/>
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav} />
                 </Tab>
                 <Tab eventKey="dairy" title="Dairy">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} fav={fav}/>
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} fav={fav} />
                 </Tab>
                 <Tab eventKey="meat" title="Meat">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} fav={fav}/>
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} fav={fav} />
                 </Tab>
                 <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
                     <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} fav={fav} />
                 </Tab>
                 <Tab eventKey="household" title="Household">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} fav={fav}/>
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} fav={fav} />
                 </Tab>
                 <Tab eventKey="toiletries" title="Toiletries">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} fav={fav}/>
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} fav={fav} />
                 </Tab>
                 <Tab eventKey="drinks" title="Drinks">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} fav={fav}/>
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} fav={fav} />
                 </Tab>
                 <Tab eventKey="other" title="Other">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} fav={fav}/>
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} fav={fav} />
                 </Tab>
 
                 {
-                
+
                     user
                         ?
                         <Tab eventKey="favourites" title="Favourites">
@@ -104,9 +104,11 @@ function Foodbar() {
                         :
                         ''
                 }
-                
-                
+
+
             </Tabs>
+            <CartModal />
+
 
         </div>
     );

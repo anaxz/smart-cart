@@ -75,15 +75,16 @@ const Auth = (props) => {
 
     } else {
       const result = await fetchSignup(data)
-      console.log(Object.keys(result))
+      console.log(result)
+      const id = Object.values(result)[0]
 
       if(Object.keys(result) == 201){
         console.log('--signup response')
         setEmail('')
         setPassword1('')
         setPassword2('')
-        localStorage.setItem('user', email)
-
+        localStorage.setItem('user', id)
+        navigate('/home')
       }
     }
   }

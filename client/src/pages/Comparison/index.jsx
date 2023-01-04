@@ -100,25 +100,25 @@ const Comparison = () => {
         <>
             <Darknavbar />
             <h1>Comparison Page</h1>
-            <CardGroup style={{ height: '400px' }}>
+            <CardGroup style={{ height: '400px', width: '70%', margin: '30px auto' }}>
                 <Card>
                     <h2 style={{ textAlign: 'center' }}>Shopping List</h2>
                     {items.map(item => <p>{item}</p>)}
                     {console.log(data)}
                 </Card>
                 <Card>
-                    <Tabs defaultActiveKey="profile"
+                    <Tabs defaultActiveKey={1}
                         id="uncontrolled-tab-example"
                         className="mb-3 justify-content-center"
                         variant="pills"
-                        style={{ width: '100%' }}
+                        style={{ width: '100%', marginTop: '20px' }}
                     >
                         <Tab eventKey={1} title="Nearby Supermarkets">
-                            <h2>Nearby Supermarkets</h2>
+                            <h5 style={{ textAlign: 'center' }}>The nearest supermarkets to your location and their average prices</h5>
                             {data.total && data.total.map(obj => <p>{obj.supermarket} - {obj.total}</p>)}
                         </Tab>
                         <Tab eventKey={2} title="Top Supermarkets">
-                            <h2>Top Supermarkets</h2>
+                            <h5 style={{ textAlign: 'center' }}>The average price of your total bill in the most popular supermarkets </h5>
                             {topPrices.map((obj, i) => <p key={i}>{obj.supermarket} - {obj.total}</p>)}
                         </Tab>
                     </Tabs>
