@@ -28,32 +28,32 @@ const Homepage = (props) => {
     return (
         <>
             <Darknavbar />
-            { showSearch ? <SearchResults searchItem={searchItem} /> : 
-            <>
-            <Button id="basket" variant="danger" onClick={handleShow}><i className="bi bi-cart"></i></Button>
-            <Foodbar />
-            <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Your Smart-Cart</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <ul id="cartitems">
-                        {items.map(item => <><li>{item}</li><button onClick={() => dispatch(deleteItem(item))}>Remove</button></>)}
-                    </ul>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="secondary" onClick={() => console.log('Saving')}>
-                        Save List
-                    </Button>
-                    <Button variant="primary" onClick={() => navigate('/comparison')}>
-                        Compare Prices!
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            </>
+            {showSearch ? <SearchResults searchItem={searchItem} /> :
+                <>
+                    <Button id="basket" variant="danger" onClick={handleShow} style={{ position: 'absolute' }}><i className="bi bi-cart"></i></Button>
+                    <Foodbar />
+                    <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Your Smart-Cart</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <ul id="cartitems">
+                                {items.map(item => <><li>{item}</li><button onClick={() => dispatch(deleteItem(item))}>Remove</button></>)}
+                            </ul>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="secondary" onClick={() => console.log('Saving')}>
+                                Save List
+                            </Button>
+                            <Button variant="primary" onClick={() => navigate('/comparison')}>
+                                Compare Prices!
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                </>
             }
         </>
     )

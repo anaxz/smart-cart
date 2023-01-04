@@ -99,17 +99,19 @@ const Comparison = () => {
         <>
 
             <h1>Comparison Page</h1>
-            <CardGroup>
+            <CardGroup style={{ height: '400px' }}>
                 <Card>
-                    <h2>Shopping List</h2>
+                    <h2 style={{ textAlign: 'center' }}>Shopping List</h2>
                     {items.map(item => <p>{item}</p>)}
                     {console.log(data)}
                 </Card>
                 <Card>
                     <Tabs defaultActiveKey="profile"
                         id="uncontrolled-tab-example"
-                        className="mb-3"
-                        variant="pills">
+                        className="mb-3 justify-content-center"
+                        variant="pills"
+                        style={{ width: '100%' }}
+                    >
                         <Tab eventKey={1} title="Nearby Supermarkets">
                             <h2>Nearby Supermarkets</h2>
                             {data.total && data.total.map(obj => <p>{obj.supermarket} - {obj.total}</p>)}
