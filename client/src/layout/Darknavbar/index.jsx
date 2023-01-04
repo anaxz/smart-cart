@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router';
+
 // import { profile, about } from './pages'
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -9,50 +11,61 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logoutUser } from '../../reducer'
 
 
+
 // import About from '../../pages/About';
 
 
-function Darknavbar() {
+function Darknavbar({  }) {
   // const auth= localStorage.getitem("user")
   // const navigate = useNavigate()
   // const logout=()=>{
   //   localStorage.clear();
   //   navigate("/Auth")
+  
   const dispatch = useDispatch()
   const items = useSelector(state => state)
   let user = localStorage.getItem('user')
 
-  const [searchItem, setSearchItem] = useState()
+  const [searchItem, setSearchItem] = useState('')
+  const [notFound, setNotFound] = useState(true)
+  const navigate = useNavigate();
 
   function handleSubmit(e){
     e.preventDefault()
 
     const val = searchItem.charAt(0).toUpperCase() + searchItem.slice(1);
     setSearchItem(val)
-
-    console.log('search clicked')
     console.log(searchItem)
 
-    if(searchItem !== null) {
-      handleSearch()
-      // setSearchItem(null)
-    }
-    
-  }
-  // after btn click, goto another page display the product and category
+    console.log('> search clicked')
 
-  async function handleSearch(){
-    const result = await getProduct(searchItem)
-    
-    console.log(Object.values(result) )
+    if(searchItem !== '') {
+      console.log('--not empty')
+      const itemData = handleSearch(searchItem)
+
+      if(itemData === undefined){
+        console.log('undefined')
+        // setNotFound(true)
+      } else {
+        console.log('defined')
+        setSearchItem('')
+        // setNotFound(false)
+        // navigate('/home')
+      }
+    }
+  }
+
+  async function handleSearch(item){
+    const result = await getProduct(item)
+    let itemData = Object.values(result)
+    console.log(itemData[0][0])
+
+    return itemData[0][0];
   }
 
   async function getProduct(name) {
     return new Promise(async (resolve, reject) => {
       try {
-        // const val = name.charAt(0).toUpperCase() + name.slice(1);
-        // console.log(val)
-
         const url = 'http://127.0.0.1:5000'
         const resp = await fetch(`${url}/products/${name}`)
           .then(response => response.json() )
