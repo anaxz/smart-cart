@@ -15,6 +15,13 @@ class Product():
         print(response)
         return response
 
+    def get_all_product(name):
+        query = f"SELECT * FROM Products WHERE name='{name}'"
+        cur.execute(query)
+        response = cur.fetchall()
+        print(response)
+        return response
+
     def add_product(data):
         query = f"INSERT INTO Products (name, category) VALUES ('{data['name']}', '{data['category']}')"
         cur.execute(query)
