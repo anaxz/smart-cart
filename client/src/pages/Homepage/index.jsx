@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Foodbar } from "../../components";
+import { Foodbar, SearchResults } from "../../components";
 import { Darknavbar } from "../../layout";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -10,11 +10,14 @@ import './index.css'
 const Homepage = (props) => {
 
     const [show, setShow] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
+    const [searchItem, setSearchItem] = useState('')
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    
     const navigate = useNavigate()
+
     let items = useSelector(state => state).arr
     console.log('Redux')
     console.log(items)
@@ -22,6 +25,8 @@ const Homepage = (props) => {
     return (
         <>
             <Darknavbar />
+            { showSearch ? <SearchResults searchItem={searchItem} /> : 
+            <>
             <Button id="basket" variant="danger" onClick={handleShow}><i class="bi bi-cart"></i></Button>
             <Foodbar />
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
@@ -42,6 +47,8 @@ const Homepage = (props) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            </>
+            }
         </>
     )
 }
