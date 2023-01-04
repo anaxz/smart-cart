@@ -16,12 +16,9 @@ function Itemcard({ shopping, setShopping, data }) {
         arr.push(name)
         setShopping(arr)
         console.log(shopping)
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> 4dd1b6cd43fe87f47f433e3f4a2e44b6a3ddd8ba
     }
 
     function favourite(item) {
@@ -37,7 +34,7 @@ function Itemcard({ shopping, setShopping, data }) {
         <CardGroup>
             <Card style={{ width: '18rem' }} border="primary">
                 <Card.Body>
-                    <Card.Title>{data[1]}</Card.Title>
+                    <Card.Title className="text-center">{data[1]}</Card.Title>
                     <Button variant="primary" onClick={() => { dispatch(addItem(data[1])) }}><i className="bi bi-cart-plus"></i></Button>
                     {localStorage.getItem('user') && <Button variant="primary" onClick={() => { console.log(data[1]); }}><i class="bi bi-star"></i></Button>}
                     <Button variant="primary" onClick={() => { console.log(localStorage.getItem('name')) }}>Get</Button>
