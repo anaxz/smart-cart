@@ -85,7 +85,7 @@ def fav(user_id):
     elif request.method == 'POST':
         try:
             request_data = json.loads(request.data)
-            User.add_favourites(request_data)
+            User.add_favourites([user_id, request_data])
             return {'204' : 'Successfully updated'}
 
         except Exception as error:

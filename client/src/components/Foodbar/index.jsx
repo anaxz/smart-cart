@@ -6,6 +6,8 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Itemcard from '../Itemcard';
 import ShowItems from '../ShowItems';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import './index.css'
 
 
@@ -33,7 +35,7 @@ function Foodbar() {
         }
 
         getItemData()
-        // getFavourites()
+        getFavourites()
     }, [])
 
     return (
@@ -80,6 +82,25 @@ function Foodbar() {
                 <Tab eventKey="other" title="Other">
                     <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} />
                 </Tab>
+
+                {
+                
+                    user
+                        ?
+                        <Tab eventKey="favourites" title="Favourites">
+                            <Row className="justify-content-center">
+                                {
+                                    productData
+                                        .filter(product => product[2] == 'Other')
+                                        .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} /></Col>))
+                                }
+                            </Row>
+                        </Tab>
+                        :
+                        ''
+                }
+                
+                
             </Tabs>
 
         </div>

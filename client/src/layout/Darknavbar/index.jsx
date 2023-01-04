@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux'
-import { logoutUser } from '../../reducer'
+import { logoutUser, findItem } from '../../reducer'
 
 
 
@@ -27,7 +27,6 @@ function Darknavbar({ }) {
   let user = localStorage.getItem('user')
 
   const [searchItem, setSearchItem] = useState('')
-  const [notFound, setNotFound] = useState(true)
   const navigate = useNavigate();
 
   function handleSubmit(e) {
@@ -35,22 +34,16 @@ function Darknavbar({ }) {
 
     const val = searchItem.charAt(0).toUpperCase() + searchItem.slice(1);
     setSearchItem(val)
-    console.log(searchItem)
 
     console.log('> search clicked')
 
     if (searchItem !== '') {
-      console.log('--not empty')
       const itemData = handleSearch(searchItem)
 
-      if (itemData === undefined) {
-        console.log('undefined')
-        // setNotFound(true)
-      } else {
-        console.log('defined')
+      if(itemData !== undefined){
+        dispatch(findItem(searchItem));
         setSearchItem('')
-        // setNotFound(false)
-        // navigate('/home')
+        navigate('/search-results')
       }
     }
   }
@@ -58,6 +51,7 @@ function Darknavbar({ }) {
   async function handleSearch(item) {
     const result = await getProduct(item)
     let itemData = Object.values(result)
+    console.log('asdsa')
     console.log(itemData[0][0])
 
     return itemData[0][0];
@@ -68,12 +62,10 @@ function Darknavbar({ }) {
       try {
         const url = 'http://127.0.0.1:5000'
         const resp = await fetch(`${url}/products/${name}`)
-          .then(response => response.json())
-        console.log(resp)
+          .then(response => response.json() )
         resolve(resp)
-      } catch (err) {
-        console.log(err)
-        return err
+      } catch(err){
+          return err
       }
     })
   }

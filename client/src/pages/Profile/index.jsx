@@ -12,7 +12,11 @@ const Profile = () => {
     useEffect(() => {
         fetch(`http://127.0.0.1:5000/users/${id}`)
             .then(res => res.json())
-            .then(res => { setUser(Object.values(res)[0][1]); console.log(Object.values(res)[0][1])});
+            .then(res => { setUser(Object.values(res)[0][1]); console.log(Object.values(res)[0][1]) });
+        
+        fetch(`http://127.0.0.1:5000/users/${id}`)
+            .then(res => res.json())
+            .then(res => { setUser(Object.values(res)[0][1]); console.log(Object.values(res)[0][1]) });
     },[])
 
     let details = [

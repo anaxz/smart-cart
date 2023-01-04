@@ -74,7 +74,13 @@ class User(UserMixin):
         return response
 
     def add_favourites(data):
-        query = f"INSERT INTO Favourites (user_id, product_id) VALUES ({data['user_id']}, '{data['product_id']}');"
+        print(data)
+        user_id = data[0]
+        select = f"SELECT * FROM Products WHERE name = '{data[1]}';"
+        cur.execute(select)
+        product_id = cur.fetchone()[0]
+        print(product_id)
+        query = f"INSERT INTO Favourites (user_id, product_id) VALUES ({user_id}, '{product_id}');"
         cur.execute(query)
         conn.commit()
         return 'Add new Favourites'

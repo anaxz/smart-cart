@@ -25,11 +25,11 @@ function Itemcard({ shopping, setShopping, data }) {
         const id = localStorage.getItem('user')
         console.log(id)
         console.log('Fav', item)
-        // fetch(`http://127.0.0.1:5000/users/${id}/favs`, {
-        //     method: "POST",
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(item)
-        // }).then(res => res.json()).then(res => console.log(res));
+        fetch(`http://127.0.0.1:5000/users/${id}/favs`, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+        }).then(res => res.json()).then(res => console.log(res));
     }
 
     const dispatch = useDispatch()
