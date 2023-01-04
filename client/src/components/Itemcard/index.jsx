@@ -16,11 +16,14 @@ function Itemcard({ shopping, setShopping, data }) {
         arr.push(name)
         setShopping(arr)
         console.log(shopping)
+
+
+
     }
 
     function favourite(item) {
         console.log(item)
-     }
+    }
 
     const dispatch = useDispatch()
     const items = useSelector(state => state)
@@ -33,7 +36,12 @@ function Itemcard({ shopping, setShopping, data }) {
                 <Card.Body>
                     <Card.Title>{data[1]}</Card.Title>
                     <Button variant="primary" onClick={() => { dispatch(addItem(data[1])) }}><i className="bi bi-cart-plus"></i></Button>
+<<<<<<< HEAD
                     {localStorage.getItem('user') && <Button variant="primary" onClick={() => { console.log(data[1]);}}><i class="bi bi-star"></i></Button>}
+=======
+                    {localStorage.getItem('user') && <Button variant="primary" onClick={() => { console.log(data[1]); }}><i class="bi bi-star"></i></Button>}
+                    <Button variant="primary" onClick={() => { console.log(localStorage.getItem('name')) }}>Get</Button>
+>>>>>>> 4b569f50619ee20f848462d6cbbdbcaf0e89b98a
                 </Card.Body>
             </Card>
         </CardGroup>
