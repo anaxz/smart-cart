@@ -3,8 +3,10 @@ import { Foodbar } from "../../components";
 import { Darknavbar } from "../../layout";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import { deleteItem } from '../../reducer'
+
 import './index.css'
 
 const Homepage = (props) => {
@@ -14,6 +16,7 @@ const Homepage = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     let items = useSelector(state => state).arr
     console.log('Redux')
@@ -22,7 +25,7 @@ const Homepage = (props) => {
     return (
         <>
             <Darknavbar />
-            <Button id="basket" variant="danger" onClick={handleShow}><i class="bi bi-cart"></i></Button>
+            <Button id="basket" variant="danger" onClick={handleShow}><i className="bi bi-cart"></i></Button>
             <Foodbar />
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -30,7 +33,7 @@ const Homepage = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <ul id="cartitems">
-                        {items.map(item => <li>{item}</li>)}
+                        {items.map(item => <><li>{item}</li><button onClick={() => dispatch(deleteItem(item))}>Remove</button></>)}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>

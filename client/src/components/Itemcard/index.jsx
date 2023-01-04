@@ -7,8 +7,8 @@ import { addItem } from '../../reducer'
 import './index.css';
 
 function Itemcard({ shopping, setShopping, data }) {
-    console.log('Item card')
-    console.log(data)
+    // console.log('Item card')
+    // console.log(data)
 
     function addToCart(name) {
         let arr = []
@@ -16,22 +16,31 @@ function Itemcard({ shopping, setShopping, data }) {
         arr.push(name)
         setShopping(arr)
         console.log(shopping)
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 4dd1b6cd43fe87f47f433e3f4a2e44b6a3ddd8ba
+    }
+
+    function favourite(item) {
+        console.log(item)
     }
 
     const dispatch = useDispatch()
     const items = useSelector(state => state)
-    console.log('Redux')
-    console.log(items)
+    // console.log('Redux')
+    // console.log(items)
 
     return (
         <CardGroup>
             <Card style={{ width: '18rem' }} border="primary">
                 <Card.Body>
-                    <Card.Title className="text-center">{data[1]}</Card.Title>
-                    <Button variant="primary" onClick={() => { addToCart(data[1]); dispatch(addItem(data[1])) }}><i class="bi bi-cart-plus"></i></Button>
+                    <Card.Title>{data[1]}</Card.Title>
+                    <Button variant="primary" onClick={() => { dispatch(addItem(data[1])) }}><i className="bi bi-cart-plus"></i></Button>
+                    {localStorage.getItem('user') && <Button variant="primary" onClick={() => { console.log(data[1]); }}><i class="bi bi-star"></i></Button>}
+                    <Button variant="primary" onClick={() => { console.log(localStorage.getItem('name')) }}>Get</Button>
                 </Card.Body>
             </Card>
         </CardGroup>

@@ -6,8 +6,8 @@ import Row from 'react-bootstrap/Row';
 
 const ShowItems = ({ shopping, setShopping, data, category }) => {
 
-    console.log(data)
-    console.log(category)
+    // console.log(data)
+    // console.log(category)
     return (
         <Row className="justify-content-center">
             {
