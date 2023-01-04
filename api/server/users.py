@@ -91,7 +91,7 @@ def fav(user_id):
         except Exception as error:
             return {'message' : f"Cannot update user's favourites. Error: {error}"}
 
-@users.route('/<int:id>/shopping-list', methods=['GET', 'POST'])
+@users.route('/shopping-list', methods=['GET', 'POST'])
 @login_required
 def shoplist(id):
     if request.method == 'GET':

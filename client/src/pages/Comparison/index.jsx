@@ -3,59 +3,96 @@ import { useEffect, useState } from "react";
 
 const Comparison = () => {
 
-    let items = ['Bread', 'Milk', 'Onion']
+    let items = ['Bread', 'Bread', 'Milk']
 
-    const [nearby, setNearby] = useState([])
-
+    const [topPrices, setTopPrices] = useState([])
+    const [data, setData] = useState([])
+    const [received, setReceived] = useState(false)
 
     useEffect(() => {
-        // fetch('https://jsonip.com/')
-        //     .then(resp => resp.json())
-        //     .then(res => setNearby(comparison(res.ip)['total']))
-        topSupermarkets()
-    },[])
 
-    function comparison(supermarket) {
-        fetch("http://127.0.0.1:5000/price", {
-            method: "POST",
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(
-                {
-                    "shopping": items,
-                    "supermarket": supermarket
-                })
-        }).then(res => res.json()).then(res => console.log(res.total));
-    }
-
-    function topSupermarkets() {
-        let supermarkets = ['Tesco', 'Waitrose']
-        let results = []
-
-        for (let i = 0; i < supermarkets.length; i++) {
-            console.log(supermarkets[i])
-            fetch("http://127.0.0.1:5000/price", {
+        async function top_shop() {
+            fetch("http://127.0.0.1:5000/top", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
                     {
                         "shopping": items,
-                        "supermarket": supermarkets[i]
+                    })
+            }).then(res => res.json()).then(res => setTopPrices(res));
+        }
+        
+
+        async function getIP() {
+            let ip = ''
+
+            return fetch("http://ip-api.com/json/")
+                .then(res => res.json())
+                .then(res => { console.log(res.query); ip = res.query; return ip });
+            
+         }
+
+        async function nearby() {
+            const ip = await getIP()
+            console.log(ip)
+            fetch("http://127.0.0.1:5000/nearby", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(
+                    {
+                        "shopping": items,
+                        "ip": ip
                     })
             })
                 .then(res => res.json())
-                .then(res => { console.log(res); results.push(res); console.log(results) });
+                .then(res => { setData(res); console.log(res); setReceived(true); top_shop() })
+                .catch(err => console.log(err));
         }
-        console.log(results)
-        return results
-    }
+        nearby()
+    }, [received])
+    
+    
+
+    // function comparison(supermarket) {
+    //     fetch("http://127.0.0.1:5000/price", {
+    //         method: "POST",
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(
+    //             {
+    //                 "shopping": items,
+    //                 "supermarket": supermarket
+    //             })
+    //     }).then(res => res.json()).then(res => console.log(res.total));
+    // }
+
+    // function topSupermarkets() {
+    //     let results = []
+
+    //     fetch("http://127.0.0.1:5000/top", {
+    //         method: "POST",
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(
+    //             {
+    //                 "shopping": items,
+    //             })
+    //     })
+    //         .then(res => res.json())
+    //         .then(res => results = res);
+        
+    //     console.log(results)
+    //     return results
+    // }
 
     return (
         <>
             <h1>Comparison Page</h1>
-            <button onClick={() => comparison('Tesco')}>Tesco</button>
-            <button onClick={() => comparison('Sainsburys')}>Sainsbury's</button>
-            <button onClick={() => comparison('Waitrose')}>Waitrose</button>
-            {nearby.map(obj => console.log(obj)) }
+            <h2>Shopping List</h2>
+            {items.map(item => <p>{item}</p>)}
+            {console.log(data)}
+            <h2>Nearby Supermarkets</h2>
+            {data.total && data.total.map(obj => <p>{obj.supermarket} - {obj.total}</p>)}
+            <h2>Top Supermarkets</h2>
+            {topPrices.map((obj, i) => <p key={i}>{obj.supermarket} - {obj.total}</p>) }
         </>
     )
 }

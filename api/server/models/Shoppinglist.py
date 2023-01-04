@@ -23,6 +23,7 @@ class Shoppinglist():
             cur.execute(query)
             response = cur.fetchone()
             total += response[0]
+            print(total)
         return round(total,2)
 
     def get_price_by_nearby_supermarket(list, ip):
@@ -44,16 +45,19 @@ class Shoppinglist():
         shops = response['results']
         for shop in shops:
             shop_name = shop['name'].split(' ')[0].replace("'", "")
-            for y in supermarkets:
-                # print(shop['name'])
-                # print(y['shop'])
-                if shop_name == y:
-                    price = Shoppinglist.get_price_by_supermarket(list,y)
-                    results.append({y : price})
-                    
+            if shop_name in supermarkets:
+                price = Shoppinglist.get_price_by_supermarket(list,shop_name)
+                results.append({"supermarket": shop_name, "total": price})
+        print(results)
         return results
 
-
+    def get_price_by_top_supermarkets(list):
+        results = []
+        supermarkets = ['Tesco', 'Sainsburys', 'Aldi', 'Asda', 'Waitrose', 'Iceland', 'Morrisons', 'MnS']
+        for supermarket in supermarkets:
+            print(supermarket, Shoppinglist.get_price_by_supermarket(list, supermarket))
+            results.append({"supermarket": supermarket, "total": Shoppinglist.get_price_by_supermarket(list, supermarket)})
+        return results
 
 
 
