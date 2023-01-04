@@ -4,7 +4,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-const ShowItems = ({ shopping, setShopping, data, category }) => {
+const ShowItems = ({ shopping, setShopping, data, category, fav }) => {
 
     // console.log(data)
     // console.log(category)
@@ -13,7 +13,7 @@ const ShowItems = ({ shopping, setShopping, data, category }) => {
             {
                 data
                     .filter(product => product[2] == category)
-                    .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} /></Col>))
+                    .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} /></Col>))
             }
         </Row>
     )

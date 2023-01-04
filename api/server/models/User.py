@@ -92,8 +92,14 @@ class User(UserMixin):
         conn.commit()
         return 'Add new Favourites'
 
-    def delete_favourites(id):
-        query = f"DELETE FROM Favourites WHERE product_id = {id};"
+    def delete_favourites(data):
+        user_id = data[0]
+        select = f"SELECT * FROM Products WHERE name = '{data[1]}';"
+        cur.execute(select)
+        product_id = cur.fetchone()[0]
+        print(product_id)
+        query = f"DELETE FROM Favourites WHERE product_id = {product_id} AND user_id = {user_id};"
+        print(query)
         cur.execute(query)
         conn.commit()
         return 'Deleted Favourites'

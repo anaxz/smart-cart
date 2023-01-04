@@ -64,28 +64,28 @@ function Foodbar() {
                 style={{ backgroundColor: 'lightyellow', borderRadius: '10px' }}
             >
                 <Tab eventKey="bakery" title="Bakery">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav}/>
                 </Tab>
                 <Tab eventKey="dairy" title="Dairy">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} fav={fav}/>
                 </Tab>
                 <Tab eventKey="meat" title="Meat">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} fav={fav}/>
                 </Tab>
                 <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} fav={fav} />
                 </Tab>
                 <Tab eventKey="household" title="Household">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} fav={fav}/>
                 </Tab>
                 <Tab eventKey="toiletries" title="Toiletries">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} fav={fav}/>
                 </Tab>
                 <Tab eventKey="drinks" title="Drinks">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} fav={fav}/>
                 </Tab>
                 <Tab eventKey="other" title="Other">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} fav={fav}/>
                 </Tab>
 
                 {
@@ -97,7 +97,7 @@ function Foodbar() {
                                 {
                                     fav
                                         // .filter(product => product[1] == 'Other')
-                                        .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} /></Col>))
+                                        .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} /></Col>))
                                 }
                             </Row>
                         </Tab>
