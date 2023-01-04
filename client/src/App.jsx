@@ -48,9 +48,11 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/Auth" element={<Auth />} />
           <Route path="/test" element={<Test />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </>
+    
   )
 }
 

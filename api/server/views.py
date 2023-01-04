@@ -20,6 +20,13 @@ def one_products(id):
     except Exception as error:
         return {'message' : f'Error: {error}'}
 
+@views.route('/products/<string:name>')
+def products_by_name(name):
+    try:
+        return {'200' : Product.get_all_product(name)}
+    except Exception as error:
+        return {'message' : f'Error: {error}'}
+
 @views.route('/price', methods=['POST'])
 def get_price():
     data = json.loads(request.data)
@@ -45,18 +52,8 @@ def get_top_prices():
     print(results)
     return results
 
-@views.route('/test')
-def test():
-    temp = ["data1", "data2"]
-    return temp
-
-@views.route('/test2', methods=['GET', 'POST'])
-def test2():
-    data = { "name": 'ana', "email": "annah@gmail.com", "password": "password" }
-
-    # if request.method == 'POST':
-    return jsonify(data)
 
 @views.route('/react')
 def react():
     return render_template('index.html')
+
