@@ -62,7 +62,7 @@ function Itemcard({ shopping, setShopping, data, fav }) {
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px' }} className="text-center">{data[1]}</Card.Title>
                     <Button variant="primary" ref={target} onClick={() => { dispatch(addItem(data[1])), setShow(!show) }}><i className="bi bi-cart-plus"></i></Button>
-                    {localStorage.getItem('user') && fav.find(obj => obj[1] == data[1]) ? <Button variant="primary" onClick={() => { unfavourite(data[1]); setShopping('') }}>Unfav</Button> : <Button variant="primary" onClick={() => { favourite(data[1]);  setShopping('')}}><i class="bi bi-star"></i></Button>}
+                    {localStorage.getItem('user') && fav.find(obj => obj[1] == data[1]) ? <Button variant="primary" onClick={() => { unfavourite(data[1]);  }}><i class="bi bi-star-fill"></i></Button> : <Button variant="primary" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button>}
                     <Overlay target={target.current} show={show} placement="right">
                         {(props) => (
                             <Tooltip id="overlay-example" {...props}>
