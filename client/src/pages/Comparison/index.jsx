@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { loginUser, logoutUser } from '../../reducer'
+import { Darknavbar } from "../../layout";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Card from 'react-bootstrap/Card';
@@ -97,7 +98,7 @@ const Comparison = () => {
 
     return (
         <>
-
+            <Darknavbar />
             <h1>Comparison Page</h1>
             <CardGroup style={{ height: '400px' }}>
                 <Card>

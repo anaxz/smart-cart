@@ -4,7 +4,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-const ShowItems = ({ shopping, setShopping, data, category }) => {
+const ShowItems = ({ shopping, setShopping, data, category, fav }) => {
 
     // console.log(data)
     // console.log(category)

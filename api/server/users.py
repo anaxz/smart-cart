@@ -85,8 +85,13 @@ def fav(user_id):
     elif request.method == 'POST':
         try:
             request_data = json.loads(request.data)
-            User.add_favourites(request_data)
-            return {'204' : 'Successfully updated'}
+            if request_data[1]:
+                User.add_favourites([user_id, request_data[0]])
+                return {'204' : 'Successfully added'}
+            else:
+                User.delete_favourites([user_id, request_data[0]])
+                return {'204' : 'Successfully removed'}
+
 
         except Exception as error:
             return {'message' : f"Cannot update user's favourites. Error: {error}"}
