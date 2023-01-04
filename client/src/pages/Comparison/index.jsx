@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { loginUser, logoutUser } from '../../reducer'
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
 
 const Comparison = () => {
 
@@ -29,7 +33,7 @@ const Comparison = () => {
                     })
             }).then(res => res.json()).then(res => setTopPrices(res));
         }
-        
+
 
         async function getIP() {
             let ip = ''
@@ -37,8 +41,8 @@ const Comparison = () => {
             return fetch("http://ip-api.com/json/")
                 .then(res => res.json())
                 .then(res => { console.log(res.query); ip = res.query; return ip });
-            
-         }
+
+        }
 
         async function nearby() {
             const ip = await getIP()
@@ -58,8 +62,8 @@ const Comparison = () => {
         }
         nearby()
     }, [received])
-    
-    
+
+
 
     // function comparison(supermarket) {
     //     fetch("http://127.0.0.1:5000/price", {
@@ -86,21 +90,39 @@ const Comparison = () => {
     //     })
     //         .then(res => res.json())
     //         .then(res => results = res);
-        
+
     //     console.log(results)
     //     return results
     // }
 
     return (
         <>
+
             <h1>Comparison Page</h1>
-            <h2>Shopping List</h2>
-            {items.map(item => <p>{item}</p>)}
-            {console.log(data)}
-            <h2>Nearby Supermarkets</h2>
-            {data.total && data.total.map(obj => <p>{obj.supermarket} - {obj.total}</p>)}
-            <h2>Top Supermarkets</h2>
-            {topPrices.map((obj, i) => <p key={i}>{obj.supermarket} - {obj.total}</p>) }
+            <CardGroup style={{ height: '400px' }}>
+                <Card>
+                    <h2 style={{ textAlign: 'center' }}>Shopping List</h2>
+                    {items.map(item => <p>{item}</p>)}
+                    {console.log(data)}
+                </Card>
+                <Card>
+                    <Tabs defaultActiveKey="profile"
+                        id="uncontrolled-tab-example"
+                        className="mb-3 justify-content-center"
+                        variant="pills"
+                        style={{ width: '100%' }}
+                    >
+                        <Tab eventKey={1} title="Nearby Supermarkets">
+                            <h2>Nearby Supermarkets</h2>
+                            {data.total && data.total.map(obj => <p>{obj.supermarket} - {obj.total}</p>)}
+                        </Tab>
+                        <Tab eventKey={2} title="Top Supermarkets">
+                            <h2>Top Supermarkets</h2>
+                            {topPrices.map((obj, i) => <p key={i}>{obj.supermarket} - {obj.total}</p>)}
+                        </Tab>
+                    </Tabs>
+                </Card>
+            </CardGroup>
         </>
     )
 }
