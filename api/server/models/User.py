@@ -71,7 +71,14 @@ class User(UserMixin):
         cur.execute(query)
         response = cur.fetchall()
         print(response)
-        return response
+        products = []
+        for item in response:
+            select = f"SELECT * FROM Products WHERE id = {item[1]};"
+            cur.execute(select)
+            product = cur.fetchone()
+            products.append(product)
+        print(products)
+        return products
 
     def add_favourites(data):
         print(data)

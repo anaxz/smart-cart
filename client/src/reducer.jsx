@@ -47,8 +47,7 @@ function remove(state, item) {
     return state.arr
 }
 
-
-export const itemReducer = (state = { arr: [], user: '', item: [] }, action) => {
+export const itemReducer = (state = { arr: [], user: '', item: []}, action) => {
     switch (action.type) {
         case 'add':
             return {
