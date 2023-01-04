@@ -15,6 +15,7 @@ function Foodbar() {
     const [productData, setProductData] = useState([]);
     const [shopping, setShopping] = useState([]);
     const navigate = useNavigate()
+    const user = localStorage.getItem('user')
 
     useEffect(() => {
         async function getItemData() {
@@ -26,11 +27,9 @@ function Foodbar() {
         }
 
         async function getFavourites() { 
-            fetch("http://127.0.0.1:5000/users/2/favs", {
-                method: "GET",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(2)
-            }).then(res => res.json()).then(res => console.log(res));
+            fetch(`http://127.0.0.1:5000/users/${user}/favs`)
+                .then(res => res.json())
+                .then(res => console.log(res));
         }
 
         getItemData()
