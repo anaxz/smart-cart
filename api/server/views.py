@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, jsonify, json
+from flask import Flask, Blueprint, request, jsonify, json, send_from_directory, render_template
 from . import db
 from .models.Product import Product
 from .models.Shoppinglist import Shoppinglist
@@ -51,4 +51,9 @@ def get_top_prices():
     print('Before')
     print(results)
     return results
+
+
+@views.route('/react')
+def react():
+    return render_template('index.html')
 
