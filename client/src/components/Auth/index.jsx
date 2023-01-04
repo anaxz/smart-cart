@@ -1,9 +1,15 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser } from '../../reducer'
+
 
 const Auth = (props) => {
   let [authMode, setAuthMode] = useState("signin")
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const items = useSelector(state => state)
+
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -26,11 +32,15 @@ const Auth = (props) => {
     else {
       const result = await fetchLogin(data)
       console.log(Object.keys(result))
+      
 
       if(Object.keys(result) == 200){
         console.log('--login response')
         setEmail('')
         setPassword('')
+        dispatch(loginUser(email))
+        localStorage.setItem('user', email)
+        console.log(email)
         navigate('/home')
       } else {
         console.log('login fail')
@@ -71,6 +81,8 @@ const Auth = (props) => {
         setEmail('')
         setPassword1('')
         setPassword2('')
+        localStorage.setItem('user', email)
+
       }
     }
   }

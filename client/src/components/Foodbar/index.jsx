@@ -24,7 +24,17 @@ function Foodbar() {
                 .then(resp => resp.json())
                 .then(result => setProductData(result))
         }
+
+        async function getFavourites() { 
+            fetch("http://127.0.0.1:5000/users/2/favs", {
+                method: "GET",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(2)
+            }).then(res => res.json()).then(res => console.log(res));
+        }
+
         getItemData()
+        // getFavourites()
     }, [])
 
     return (
@@ -32,7 +42,7 @@ function Foodbar() {
             <Tabs
                 defaultActiveKey="profile"
                 id="fill-tab-example"
-                className="m-5"
+                className="m-3 px-4 py-2"
                 fill
                 variant='pills'
             >

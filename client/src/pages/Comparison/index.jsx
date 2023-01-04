@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import { loginUser, logoutUser } from '../../reducer'
 
 const Comparison = () => {
 
