@@ -42,7 +42,7 @@ export function useItems() {
     return useSelector(state => state)
 }
 
-function remove(state, item) { 
+function remove(state, item) {
     state.arr.splice(state.arr.indexOf(item), 1)
     return state.arr
 }

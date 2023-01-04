@@ -61,6 +61,7 @@ function Foodbar() {
                 className="m-3 px-4 py-2"
                 fill
                 variant='pills'
+                style={{ backgroundColor: 'lightyellow', borderRadius: '10px' }}
             >
                 <Tab eventKey="bakery" title="Bakery">
                     <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} />

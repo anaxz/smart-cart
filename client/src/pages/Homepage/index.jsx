@@ -28,7 +28,7 @@ const Homepage = (props) => {
     return (
         <>
             <Darknavbar />
-            <Button id="basket" variant="danger" onClick={handleShow}><i className="bi bi-cart"></i></Button>
+            <Button id="basket" variant="danger" onClick={handleShow} style={{ position: 'absolute', right: '230px', top: '112px', height: '56px' }}><i className="bi bi-cart"></i> Cart</Button>
             <Foodbar />
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
