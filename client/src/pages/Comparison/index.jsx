@@ -99,11 +99,11 @@ const Comparison = () => {
     return (
         <>
             <Darknavbar />
-            <h1>Comparison Page</h1>
+            <h3 style={{ textAlign: 'center' }}>Comparison Page</h3>
             <CardGroup style={{ height: '400px', width: '70%', margin: '30px auto' }}>
                 <Card>
-                    <h2 style={{ textAlign: 'center' }}>Shopping List</h2>
-                    {items.map(item => <p>{item}</p>)}
+                    <h4 style={{ textAlign: 'center', marginTop: '20px' }}>Shopping List</h4>
+                    <div style={{ position: 'relative', width: '50%', borderRadius: '10px', backgroundColor: 'coral', margin: '20px auto', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>{items.map(item => <p>{item}</p>)}</div>
                     {console.log(data)}
                 </Card>
                 <Card>

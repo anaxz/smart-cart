@@ -56,13 +56,16 @@ function Foodbar() {
             backgroundColor: 'lightblue'
         }}>
             <Tabs
-                defaultActiveKey="profile"
+                defaultActiveKey="main"
                 id="fill-tab-example"
                 className="m-3 px-4 py-2"
                 fill
                 variant='pills'
                 style={{ backgroundColor: 'lightyellow', borderRadius: '10px' }}
             >
+                <Tab eventKey="main" title="All Food">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} fav={fav} all={true} />
+                </Tab>
                 <Tab eventKey="bakery" title="Bakery">
                     <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav} />
                 </Tab>
