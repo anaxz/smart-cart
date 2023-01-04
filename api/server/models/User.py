@@ -17,13 +17,15 @@ class User(UserMixin):
         self.password = password
 
     def add_user(data):
-        query = f"INSERT INTO Users (name, email, password) VALUES ('{data['name']}', '{data['email']}', '{data['password']}');"
+        query = f"INSERT INTO Users (name, email, password) VALUES ('{data['name']}', '{data['email']}', '{data['password']}') RETURNING *;"
         cur.execute(query)
         conn.commit()
         print('Inserted')
+        response = cur.fetchone()
+        print(response[0])
         new_user = User(data['name'], data['email'], data['password'])
         print(new_user)
-        return 'User Created'
+        return response[0]
 
     def get_user_by_id(id):
         query = f"SELECT * FROM Users WHERE id = {id};"
@@ -35,7 +37,7 @@ class User(UserMixin):
         return response
 
     def get_user(email):
-        query = f"SELECT email, password FROM Users WHERE email = '{email}';"
+        query = f"SELECT * FROM Users WHERE email = '{email}';"
         print(query)
         cur.execute(query)
         response = cur.fetchone()
@@ -71,16 +73,35 @@ class User(UserMixin):
         cur.execute(query)
         response = cur.fetchall()
         print(response)
-        return response
+        products = []
+        for item in response:
+            select = f"SELECT * FROM Products WHERE id = {item[1]};"
+            cur.execute(select)
+            product = cur.fetchone()
+            products.append(product)
+        print(products)
+        return products
 
     def add_favourites(data):
-        query = f"INSERT INTO Favourites (user_id, product_id) VALUES ({data['user_id']}, '{data['product_id']}');"
+        print(data)
+        user_id = data[0]
+        select = f"SELECT * FROM Products WHERE name = '{data[1]}';"
+        cur.execute(select)
+        product_id = cur.fetchone()[0]
+        print(product_id)
+        query = f"INSERT INTO Favourites (user_id, product_id) VALUES ({user_id}, '{product_id}');"
         cur.execute(query)
         conn.commit()
         return 'Add new Favourites'
 
-    def delete_favourites(id):
-        query = f"DELETE FROM Favourites WHERE product_id = {id};"
+    def delete_favourites(data):
+        user_id = data[0]
+        select = f"SELECT * FROM Products WHERE name = '{data[1]}';"
+        cur.execute(select)
+        product_id = cur.fetchone()[0]
+        print(product_id)
+        query = f"DELETE FROM Favourites WHERE product_id = {product_id} AND user_id = {user_id};"
+        print(query)
         cur.execute(query)
         conn.commit()
         return 'Deleted Favourites'

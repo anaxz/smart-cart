@@ -1,4 +1,4 @@
-from ..temp import cur
+from ..temp import cur, conn
 
 class Product():
     def get_products():
@@ -7,21 +7,35 @@ class Product():
         response = cur.fetchall()
         print(response)
         return response
-
-    def add_products(data):
-        query = f"INSERT INTO Products (name, category) VALUES ('{data.name}', '{data.category}')"
-        cur.execute(query)
-        response = cur.fetchall()
-        return response
-
-    def update_products(data):
-        query = f"UPDATE Products SET name={data.name} category={data.category} WHERE = {data.id}"
-        cur.execute(query)
-        response = cur.fetchall()
-        return response
     
-    def delete_products(id):
+    def get_one_product(id):
+        query = f"SELECT * FROM Products WHERE id={id}"
+        cur.execute(query)
+        response = cur.fetchone()
+        print(response)
+        return response
+
+    def get_all_product(name):
+        query = f"SELECT * FROM Products WHERE name='{name.title()}'"
+        cur.execute(query)
+        response = cur.fetchall()
+        print(response)
+        return response
+
+    def add_product(data):
+        query = f"INSERT INTO Products (name, category) VALUES ('{data['name']}', '{data['category']}')"
+        cur.execute(query)
+        conn.commit()
+        return 'added a product'
+
+    def update_product(data):
+        query = f"UPDATE Products SET name='{data['name']}', category='{data['category']}' WHERE = {data['id']}"
+        cur.execute(query)
+        conn.commit()
+        return 'update a product'
+    
+    def delete_product(id):
         query = f"DELETE FROM Products WHERE id = {id}"
         cur.execute(query)
-        response = cur.fetchall()
-        return response
+        conn.commit()
+        return 'delete a product'

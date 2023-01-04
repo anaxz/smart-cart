@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 
 
 @users.route('/<int:id>', methods=['GET'])
-@login_required
+# @login_required
 def get_user(id):
     try:
         user = User.get_user_by_id(id)
@@ -69,7 +69,7 @@ def delete(id):
         return {'message' : f'Cannot delete user. Error: {error}'}
 
 @users.route('/<int:user_id>/favs', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def fav(user_id):
     list_favs = User.get_favourites(user_id)
 
@@ -85,13 +85,18 @@ def fav(user_id):
     elif request.method == 'POST':
         try:
             request_data = json.loads(request.data)
-            User.add_favourites(request_data)
-            return {'204' : 'Successfully updated'}
+            if request_data[1]:
+                User.add_favourites([user_id, request_data[0]])
+                return {'204' : 'Successfully added'}
+            else:
+                User.delete_favourites([user_id, request_data[0]])
+                return {'204' : 'Successfully removed'}
+
 
         except Exception as error:
             return {'message' : f"Cannot update user's favourites. Error: {error}"}
 
-@users.route('/<int:id>/shopping-list', methods=['GET', 'POST'])
+@users.route('/shopping-list', methods=['GET', 'POST'])
 @login_required
 def shoplist(id):
     if request.method == 'GET':

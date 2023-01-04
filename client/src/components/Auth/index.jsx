@@ -1,9 +1,15 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser } from '../../reducer'
+
 
 const Auth = (props) => {
   let [authMode, setAuthMode] = useState("signin")
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const items = useSelector(state => state)
+
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -19,16 +25,30 @@ const Auth = (props) => {
     e.preventDefault();
     const data = {email: email, password: password}
 
-    const result = await fetchLogin(data)
-    console.log(Object.keys(result))
-
-    if(Object.keys(result) == 200){
-      console.log('--login response')
-      setEmail('')
-      setPassword('')
-      navigate('/home')
+    if(password === '') {
+      console.log('empty pass')
+      
     }
-    else console.log('login fail')
+    else {
+      const result = await fetchLogin(data)
+      console.log(Object.keys(result))
+      const id = Object.values(result)[0]
+      console.log(id)
+
+      if(Object.keys(result) == 200){
+        console.log('--login response')
+        setEmail('')
+        setPassword('')
+        dispatch(loginUser(id))
+        localStorage.setItem('user', id)
+        console.log(email)
+        navigate('/home')
+      } else {
+        console.log('login fail')
+
+      }
+    }
+    
   }
 
   async function fetchLogin(data){
@@ -51,16 +71,21 @@ const Auth = (props) => {
     e.preventDefault();
     const data = {name: name, email: email, password: password}
     
-    if(password1 !== password2) console.log('repeated password dont match')
-    else {
+    if(password1 !== password2) {
+      console.log('repeated password dont match')
+
+    } else {
       const result = await fetchSignup(data)
-      console.log(Object.keys(result))
+      console.log(result)
+      const id = Object.values(result)[0]
 
       if(Object.keys(result) == 201){
         console.log('--signup response')
         setEmail('')
         setPassword1('')
         setPassword2('')
+        localStorage.setItem('user', id)
+        navigate('/home')
       }
     }
   }
@@ -86,6 +111,7 @@ const Auth = (props) => {
       <div className="Auth-form-container">
         <form className="Auth-form" onSubmit={loginSubmit} >
           <div className="Auth-form-content">
+            {/* <p className="msg-error">Login Fail</p> */}
             <h3 className="Auth-form-title">Sign In</h3>
             <div className="text-center">
               Not registered yet?{" "}
