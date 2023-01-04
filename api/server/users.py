@@ -11,7 +11,7 @@ users = Blueprint('users', __name__)
 
 
 @users.route('/<int:id>', methods=['GET'])
-@login_required
+# @login_required
 def get_user(id):
     try:
         user = User.get_user_by_id(id)
