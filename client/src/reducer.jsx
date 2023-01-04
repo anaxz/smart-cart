@@ -47,11 +47,6 @@ function remove(state, item) {
     return state.arr
 }
 
-function remove(state, item) { 
-    state.arr.splice(state.arr.indexOf(item), 1)
-    return state.arr
-}
-
 export const itemReducer = (state = { arr: [], user: '', item: []}, action) => {
     switch (action.type) {
         case 'add':

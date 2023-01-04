@@ -14,29 +14,34 @@ import './index.css'
 function Foodbar() {
 
     const [showItems, setShowItems] = useState([]);
+    const [fav, setFavs] = useState([]);
     const [productData, setProductData] = useState([]);
     const [shopping, setShopping] = useState([]);
     const navigate = useNavigate()
     const user = localStorage.getItem('user')
 
     useEffect(() => {
+
+        async function getFavourites() {
+            fetch(`http://127.0.0.1:5000/users/${user}/favs`)
+                .then(res => res.json())
+                .then(res => { setFavs(Object.values(res)[0]); console.log('test'); console.log(Object.values(res))});
+        }
+
         async function getItemData() {
             const url = 'http://127.0.0.1:5000/products'
             // const response = url.get()
             fetch('http://127.0.0.1:5000/products')
                 .then(resp => resp.json())
-                .then(result => setProductData(result))
+                .then(result => { setProductData(result); getFavourites() })
         }
 
-        async function getFavourites() {
-            fetch(`http://127.0.0.1:5000/users/${user}/favs`)
-                .then(res => res.json())
-                .then(res => console.log(res));
-        }
+        
 
         getItemData()
-        getFavourites()
-    }, [])
+    }, [fav.length])
+
+    fav.map(obj => console.log(obj))
 
     return (
         <div style={{
@@ -89,8 +94,8 @@ function Foodbar() {
                         <Tab eventKey="favourites" title="Favourites">
                             <Row className="justify-content-center">
                                 {
-                                    productData
-                                        .filter(product => product[2] == 'Other')
+                                    fav
+                                        // .filter(product => product[1] == 'Other')
                                         .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} /></Col>))
                                 }
                             </Row>
