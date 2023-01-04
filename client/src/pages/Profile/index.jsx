@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Darknavbar } from "../../layout";
 import './index.css';
 
 
 const Profile = () => {
+    const navigate = useNavigate()
+
+    if (!localStorage.getItem('user')) navigate('/home') 
 
     const id = localStorage.getItem('user')
     const [user, setUser] = useState([])
