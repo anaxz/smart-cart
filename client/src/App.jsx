@@ -3,7 +3,7 @@ import "./assets/index.css"
 import { Welcome, About, Homepage, Comparison, Profile, ShoppingList } from './pages'
 import { Auth } from "./components"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 function App() {
 
@@ -22,9 +22,11 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/Auth" element={<Auth />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>
     </>
+    
   )
 }
 

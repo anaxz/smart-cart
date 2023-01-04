@@ -22,7 +22,7 @@ function Itemcard({ shopping, setShopping, data }) {
             <Card style={{ width: '18rem' }} border="primary">
                 <Card.Body>
                     <Card.Title>{data[1]}</Card.Title>
-                    <Button variant="primary" onClick={() => addToCart(data[1])}><i class="bi bi-cart-plus"></i></Button>
+                    <Button variant="primary" onClick={() => addToCart(data[1])}><i className="bi bi-cart-plus"></i></Button>
                 </Card.Body>
             </Card>
         </CardGroup>
