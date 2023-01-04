@@ -19,7 +19,7 @@ def login():
                 if check_password_hash(user[3], request_data['password']):
                     # login_user(user, remember=True)
                     print('Login successful.')
-                    return {'200' : 'Login successful.'}
+                    return {'200' : user[0]}
                 else:
                     print('Incorrect password')
                     return {'403' : 'Incorrect password, try again.'}

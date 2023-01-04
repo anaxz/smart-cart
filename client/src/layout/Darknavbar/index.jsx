@@ -86,7 +86,6 @@ function Darknavbar() {
 
                   </>
               )}
-              {user}
             </Nav>
 
             {/* <Nav className="me-auto">

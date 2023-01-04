@@ -40,6 +40,9 @@ const Homepage = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
+                    <Button variant="secondary" onClick={() => console.log('Saving')}>
+                        Save List
+                    </Button>
                     <Button variant="primary" onClick={() => navigate('/comparison')}>
                         Compare Prices!
                     </Button>

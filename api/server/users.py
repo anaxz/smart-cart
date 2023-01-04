@@ -69,7 +69,7 @@ def delete(id):
         return {'message' : f'Cannot delete user. Error: {error}'}
 
 @users.route('/<int:user_id>/favs', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def fav(user_id):
     list_favs = User.get_favourites(user_id)
 

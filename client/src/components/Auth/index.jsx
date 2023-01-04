@@ -32,14 +32,15 @@ const Auth = (props) => {
     else {
       const result = await fetchLogin(data)
       console.log(Object.keys(result))
-      
+      const id = Object.values(result)[0]
+      console.log(id)
 
       if(Object.keys(result) == 200){
         console.log('--login response')
         setEmail('')
         setPassword('')
-        dispatch(loginUser(email))
-        localStorage.setItem('user', email)
+        dispatch(loginUser(id))
+        localStorage.setItem('user', id)
         console.log(email)
         navigate('/home')
       } else {

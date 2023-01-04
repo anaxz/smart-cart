@@ -22,7 +22,14 @@ function Itemcard({ shopping, setShopping, data }) {
     }
 
     function favourite(item) {
-        console.log(item)
+        const id = localStorage.getItem('user')
+        console.log(id)
+        console.log('Fav', item)
+        // fetch(`http://127.0.0.1:5000/users/${id}/favs`, {
+        //     method: "POST",
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(item)
+        // }).then(res => res.json()).then(res => console.log(res));
     }
 
     const dispatch = useDispatch()
@@ -36,7 +43,7 @@ function Itemcard({ shopping, setShopping, data }) {
                 <Card.Body>
                     <Card.Title className="text-center">{data[1]}</Card.Title>
                     <Button variant="primary" onClick={() => { dispatch(addItem(data[1])) }}><i className="bi bi-cart-plus"></i></Button>
-                    {localStorage.getItem('user') && <Button variant="primary" onClick={() => { console.log(data[1]);}}><i class="bi bi-star"></i></Button>}
+                    {localStorage.getItem('user') && <Button variant="primary" onClick={() => { favourite(data[1])}}><i class="bi bi-star"></i></Button>}
                 </Card.Body>
             </Card>
         </CardGroup>
