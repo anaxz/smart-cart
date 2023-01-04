@@ -5,7 +5,10 @@ const About = () => {
   return <>
     <Darknavbar />
     <div>
-      <h1>About us</h1>
+      <h2>About us</h2>
+      <p>We are comparison site where you can compare selected</p>
+
+      <h3></h3>
     </div>
     </>
 };

@@ -6,6 +6,7 @@ import Overlay from 'react-bootstrap/Overlay';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { useSelector, useDispatch } from 'react-redux'
 import { addItem } from '../../reducer'
+import useTimeout from '../../customHooks/useTimeout'
 import './index.css';
 
 function Itemcard({ data, fav }) {
@@ -13,6 +14,11 @@ function Itemcard({ data, fav }) {
     // console.log(data)
     const [show, setShow] = useState(false);
     const target = useRef(null);
+
+
+    console.log('show: ' +show)
+    // if(show) useTimeout(() => setShow(false), 2000) 
+
 
     // function addToCart(name) {
     //     let arr = []
@@ -66,11 +72,12 @@ function Itemcard({ data, fav }) {
                         {localStorage.getItem('user') ? fav.find(obj => obj[1] == data[1]) ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button> : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button> : ''}
                     </div>
 
-                    <Overlay target={target.current} show={show} placement="right">
+                    <Overlay target={target.current} show={show} placement="right" >
                         {(props) => (
                             <Tooltip id="overlay-example" {...props}>
                                 Added to cart!
                             </Tooltip>
+                            
                         )}
                     </Overlay>
                 </Card.Body>
