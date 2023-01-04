@@ -35,8 +35,8 @@ const Homepage = (props) => {
                     <Modal.Title>Your Smart-Cart</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <ul id="cartitems">
-                        {items.map(item => <><li>{item}</li><button onClick={() => dispatch(deleteItem(item))}>Remove</button></>)}
+                    <ul style={{display:"flex", flexDirection:"column"}} id="cartitems">
+                        {items.map(item => <div style={{width:"100%", marginBottom:"1%"}}><li>{item}<Button variant="danger" style={{float:"right"}} onClick={() => dispatch(deleteItem(item))}>Remove</Button></li></div>)}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>
