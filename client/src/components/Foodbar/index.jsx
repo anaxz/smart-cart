@@ -32,7 +32,7 @@ function Foodbar() {
             <Tabs
                 defaultActiveKey="profile"
                 id="fill-tab-example"
-                className="m-5"
+                className="m-3 px-4 py-2"
                 fill
                 variant='pills'
             >

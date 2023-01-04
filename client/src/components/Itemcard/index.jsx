@@ -17,7 +17,7 @@ function Itemcard({ shopping, setShopping, data }) {
         setShopping(arr)
         console.log(shopping)
 
-        
+
 
     }
 
@@ -30,7 +30,7 @@ function Itemcard({ shopping, setShopping, data }) {
         <CardGroup>
             <Card style={{ width: '18rem' }} border="primary">
                 <Card.Body>
-                    <Card.Title>{data[1]}</Card.Title>
+                    <Card.Title className="text-center">{data[1]}</Card.Title>
                     <Button variant="primary" onClick={() => { addToCart(data[1]); dispatch(addItem(data[1])) }}><i class="bi bi-cart-plus"></i></Button>
                 </Card.Body>
             </Card>

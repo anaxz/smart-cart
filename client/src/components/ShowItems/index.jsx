@@ -9,7 +9,7 @@ const ShowItems = ({ shopping, setShopping, data, category }) => {
     console.log(data)
     console.log(category)
     return (
-        <Row>
+        <Row className="justify-content-center">
             {
                 data
                     .filter(product => product[2] == category)
