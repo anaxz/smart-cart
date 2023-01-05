@@ -14,11 +14,18 @@ const Profile = () => {
     const [user, setUser] = useState([])
     const [lists, setLists] = useState([])
     const [items, setItems] = useState([])
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
 
         function getProducts() {
-            
+            fetch(`http://127.0.0.1:5000/products`)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    setProducts(res)
+                    // setLists(Object.values(res))
+                });
         }
 
         function all_lists() {
@@ -26,18 +33,22 @@ const Profile = () => {
                 .then(res => res.json())
                 .then(res => {
                     console.log(res);
-                    
-                    setLists(Object.values(res))
+                    setLists(Object.values(res));
+                    getProducts()
                 });
         }
 
         fetch(`http://127.0.0.1:5000/users/${id}`)
             .then(res => res.json())
-            .then(res => { setUser(Object.values(res)[0][1]); console.log(Object.values(res)[0][1]);  all_lists()});
+            .then(res => {
+                setUser(Object.values(res)[0][1]);
+                console.log(Object.values(res)[0][1]);
+                all_lists()
+            });
         
         
         
-    },[lists.length])
+    },[lists.length, products.length, items.length])
 
     function showList(data) {
         console.log(data)
@@ -61,7 +72,13 @@ const Profile = () => {
                 }
                 
                 <div>
-                    {items.map(obj => <p>{obj}</p>)}
+                    {items.map(obj => {
+                        let a = products.filter(x => x[0] == obj)[0][1];
+                        console.log(a)
+                        return a
+                    }
+
+                    )}
                 </div>
         </div>
             

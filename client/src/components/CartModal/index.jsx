@@ -18,6 +18,8 @@ function CartModal(props) {
 
     let items = useSelector(state => state).arr
 
+    
+
     function saveList() {
         let id = localStorage.getItem('user')
         console.log(id)
