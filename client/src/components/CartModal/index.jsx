@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../reducer'
+import './index.css'
 
 
 function CartModal(props) {
@@ -38,7 +39,7 @@ function CartModal(props) {
                 </Modal.Header>
                 <Modal.Body style={{ backgroundColor: '#c4dbfd' }}>
                     <ul id="cartitems" style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
-                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0' }}><li style={{ marginTop: "2%" }}>{item}</li><Button variant="danger" style={{ float: "right", marginLeft: "auto" }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></div>)}
+                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0', borderBottom: '1px solid grey' }}><li style={{ marginTop: "2%", fontFamily: 'Poppins' }}>{item}</li><Button variant="danger" style={{ float: "right", marginLeft: "auto" }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></div>)}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer style={{ backgroundColor: '#c4dbfd' }}>

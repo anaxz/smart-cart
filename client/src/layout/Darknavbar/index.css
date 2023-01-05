@@ -8,7 +8,7 @@ a.nav-link {
 a.nav-link:hover {
     transition: 0.5s !important;
     color: #0D6EFD !important;
-    transform: translateY(-5px);
+    transform: translateX(5px);
 
 }
 

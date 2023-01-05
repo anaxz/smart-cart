@@ -76,7 +76,7 @@ function Darknavbar({ }) {
           <Navbar.Collapse id="responsive-navbar-nav">
 
 
-            <Nav className="me-auto" style={{ backgroundColor: '#bbfdc5', borderRadius: '10px' }}>
+            <Nav className="me-auto" style={{ backgroundColor: '#bbfdc5', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
               <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/home')}><i class="bi bi-house"></i> Home</Nav.Link>
               <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/about')}><i class="bi bi-question-circle"></i> About</Nav.Link>
               {!user ? (
