@@ -94,6 +94,17 @@ const Comparison = () => {
     //     return results
     // }
 
+    const logos = {
+        'Tesco': 'https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Tesco_Logo.svg/2560px-Tesco_Logo.svg.png',
+        'Sainsburys': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Sainsbury%27s_Logo.svg/2560px-Sainsbury%27s_Logo.svg.png',
+        'Aldi': 'https://logos-world.net/wp-content/uploads/2022/01/Aldi-Logo-2006.png',
+        'Asda': 'https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Asda_logo.svg/1280px-Asda_logo.svg.png',
+        'MnS': 'https://corporate.marksandspencer.com/sites/marksandspencer/files/styles/desktop/public/marksandspencer/logos/m-s-logo.png?itok=dWh-QxpV',
+        'Iceland': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Iceland_Foods_logo.svg/2560px-Iceland_Foods_logo.svg.png',
+        'Morrisons': 'https://logos-download.com/wp-content/uploads/2016/05/Morrisons_logo_logotype.png',
+        'Waitrose': 'https://logos-world.net/wp-content/uploads/2021/03/Waitrose-Logo-2004-2018.png'
+    }
+
     return (
         <>
             <Darknavbar />
@@ -113,11 +124,11 @@ const Comparison = () => {
                     >
                         <Tab eventKey={1} title="Nearby Supermarkets">
                             <h5 style={{ textAlign: 'center' }}>The nearest supermarkets to your location and their average prices</h5>
-                            {data.total && data.total.map(obj => <p>{obj.supermarket} - {obj.total}</p>)}
+                            {data.total && data.total.map(obj => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>{obj.total}</p></> )}
                         </Tab>
                         <Tab eventKey={2} title="Top Supermarkets">
                             <h5 style={{ textAlign: 'center' }}>The average price of your total bill in the most popular supermarkets </h5>
-                            {topPrices.map((obj, i) => <p key={i}>{obj.supermarket} - {obj.total}</p>)}
+                            {topPrices.map((obj, i) => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>{obj.total}</p></>)}
                         </Tab>
                     </Tabs>
                 </Card>
