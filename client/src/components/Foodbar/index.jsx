@@ -110,7 +110,7 @@ function Foodbar() {
                                 {
                                     fav
                                         // .filter(product => product[1] == 'Other')
-                                        .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} setFavs={setFavs} /></Col>))
+                                        .map(product => (<Col xs={2} className={`mx-3 my-3 ${product[2]} justify-content-center`}><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} setFavs={setFavs} /></Col>))
                                 }
                             </Row>
                         </Tab>

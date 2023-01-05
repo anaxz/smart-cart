@@ -66,7 +66,7 @@ function Itemcard({ data, fav }) {
                 width: '18rem',
                 height: '170px',
                 boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-                borderRadius: '10px'
+                borderRadius: '10px',
             }}>
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'Poppins', fontSize: '16px', color: 'black' }} className="text-center">{data[1]}</Card.Title>
