@@ -17,7 +17,7 @@ function CartModal(props) {
 
     let items = useSelector(state => state).arr
 
-    function saveList() { 
+    function saveList() {
         let id = localStorage.getItem('user')
         console.log(id)
         console.log(items)
@@ -38,7 +38,7 @@ function CartModal(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <ul id="cartitems" style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
-                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0' }}><li>{item}</li><Button variant="danger" style={{ float: 'right' }} onClick={() => dispatch(deleteItem(item))}>Remove</Button></div>)}
+                        {items.map(item => <div style={{ width: '100%', display: 'inline-block', border: '1px solid red', margin: '10px auto' }}><li>{item}</li><Button variant="danger" style={{ float: 'right' }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></div>)}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>
@@ -54,7 +54,7 @@ function CartModal(props) {
                             :
                             ''
                     }
-                    
+
                     <Button variant="primary" onClick={() => navigate('/comparison')}>
                         Compare Prices!
                     </Button>

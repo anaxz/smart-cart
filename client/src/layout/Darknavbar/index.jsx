@@ -9,6 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux'
 import { logoutUser, findItem } from '../../reducer'
+import './index.css'
 
 
 
@@ -38,7 +39,7 @@ function Darknavbar({ }) {
     if (searchItem !== '') {
       const itemData = handleSearch(searchItem)
 
-      if(itemData !== undefined){
+      if (itemData !== undefined) {
         // dispatch(findItem(searchItem));
         setSearchItem('')
         navigate('/search-results')
@@ -58,19 +59,19 @@ function Darknavbar({ }) {
       try {
         const url = 'http://127.0.0.1:5000'
         const resp = await fetch(`${url}/products/${name}`)
-          .then(response => response.json() )
+          .then(response => response.json())
         resolve(resp)
-      } catch(err){
-          return err
+      } catch (err) {
+        return err
       }
     })
   }
 
   return (
     <>
-      <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
+      <Navbar collapseOnSelect expand="md" bg="primary" variant="dark" style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
         <Container>
-          <Navbar.Brand href="#home"><i className="bi bi-cart-check"></i> Smart-Cart</Navbar.Brand>
+          <Navbar.Brand href="#home" style={{ fontFamily: 'Manrope' }}><i className="bi bi-cart-check"></i> Smart-Cart</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
 
@@ -82,7 +83,7 @@ function Darknavbar({ }) {
                 <Nav.Link onClick={() => navigate('/Auth')}><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
               ) : (
                 <>
-                    <Nav.Link onClick={() => navigate('/profile')}><i class="bi bi-person"></i> Profile</Nav.Link>
+                  <Nav.Link onClick={() => navigate('/profile')}><i class="bi bi-person"></i> Profile</Nav.Link>
                   <Nav.Link onClick={() => { dispatch(logoutUser()); localStorage.setItem('user', '') }}><i class="bi bi-box-arrow-in-right"></i> Log Out</Nav.Link>
 
                 </>

@@ -16,7 +16,7 @@ function Itemcard({ data, fav }) {
     const target = useRef(null);
 
 
-    console.log('show: ' +show)
+    console.log('show: ' + show)
     // if(show) useTimeout(() => setShow(false), 2000) 
 
 
@@ -63,10 +63,11 @@ function Itemcard({ data, fav }) {
             <Card style={{
                 width: '18rem',
                 height: '170px',
+                boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
             }}
                 border="primary">
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px' }} className="text-center">{data[1]}</Card.Title>
+                    <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'PT Sans' }} className="text-center">{data[1]}</Card.Title>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <Button variant="primary" ref={target} onClick={() => { dispatch(addItem(data[1])), setShow(!show) }}><i className="bi bi-cart-plus"></i></Button>
                         {localStorage.getItem('user') ? fav.find(obj => obj[1] == data[1]) ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button> : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button> : ''}
@@ -77,7 +78,7 @@ function Itemcard({ data, fav }) {
                             <Tooltip id="overlay-example" {...props}>
                                 Added to cart!
                             </Tooltip>
-                            
+
                         )}
                     </Overlay>
                 </Card.Body>
