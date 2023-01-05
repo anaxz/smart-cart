@@ -64,7 +64,7 @@ const Profile = () => {
    
         <div className="profilecontainer">
             <h1>Hello {user}!</h1>
-            <h3>Here are you saved Shopping Lists:</h3>
+            <h4>Here are you saved shopping lists:</h4>
             {
                 lists.length > 0
                 &&
@@ -81,7 +81,7 @@ const Profile = () => {
                         items.map(obj => {
                         let a = products.filter(x => x[0] == obj)[0][1];
                         console.log(a)
-                            return <p>{a}</p>
+                            return <li>{a}</li>
                     }
 
                     )}
