@@ -53,8 +53,7 @@ const Auth = (props) => {
 
   async function fetchLogin(data){
     try {
-      const url = 'http://127.0.0.1:5000'
-      // const url ='https://44.226.122.3'
+      const url = 'https://smart-cart-flask.onrender.com'
 
       return await fetch(`${url}/login`, {
         method: 'POST',
@@ -92,8 +91,7 @@ const Auth = (props) => {
 
   async function fetchSignup(data){
     try {
-      const url = 'http://127.0.0.1:5000'
-      // const url = 'https://44.226.122.3'
+      const url = 'https://smart-cart-flask.onrender.com'
 
       return await fetch(`${url}/signup`,  {
         method: 'POST',

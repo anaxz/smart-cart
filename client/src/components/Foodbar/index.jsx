@@ -23,15 +23,15 @@ function Foodbar() {
     useEffect(() => {
 
         async function getFavourites() {
-            fetch(`http://127.0.0.1:5000/users/${user}/favs`)
+            fetch(`https://smart-cart-flask.onrender.com/users/${user}/favs`)
                 .then(res => res.json())
                 .then(res => { setFavs(Object.values(res)[0]); console.log('test'); console.log(Object.values(res)) });
         }
 
         async function getItemData() {
-            const url = 'http://127.0.0.1:5000/products'
+            const url = 'https://smart-cart-flask.onrender.com/products'
             // const response = url.get()
-            fetch('http://127.0.0.1:5000/products')
+            fetch('https://smart-cart-flask.onrender.com/products')
                 .then(resp => resp.json())
                 .then(result => { setProductData(result); getFavourites() })
         }

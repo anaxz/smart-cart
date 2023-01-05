@@ -14,11 +14,11 @@ const Profile = () => {
     const [user, setUser] = useState([])
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:5000/users/${id}`)
+        fetch(`https://smart-cart-flask.onrender.com/users/${id}`)
             .then(res => res.json())
             .then(res => { setUser(Object.values(res)[0][1]); console.log(Object.values(res)[0][1]) });
         
-        fetch(`http://127.0.0.1:5000/users/${id}`)
+        fetch(`https://smart-cart-flask.onrender.com/users/${id}`)
             .then(res => res.json())
             .then(res => { setUser(Object.values(res)[0][1]); console.log(Object.values(res)[0][1]) });
     },[])

@@ -56,7 +56,7 @@ function Darknavbar({ }) {
   async function getProduct(name) {
     return new Promise(async (resolve, reject) => {
       try {
-        const url = 'http://127.0.0.1:5000'
+        const url = 'https://smart-cart-flask.onrender.com'
         const resp = await fetch(`${url}/products/${name}`)
           .then(response => response.json() )
         resolve(resp)

@@ -35,7 +35,7 @@ function Itemcard({ data, fav }) {
         const id = localStorage.getItem('user')
         console.log(id)
         console.log('Fav', item)
-        fetch(`http://127.0.0.1:5000/users/${id}/favs`, {
+        fetch(`https://smart-cart-flask.onrender.com/users/${id}/favs`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify([item, true])
@@ -46,7 +46,7 @@ function Itemcard({ data, fav }) {
         const id = localStorage.getItem('user')
         console.log(id)
         console.log('Fav', item)
-        fetch(`http://127.0.0.1:5000/users/${id}/favs`, {
+        fetch(`https://smart-cart-flask.onrender.com/users/${id}/favs`, {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify([item, false])

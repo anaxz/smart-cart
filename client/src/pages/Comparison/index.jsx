@@ -25,7 +25,7 @@ const Comparison = () => {
     useEffect(() => {
 
         async function top_shop() {
-            fetch("http://127.0.0.1:5000/top", {
+            fetch("https://smart-cart-flask.onrender.com/top", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
@@ -48,7 +48,7 @@ const Comparison = () => {
         async function nearby() {
             const ip = await getIP()
             console.log(ip)
-            fetch("http://127.0.0.1:5000/nearby", {
+            fetch("https://smart-cart-flask.onrender.com/nearby", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
