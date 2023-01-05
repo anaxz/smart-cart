@@ -1,5 +1,23 @@
 .profilecontainer {
-    width: 400px;
-    margin: 20% auto;
-    border: 1px solid red;
+    width: 900px;
+    margin: 10% auto;
+    padding: 50px;
+    background-color: rgb(196, 219, 253);
+    border-radius: 10px;
+}
+.profilecontainer h1 {
+    margin-bottom: 50px;
+
+}
+
+.profilecontainer button {
+    border: none;
+    background-color: #0d6efd;
+    margin: 10px;
+    color: white;
+    font-size: 20px;
+}
+
+.profilecontainer li {
+        font-family: 'Poppins';
 }
