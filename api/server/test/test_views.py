@@ -27,14 +27,22 @@ def test_get_product_by_name(api):
     assert resp.status == '200 OK'
     assert resp.json['200'][0][1] == 'Bread'
 
-def test_top(api):
-    data = {"shopping":["Bread","Eggs","Milk"],"ip":"86.7.250.38"}
+def test_nearby(api):
+    data = """{"shopping":["Bread","Eggs","Milk"],"ip":"86.7.250.38"}"""
     resp = api.post('/nearby', data=data)
     assert resp.status == '200 OK'
-    assert b'LegOh! | Thank you' in resp.data
+    assert len(resp.json) > 0
 
-# def test_post_reminder(api):
-#     form_data = {'1',['Bread']}
-#     resp = api.post('/savelist', data=form_data)
-#     assert resp.status == '200 OK'
-#     assert b'LegOh! | Thank you' in resp.data
+def test_top(api):
+    data = """{"shopping":["Bread","Eggs","Milk"]}"""
+    resp = api.post('/top', data=data)
+    assert resp.status == '200 OK'
+    assert len(resp.json) == 8
+
+
+def test_post_reminder(api):
+    form_data = """[1,["Bread"]]"""
+    resp = api.post('/savelist', data=form_data)
+    assert resp.status == '200 OK'
+    assert resp.text == 'List is saved'
+

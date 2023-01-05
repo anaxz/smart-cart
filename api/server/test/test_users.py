@@ -37,6 +37,24 @@ def test_update_user():
 
     assert mock_user.update_user().name  == 'test2'
 
-@pytest.mark.parametrize('expected', [User('test1', 'test1@gmail.com', 'pass1'), User('test2', 'test2@gmail.com', 'pass1')] )
-def test_get_all_users(expected):
-    assert User.get_all_users() == 1
+def test_get_all_lists(api):
+    resp = api.get('/users/1/all-shoplist')
+    assert resp.status == '200 OK'
+    assert len(resp.data) > 0
+
+def test_get_favs(api):
+    resp = api.get('/users/1/favs')
+    assert resp.status == '200 OK'
+    assert len(resp.data) > 0
+
+def test_add_fav(api):
+    data = """[2, true]"""
+    resp = api.post('/users/1/favs', data=data)
+    assert resp.status == '200 OK'
+    assert len(resp.data) > 0
+
+def test_delete_fav(api):
+    data = """[2, ]"""
+    resp = api.post('/users/1/favs', data=data)
+    assert resp.status == '200 OK'
+    assert len(resp.data) > 0

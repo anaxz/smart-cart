@@ -52,21 +52,21 @@ class User(UserMixin):
         print(response)
         return response
 
-    def update_user(data):
-        print('--update_user')
-        query = f"UPDATE Users SET name='{data['name']}', email='{data['email']}', password='{data['password']}' WHERE id = {data['id']};"
-        print(query)
-        cur.execute(query)
-        conn.commit()
-        print('committed')
-        # User.update({data['name']}, {data['email']}, {data['password']})
-        return 'Updated User'
+    # def update_user(data):
+    #     print('--update_user')
+    #     query = f"UPDATE Users SET name='{data['name']}', email='{data['email']}', password='{data['password']}' WHERE id = {data['id']};"
+    #     print(query)
+    #     cur.execute(query)
+    #     conn.commit()
+    #     print('committed')
+    #     # User.update({data['name']}, {data['email']}, {data['password']})
+    #     return 'Updated User'
 
-    def delete_user(id):
-        query = f"DELETE FROM Users WHERE id = {id};"
-        cur.execute(query)
-        conn.commit()
-        return 'Deleted user'
+    # def delete_user(id):
+    #     query = f"DELETE FROM Users WHERE id = {id};"
+    #     cur.execute(query)
+    #     conn.commit()
+    #     return 'Deleted user'
 
     def get_favourites(id):
         query = f"SELECT * FROM Favourites WHERE user_id = {id};"
