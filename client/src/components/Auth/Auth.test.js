@@ -1,4 +1,5 @@
 import React from 'react'
+import '@testing-library/jest-dom'
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
@@ -44,7 +45,11 @@ describe('SignUp', () => {
     })
 
     test('Sign Up heading rendered', () => {
-        const heading = screen.getByRole('heading', { name: /Sign Up/i });
+        const heading = screen.getByRole('heading', { name: /Sign Up/i});
         expect(heading).toBeTruthy();
     }) 
+
+    test('render "sign-up" link', () => {
+        expect(screen.getByText("Sign Up")).toBeInTheDocument();
+    })
 })
