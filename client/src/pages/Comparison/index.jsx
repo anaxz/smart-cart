@@ -8,6 +8,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
+import './index.css'
 
 const Comparison = () => {
 
@@ -117,14 +118,14 @@ const Comparison = () => {
                 </Card>
                 <Card>
                     <Tabs defaultActiveKey={1}
-                        id="uncontrolled-tab-example"
+                        id="comparison"
                         className="mb-3 justify-content-center"
                         variant="pills"
-                        style={{ width: '60%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '5px 0', borderRadius: '10px' }}
+                        style={{ width: '80%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '10px 0', borderRadius: '10px' }}
                     >
                         <Tab eventKey={1} title="Nearby Supermarkets">
                             <h5 style={{ textAlign: 'center' }}>The nearest supermarkets to your location and their average prices</h5>
-                            {data.total && data.total.map(obj => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>{obj.total}</p></> )}
+                            {data.total && data.total.map(obj => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>{obj.total}</p></>)}
                         </Tab>
                         <Tab eventKey={2} title="Top Supermarkets">
                             <h5 style={{ textAlign: 'center' }}>The average price of your total bill in the most popular supermarkets </h5>

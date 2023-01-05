@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { deleteItem } from '../../reducer'
@@ -37,15 +39,19 @@ function CartModal(props) {
         <>
             <Button id="basket" variant="danger" style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', height: '40px', fontFamily: 'Poppins', fontSize: '18px', margin: 'none' }} onClick={handleShow} ><i className="bi bi-cart"></i> Cart</Button>
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Your Smart-Cart</Modal.Title>
+                <Modal.Header style={{ justifyContent: 'center' }}>
+                    <Modal.Title style={{ fontFamily: 'Poppins' }}>Your Smart-Cart</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ul id="cartitems" style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
-                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0', borderBottom: '1px solid grey' }}><li style={{ marginTop: "2%", fontFamily: 'Poppins' }}>{item}</li><Button variant="danger" style={{ float: "right", marginLeft: "auto", marginBottom: '5px' }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></div>)}
+                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0', borderBottom: '1px solid grey' }}><li style={{ marginTop: "2%", fontFamily: 'Poppins' }}>{item}</li><OverlayTrigger placement="left" overlay={
+                            <Tooltip>
+                                Remove from cart
+                            </Tooltip>
+                        }><Button variant="danger" style={{ float: "right", marginLeft: "auto", marginBottom: '5px' }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></OverlayTrigger></div>)}
                     </ul>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer style={{ justifyContent: 'center' }}>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
