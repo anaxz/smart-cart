@@ -109,11 +109,11 @@ const Comparison = () => {
     return (
         <>
             <Darknavbar />
-            <h3 style={{ textAlign: 'center' }}>Comparison Page</h3>
+            <h3 style={{ textAlign: 'center', color: 'white', fontFamily: 'Poppins' }}>Your Smart-Cart Comparisons</h3>
             <CardGroup style={{ height: '400px', width: '70%', margin: '30px auto' }}>
                 <Card>
-                    <h4 style={{ textAlign: 'center', marginTop: '20px' }}>Shopping List</h4>
-                    <div style={{ position: 'relative', width: '50%', borderRadius: '10px', backgroundColor: '#205295', margin: '20px auto', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>{items.map(item => <p>{item}</p>)}</div>
+                    <h4 style={{ textAlign: 'center', marginTop: '20px', fontFamily: 'Jost' }}>Shopping List</h4>
+                    <div style={{ position: 'relative', width: '50%', borderRadius: '10px', backgroundColor: '#205295', margin: '20px auto', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>{items.map(item => <p style={{ fontFamily: 'Jost', color: 'white' }}>{item}</p>)}</div>
                     {console.log(data)}
                 </Card>
                 <Card>
@@ -123,13 +123,13 @@ const Comparison = () => {
                         variant="pills"
                         style={{ width: '80%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '10px 0', borderRadius: '10px' }}
                     >
-                        <Tab eventKey={1} title="Nearby Supermarkets">
+                        <Tab eventKey={1} title="Nearby Supermarkets" style={{ fontFamily: 'Jost' }}>
                             <h5 style={{ textAlign: 'center' }}>The nearest supermarkets to your location and their average prices</h5>
-                            {data.total && data.total.map(obj => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>{obj.total}</p></>)}
+                            {data.total && data.total.map(obj => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>₤{obj.total}</p></>)}
                         </Tab>
                         <Tab eventKey={2} title="Top Supermarkets">
                             <h5 style={{ textAlign: 'center' }}>The average price of your total bill in the most popular supermarkets </h5>
-                            {topPrices.map((obj, i) => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>{obj.total}</p></>)}
+                            {topPrices.map((obj, i) => <><img style={{ width: '100px' }} src={logos[obj.supermarket]} alt="" /><p>₤{obj.total}</p></>)}
                         </Tab>
                     </Tabs>
                 </Card>
