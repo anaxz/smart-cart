@@ -126,11 +126,40 @@ const Comparison = () => {
                     >
                         <Tab eventKey={1} title="Nearby Supermarkets" style={{ fontFamily: 'Jost' }}>
                             <h5 style={{ textAlign: 'center', color: 'white' }}>The nearest supermarkets to your location and their average prices</h5>
-                            {data.total && data.total.map(obj => <div style={{ display: 'inline-block', margin: '0 10px' }}><img style={{ width: '100px', margin: '10px 0' }} src={logos[obj.supermarket]} alt="" /><p style={{ fontWeight: 'bold' }}>₤{obj.total}</p></div>)}
+                            <div id="icons">{data.total && data.total.map(obj => <div style={{
+
+                                margin: '0 10px',
+                                padding: '5px 10px',
+                                backgroundColor: 'antiquewhite',
+                                borderRadius: '10px',
+                                minHeight: '155px',
+                                boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
+                            }}><div className="image"><img style={{
+                                width: '100px',
+                                margin: '10px 0'
+                            }} src={logos[obj.supermarket]} alt="" /></div>
+                                <div className="price"><p style={{ fontWeight: 'bold', margin: '0' }}>₤{obj.total}</p></div></div>)}</div>
                         </Tab>
                         <Tab eventKey={2} title="Top Supermarkets" style={{ fontFamily: 'Jost' }}>
                             <h5 style={{ textAlign: 'center', color: 'white' }}>The average price of your total bill in the most popular supermarkets </h5>
-                            {topPrices.map((obj, i) => <div style={{ display: 'inline-block', margin: '0 15px' }}><img style={{ width: '100px', margin: '10px 0' }} src={logos[obj.supermarket]} alt="" /><p style={{ fontWeight: 'bold' }}>₤{obj.total}</p></div>)}
+                            <div id='icons2'>
+                                {topPrices.map((obj, i) => <div style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'space-evenly',
+                                    margin: '0 10px',
+                                    backgroundColor: 'antiquewhite',
+                                    padding: '5px 10px',
+                                    borderRadius: '10px',
+                                    minHeight: '155px',
+                                    boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
+
+                                }}><div className="image"><img style={{
+                                    width: '100px',
+                                    margin: '10px 0'
+                                }} src={logos[obj.supermarket]} alt="" /></div>
+                                    <div className="price"><p style={{ fontWeight: 'bold', margin: '0' }}>₤{obj.total}</p></div></div>)}
+                            </div>
                         </Tab>
                     </Tabs>
                 </Card>
