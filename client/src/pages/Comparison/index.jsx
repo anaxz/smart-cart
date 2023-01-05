@@ -109,26 +109,27 @@ const Comparison = () => {
     return (
         <>
             <Darknavbar />
-            <h3 style={{ textAlign: 'center', color: 'white', fontFamily: 'Poppins' }}>Your Smart-Cart Comparisons</h3>
+            <h3 style={{ textAlign: 'center', color: 'white', fontFamily: 'Poppins' }}>Your <span style={{ color: '#EB6440' }}>Smart-Cart</span> Comparisons</h3>
             <CardGroup style={{ height: '400px', width: '70%', margin: '30px auto' }}>
-                <Card>
-                    <h4 style={{ textAlign: 'center', marginTop: '20px', fontFamily: 'Jost' }}>Shopping List</h4>
-                    <div style={{ position: 'relative', width: '50%', borderRadius: '10px', backgroundColor: '#205295', margin: '20px auto', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>{items.map(item => <h5 style={{ fontFamily: 'Jost', color: 'white' }}>{item}</h5>)}</div>
+                <Card style={{ width: '200px', border: '3px solid #C4DBFD', borderRight: '3px double #EB6440', background: 'transparent', borderRadius: '10px 0 0 10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <div style={{ position: 'relative', width: '50%', borderRadius: '10px', backgroundColor: '#205295', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+                        <h4 style={{ textAlign: 'center', margin: '5px', fontFamily: 'Poppins', color: 'white' }}>Shopping List</h4>
+                        {items.map(item => <h5 style={{ fontFamily: 'Jost', color: 'white', margin: '20px 10px', borderBottom: '3px solid #EB6440' }}>{item}</h5>)}</div>
                     {console.log(data)}
                 </Card>
-                <Card>
+                <Card style={{ border: '3px solid #C4DBFD', borderLeft: 'none', borderRadius: '0 10px 10px 0', backgroundColor: '#205295', fontFamily: 'Jost' }}>
                     <Tabs defaultActiveKey={1}
                         id="comparison"
                         className="mb-3 justify-content-center"
                         variant="pills"
-                        style={{ width: '80%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '10px 0', borderRadius: '10px' }}
+                        style={{ width: '80%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '10px 0', borderRadius: '10px', fontSize: '18px' }}
                     >
                         <Tab eventKey={1} title="Nearby Supermarkets" style={{ fontFamily: 'Jost' }}>
-                            <h5 style={{ textAlign: 'center' }}>The nearest supermarkets to your location and their average prices</h5>
+                            <h5 style={{ textAlign: 'center', color: 'white' }}>The nearest supermarkets to your location and their average prices</h5>
                             {data.total && data.total.map(obj => <div style={{ display: 'inline-block', margin: '0 10px' }}><img style={{ width: '100px', margin: '10px 0' }} src={logos[obj.supermarket]} alt="" /><p style={{ fontWeight: 'bold' }}>₤{obj.total}</p></div>)}
                         </Tab>
                         <Tab eventKey={2} title="Top Supermarkets" style={{ fontFamily: 'Jost' }}>
-                            <h5 style={{ textAlign: 'center' }}>The average price of your total bill in the most popular supermarkets </h5>
+                            <h5 style={{ textAlign: 'center', color: 'white' }}>The average price of your total bill in the most popular supermarkets </h5>
                             {topPrices.map((obj, i) => <div style={{ display: 'inline-block', margin: '0 15px' }}><img style={{ width: '100px', margin: '10px 0' }} src={logos[obj.supermarket]} alt="" /><p style={{ fontWeight: 'bold' }}>₤{obj.total}</p></div>)}
                         </Tab>
                     </Tabs>
