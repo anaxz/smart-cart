@@ -127,10 +127,12 @@ const Comparison = () => {
                         <Tab eventKey={1} title="Nearby Supermarkets" style={{ fontFamily: 'Jost' }}>
                             <h5 style={{ textAlign: 'center', color: 'white' }}>The nearest supermarkets to your location and their average prices</h5>
                             <div id="icons">{data.total && data.total.map(obj => <div style={{
-
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-evenly',
                                 margin: '0 10px',
                                 padding: '5px 10px',
-                                backgroundColor: 'antiquewhite',
+                                backgroundColor: 'white',
                                 borderRadius: '10px',
                                 minHeight: '155px',
                                 boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
@@ -146,9 +148,9 @@ const Comparison = () => {
                                 {topPrices.map((obj, i) => <div style={{
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    alignItems: 'space-evenly',
+                                    justifyContent: 'space-evenly',
                                     margin: '0 10px',
-                                    backgroundColor: 'antiquewhite',
+                                    backgroundColor: 'white',
                                     padding: '5px 10px',
                                     borderRadius: '10px',
                                     minHeight: '155px',
