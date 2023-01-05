@@ -21,10 +21,11 @@ function CartModal(props) {
         let id = localStorage.getItem('user')
         console.log(id)
         console.log(items)
-        fetch(`${url}/login`, {
+        let url = 'http://127.0.0.1:5000'
+        fetch(`${url}/savelist`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
+            body: JSON.stringify([id, items])
         }).then(response => response.json())
     }
 

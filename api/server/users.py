@@ -106,8 +106,8 @@ def shoplist(id):
         except Exception as error:
             return {'message' : f"Cannot get user's shopping list. Error: {error}"}
 
-@users.route('/<int:id>/all-shoplist', methods=['GET', 'POST'])
-@login_required
+@users.route('/<int:id>/all-shoplist', methods=['GET'])
+# @login_required
 def all_shoplist(id):
     if request.method == 'GET':
         try:
