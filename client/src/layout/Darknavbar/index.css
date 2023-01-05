@@ -22,3 +22,8 @@ a.nav-link:hover {
     transform: translateY(5px);
 
 }
+
+::placeholder {
+    color: white !important;
+    font-family: 'Jost';
+}
