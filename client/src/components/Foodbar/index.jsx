@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
-import CartModal from '../CartModal';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Itemcard from '../Itemcard';
@@ -54,7 +53,6 @@ function Foodbar() {
             borderRadius: '10px',
             width: '70%',
         }}>
-            <CartModal />
             <Tabs
                 defaultActiveKey="main"
                 id="fill-tab-example"

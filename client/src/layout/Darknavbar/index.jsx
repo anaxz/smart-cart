@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux'
 import { logoutUser, findItem } from '../../reducer'
 import './index.css'
+import { CartModal } from '../../components'
 
 
 
@@ -89,6 +90,7 @@ function Darknavbar({ }) {
                 </>
               )}
             </Nav>
+            <CartModal />
 
             {/* <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
@@ -100,9 +102,10 @@ function Darknavbar({ }) {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                style={{ width: '200px' }}
                 onChange={(e) => setSearchItem(e.target.value)} value={searchItem}
               />
-              <Button style={{ backgroundColor: '#bbfdc5', color: '#444f46' }} onClick={handleSubmit} >Search</Button>
+              <button style={{ backgroundColor: '#bbfdc5', color: '#444f46', fontFamily: 'Poppins', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', border: 'none', width: '50px' }} onClick={handleSubmit} ><i class="bi bi-search"></i></button>
             </Form>
           </Navbar.Collapse>
         </Container>

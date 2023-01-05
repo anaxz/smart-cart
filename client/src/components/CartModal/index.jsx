@@ -33,7 +33,7 @@ function CartModal(props) {
     return (
 
         <>
-            <Button id="basket" variant="danger" onClick={handleShow} ><i className="bi bi-cart"></i> Cart</Button>
+            <Button id="basket" variant="danger" style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', height: '40px', fontFamily: 'Poppins', fontSize: '18px' }} onClick={handleShow} ><i className="bi bi-cart"></i> Cart</Button>
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
                 <Modal.Header closeButton style={{ backgroundColor: '#c4dbfd' }}>
                     <Modal.Title>Your Smart-Cart</Modal.Title>
