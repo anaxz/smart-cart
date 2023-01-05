@@ -1,0 +1,26 @@
+.Auth-form-title, .text-center, .form-group {
+    color: white;
+}
+
+.Auth-form-title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.Auth-form-container {
+    /* background-color: purple; */
+    margin: 10px 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-group input {
+    width: 600px;
+    margin: 20px 0px;
+}
+
+.d-grid {
+
+    margin: 20px 0px;
+}

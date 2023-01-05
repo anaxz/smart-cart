@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginUser } from '../../reducer'
-
+import { Darknavbar } from "../../layout";
+import './Auth.css'
 
 const Auth = (props) => {
   let [authMode, setAuthMode] = useState("signin")
@@ -105,18 +106,14 @@ const Auth = (props) => {
   }
   
   if (authMode === "signin") {
-    return (
+    return (<>
+      <Darknavbar />
       <div className="Auth-form-container">
         <form className="Auth-form" onSubmit={loginSubmit} >
           <div className="Auth-form-content">
             {/* <p className="msg-error">Login Fail</p> */}
             <h3 className="Auth-form-title">Sign In</h3>
-            <div className="text-center">
-              Not registered yet?{" "}
-              <span className="link-primary" onClick={changeAuthMode}>
-                Sign Up
-              </span>
-            </div>
+            
             <div className="form-group mt-3">
               <label htmlFor='email'>Email address</label>
               <input
@@ -142,26 +139,27 @@ const Auth = (props) => {
                 Submit
               </button>
             </div>
-            <p className="text-center mt-2">
+            <div className="text-center">
+              Not registered yet?{" "}
+              <span className="link-primary" onClick={changeAuthMode}>
+                Sign Up
+              </span>
+            </div>
+            {/* <p className="text-center mt-2">
               Forgot <a href="#">password?</a>
-            </p>
+            </p> */}
           </div>
         </form>
       </div>
-    )
+    </>)
   }
 
-  return (
+  return ( <>
+    <Darknavbar />
     <div className="Auth-form-container">
       <form className="Auth-form" onSubmit={signupSubmit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign Up</h3>
-          <div className="text-center">
-            Already registered?{" "}
-            <span className="link-primary" onClick={changeAuthMode}>
-              Sign In
-            </span>
-          </div>
           <div className="form-group mt-3">
             <label htmlFor="name">Full Name</label>
             <input
@@ -207,13 +205,19 @@ const Auth = (props) => {
               Submit
             </button>
           </div>
-          <p className="text-center mt-2">
+          <div className="text-center">
+            Already registered?{" "}
+            <span className="link-primary" onClick={changeAuthMode}>
+              Sign In
+            </span>
+          </div>
+          {/* <p className="text-center mt-2">
             Forgot <a href="#">password?</a>
-          </p>
+          </p> */}
         </div>
       </form>
     </div>
-  )
+  </>)
 }
 
 export default Auth
