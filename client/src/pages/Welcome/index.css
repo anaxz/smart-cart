@@ -13,7 +13,7 @@ html {
     position: absolute;
 
 
-    width: 100%;
+    width: 200%;
     padding: 25px 0;
 
     background: transparent;
@@ -27,7 +27,7 @@ html {
     display: block;
     /* Important to give the content a width */
 
-    width: 100%;
+    width: 200%;
     transform: translateX(100%);
     /* Animation start out of the screen */
 
