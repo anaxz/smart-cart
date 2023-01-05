@@ -89,8 +89,9 @@ function Darknavbar({ }) {
 
                 </>
               )}
+              <CartModal />
             </Nav>
-            <CartModal />
+
 
             {/* <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
