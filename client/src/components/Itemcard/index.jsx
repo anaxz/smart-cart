@@ -10,8 +10,7 @@ import useTimeout from '../../customHooks/useTimeout'
 import './index.css';
 
 function Itemcard({ data, fav }) {
-    // console.log('Item card')
-    // console.log(data)
+
     const [show, setShow] = useState(false);
     const target = useRef(null);
 
@@ -19,6 +18,8 @@ function Itemcard({ data, fav }) {
     console.log('show: ' + show)
     // if(show) useTimeout(() => setShow(false), 2000) 
 
+    const dispatch = useDispatch()
+    const items = useSelector(state => state)
 
     // function addToCart(name) {
     //     let arr = []
@@ -26,10 +27,14 @@ function Itemcard({ data, fav }) {
     //     arr.push(name)
     //     setShopping(arr)
     //     console.log(shopping)
-
-
-
     // }
+
+    function handleAddToCart(e) {
+        e.preventDefault()
+        dispatch(addItem(data[1]))
+        setShow(prev => !prev)
+        // if(show) useTimeout(() => setShow(false), 1000) 
+    }
 
     function favourite(item) {
         const id = localStorage.getItem('user')
@@ -53,11 +58,6 @@ function Itemcard({ data, fav }) {
         }).then(res => res.json()).then(res => console.log(res));
     }
 
-
-    const dispatch = useDispatch()
-    const items = useSelector(state => state)
-    // console.log('Redux')
-    // console.log(items)
     return (
         <CardGroup>
             <Card style={{
@@ -69,7 +69,7 @@ function Itemcard({ data, fav }) {
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'PT Sans' }} className="text-center">{data[1]}</Card.Title>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                        <Button variant="primary" ref={target} onClick={() => { dispatch(addItem(data[1])), setShow(!show) }}><i className="bi bi-cart-plus"></i></Button>
+                        <Button variant="primary" ref={target} onClick={handleAddToCart}><i className="bi bi-cart-plus"></i></Button>
                         {localStorage.getItem('user') ? fav.find(obj => obj[1] == data[1]) ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button> : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button> : ''}
                     </div>
 
