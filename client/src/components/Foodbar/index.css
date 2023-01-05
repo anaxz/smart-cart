@@ -17,3 +17,44 @@ ul {
 li {
     color: white !important;
 }
+
+button.active {
+    background-color: #2C74B3 !important;
+    color: white !important;
+}
+
+#fill-tab-example-tab-main {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-bakery {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-dairy {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-fruit_and_veg {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-meat {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-toiletries {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-drinks {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-other {
+    color: #2C74B3
+}
+
+#fill-tab-example-tab-household {
+    color: #2C74B3
+}

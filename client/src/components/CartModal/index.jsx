@@ -37,22 +37,22 @@ function CartModal(props) {
     return (
 
         <>
-            <Button id="basket" variant="danger" style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', height: '40px', fontFamily: 'Poppins', fontSize: '18px', margin: 'none' }} onClick={handleShow} ><i className="bi bi-cart"></i> Cart</Button>
+            <Button id="basket" style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', height: '40px', fontFamily: 'Poppins', fontSize: '18px', margin: 'none', backgroundColor: '#EB6440', border: 'none' }} onClick={handleShow} ><i className="bi bi-cart"></i> Cart</Button>
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
-                <Modal.Header style={{ justifyContent: 'center' }}>
-                    <Modal.Title style={{ fontFamily: 'Poppins' }}>Your Smart-Cart</Modal.Title>
+                <Modal.Header style={{ justifyContent: 'center', backgroundColor: '#2C74B3' }}>
+                    <Modal.Title style={{ fontFamily: 'Poppins', color: 'white' }}>Your Smart-Cart</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ul id="cartitems" style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
-                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0', borderBottom: '1px solid grey' }}><li style={{ marginTop: "2%", fontFamily: 'Poppins' }}>{item}</li><OverlayTrigger placement="left" overlay={
+                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0', borderBottom: '3px solid #2C74B3' }}><li style={{ marginTop: "2%", fontFamily: 'Jost', fontSize: '20px' }}>{item}</li><OverlayTrigger placement="left" overlay={
                             <Tooltip>
                                 Remove from cart
                             </Tooltip>
-                        }><Button variant="danger" style={{ float: "right", marginLeft: "auto", marginBottom: '5px' }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></OverlayTrigger></div>)}
+                        }><Button style={{ float: "right", marginLeft: "auto", marginBottom: '5px', backgroundColor: '#f46453', border: 'none' }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></OverlayTrigger></div>)}
                     </ul>
                 </Modal.Body>
-                <Modal.Footer style={{ justifyContent: 'center' }}>
-                    <Button variant="secondary" onClick={handleClose}>
+                <Modal.Footer style={{ justifyContent: 'center', fontFamily: 'Poppins' }}>
+                    <Button onClick={handleClose} style={{ border: 'none', backgroundColor: 'grey' }}>
                         Close
                     </Button>
                     {
@@ -65,7 +65,7 @@ function CartModal(props) {
                             ''
                     }
 
-                    <Button variant="primary" onClick={() => navigate('/comparison')}>
+                    <Button style={{ backgroundColor: '#EB6440', border: 'none' }} onClick={() => navigate('/comparison')}>
                         Compare Prices!
                     </Button>
                 </Modal.Footer>

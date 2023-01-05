@@ -61,9 +61,9 @@ function Itemcard({ data, fav }) {
             <Card id="item" style={{
                 width: '18rem',
                 height: '170px',
-                boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
-            }}
-                border="primary">
+                boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+                borderRadius: '10px'
+            }}>
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'Poppins', fontSize: '16px', color: 'black' }} className="text-center">{data[1]}</Card.Title>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
@@ -72,7 +72,7 @@ function Itemcard({ data, fav }) {
                                 Add to cart
                             </Tooltip>
                         }>
-                            <Button variant="primary" onClick={handleAddToCart}><i className="bi bi-cart-plus"></i></Button>
+                            <Button onClick={handleAddToCart} style={{ backgroundColor: '#EB6440', border: 'none' }}><i className="bi bi-cart-plus"></i></Button>
                         </OverlayTrigger>
                         {localStorage.getItem('user') ? fav.find(obj => obj[1] == data[1]) ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button> : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button> : ''}
                     </div>
