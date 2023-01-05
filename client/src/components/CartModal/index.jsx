@@ -38,7 +38,7 @@ function CartModal(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <ul id="cartitems" style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
-                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0' }}><li>{item}</li><Button variant="danger" style={{ float: 'right' }} onClick={() => dispatch(deleteItem(item))}>Remove</Button></div>)}
+                        {items.map(item => <div style={{ display: 'flex', margin: '5px 0' }}><li style={{marginTop:"2%"}}>{item}</li><Button variant="danger" style={{float: "right", marginLeft: "auto"}} onClick={() => dispatch(deleteItem(item))}>Remove</Button></div>)}
                     </ul>
                 </Modal.Body>
                 <Modal.Footer>
