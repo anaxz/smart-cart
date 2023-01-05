@@ -65,7 +65,7 @@ function Itemcard({ data, fav }) {
             }}
                 border="primary">
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'Poppins', fontSize: '16px' }} className="text-center">{data[1]}</Card.Title>
+                    <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'Poppins', fontSize: '16px', color: 'black' }} className="text-center">{data[1]}</Card.Title>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <OverlayTrigger placement="top" overlay={
                             <Tooltip>
