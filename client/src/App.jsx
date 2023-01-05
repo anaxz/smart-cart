@@ -33,11 +33,6 @@ function App() {
 
   return (
     <>
-
-      {/* <div className="App">
-      <Navbar />
-    </div> */}
-      
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Welcome />} />

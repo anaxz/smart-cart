@@ -6,7 +6,6 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { useSelector, useDispatch } from 'react-redux'
 import { addItem } from '../../reducer'
-import useTimeout from '../../customHooks/useTimeout'
 import './index.css';
 import { useState } from "react";
 
@@ -30,7 +29,7 @@ function Itemcard({ data, fav }) {
     function handleAddToCart(e) {
         e.preventDefault()
         dispatch(addItem(data[1]))
-        setShow(prev => !prev) 
+        setShow(prev => !prev)
     }
 
     function favourite(item) {
@@ -62,7 +61,7 @@ function Itemcard({ data, fav }) {
     }
 
     return (
-        <CardGroup>
+        <CardGroup data-testid="card-group">
             <Card id="item" style={{
                 width: '18rem',
                 height: '170px',
