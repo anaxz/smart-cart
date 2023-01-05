@@ -76,15 +76,15 @@ function Darknavbar({ }) {
           <Navbar.Collapse id="responsive-navbar-nav">
 
 
-            <Nav className="me-auto">
-              <Nav.Link onClick={() => navigate('/home')}><i class="bi bi-house"></i> Home</Nav.Link>
-              <Nav.Link onClick={() => navigate('/about')}><i class="bi bi-question-circle"></i> About</Nav.Link>
+            <Nav className="me-auto" style={{ backgroundColor: '#bbfdc5', borderRadius: '10px' }}>
+              <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/home')}><i class="bi bi-house"></i> Home</Nav.Link>
+              <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/about')}><i class="bi bi-question-circle"></i> About</Nav.Link>
               {!user ? (
-                <Nav.Link onClick={() => navigate('/Auth')}><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
+                <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/Auth')}><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
               ) : (
                 <>
-                  <Nav.Link onClick={() => navigate('/profile')}><i class="bi bi-person"></i> Profile</Nav.Link>
-                  <Nav.Link onClick={() => { dispatch(logoutUser()); localStorage.setItem('user', '') }}><i class="bi bi-box-arrow-in-right"></i> Log Out</Nav.Link>
+                  <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/profile')}><i class="bi bi-person"></i> Profile</Nav.Link>
+                  <Nav.Link style={{ color: '#444f46' }} onClick={() => { dispatch(logoutUser()); localStorage.setItem('user', '') }}><i class="bi bi-box-arrow-in-right"></i> Log Out</Nav.Link>
 
                 </>
               )}
@@ -102,7 +102,7 @@ function Darknavbar({ }) {
                 aria-label="Search"
                 onChange={(e) => setSearchItem(e.target.value)} value={searchItem}
               />
-              <Button variant="warning" onClick={handleSubmit} >Search</Button>
+              <Button style={{ backgroundColor: '#bbfdc5', color: '#444f46' }} onClick={handleSubmit} >Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

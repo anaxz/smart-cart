@@ -33,15 +33,15 @@ function CartModal(props) {
         <>
             <Button id="basket" variant="danger" onClick={handleShow} ><i className="bi bi-cart"></i> Cart</Button>
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton style={{ backgroundColor: '#c4dbfd' }}>
                     <Modal.Title>Your Smart-Cart</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{ backgroundColor: '#c4dbfd' }}>
                     <ul id="cartitems" style={{ display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
                         {items.map(item => <div style={{ display: 'flex', margin: '5px 0' }}><li style={{ marginTop: "2%" }}>{item}</li><Button variant="danger" style={{ float: "right", marginLeft: "auto" }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></div>)}
                     </ul>
                 </Modal.Body>
-                <Modal.Footer>
+                <Modal.Footer style={{ backgroundColor: '#c4dbfd' }}>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
