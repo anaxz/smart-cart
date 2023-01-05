@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
-import Overlay from 'react-bootstrap/Overlay';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { useSelector, useDispatch } from 'react-redux'
 import { addItem } from '../../reducer'
@@ -11,11 +11,9 @@ import './index.css';
 
 function Itemcard({ data, fav }) {
 
-    const [show, setShow] = useState(false);
-    const target = useRef(null);
 
 
-    console.log('show: ' + show)
+
     // if(show) useTimeout(() => setShow(false), 2000) 
 
     const dispatch = useDispatch()
@@ -69,18 +67,17 @@ function Itemcard({ data, fav }) {
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'Poppins', fontSize: '16px' }} className="text-center">{data[1]}</Card.Title>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                        <Button variant="primary" ref={target} onClick={handleAddToCart}><i className="bi bi-cart-plus"></i></Button>
+                        <OverlayTrigger placement="top" overlay={
+                            <Tooltip>
+                                Add to cart
+                            </Tooltip>
+                        }>
+                            <Button variant="primary" onClick={handleAddToCart}><i className="bi bi-cart-plus"></i></Button>
+                        </OverlayTrigger>
                         {localStorage.getItem('user') ? fav.find(obj => obj[1] == data[1]) ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button> : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button> : ''}
                     </div>
 
-                    <Overlay target={target.current} show={show} placement="right" >
-                        {(props) => (
-                            <Tooltip id="overlay-example" {...props}>
-                                Added to cart!
-                            </Tooltip>
 
-                        )}
-                    </Overlay>
                 </Card.Body>
             </Card>
         </CardGroup>

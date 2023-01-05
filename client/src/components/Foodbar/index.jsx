@@ -59,7 +59,7 @@ function Foodbar() {
                 className="m-3 px-4 py-2"
                 fill
                 variant='pills'
-                style={{ backgroundColor: '#c4dbfd', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', fontFamily: 'Jost', fontSize: '18px' }}
+                style={{ backgroundColor: '#C4DBFD', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', fontFamily: 'Jost', fontSize: '18px' }}
             >
                 <Tab eventKey="main" title="All Food">
                     <ShowItems shopping={shopping} setShopping={setShopping} data={productData} fav={fav} all={true} />

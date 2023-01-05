@@ -8,7 +8,7 @@ a.nav-link {
 
 a.nav-link:hover {
     transition: 0.5s !important;
-    color: #0D6EFD !important;
+    color: #ff9ca6 !important;
     transform: translateX(5px);
 
 }
@@ -21,4 +21,9 @@ a.nav-link:hover {
     transition: 0.5s !important;
     transform: translateY(5px);
 
+}
+
+::placeholder {
+    color: white !important;
+    font-family: 'Jost';
 }
