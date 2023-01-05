@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
@@ -15,7 +15,7 @@ function Itemcard({ data, fav }) {
 
     useEffect(() => {
         displayButton()
-    },[active, fav.length])
+    }, [active, fav.length])
 
 
 
@@ -64,12 +64,12 @@ function Itemcard({ data, fav }) {
         <CardGroup data-testid="card-group">
             <Card id="item" style={{
                 width: '18rem',
-                height: '170px',
+                height: '130px',
                 boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
                 borderRadius: '10px',
             }}>
                 <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <Card.Title style={{ borderBottom: '1px solid blue', paddingBottom: '10px', fontFamily: 'Poppins', fontSize: '16px', color: 'black' }} className="text-center">{data[1]}</Card.Title>
+                    <Card.Title style={{ borderBottom: '1px solid #0A2647', paddingBottom: '10px', fontFamily: 'Poppins', fontSize: '16px', color: 'black' }} className="text-center">{data[1]}</Card.Title>
                     <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                         <OverlayTrigger placement="top" overlay={
                             <Tooltip>
@@ -86,8 +86,8 @@ function Itemcard({ data, fav }) {
                                 ? active
                                     ? <Button variant="warning" onClick={() => { unfavourite(data[1]); }}><i class="bi bi-star-fill"></i></Button>
                                     : <Button variant="warning" onClick={() => { favourite(data[1]); }}><i class="bi bi-star"></i></Button>
-                            : ''
-                            }
+                                : ''
+                        }
                     </div>
 
 

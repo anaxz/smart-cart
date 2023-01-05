@@ -3,10 +3,7 @@
 
 
 
-#cardbody {
-    max-width: 200px;
-    height: 300px;
-}
+
 
 
 #item {
@@ -19,15 +16,39 @@
 }
 
 .Fruit_Veg .card {
-    background-color: green;
-    border-radius: 10px;
+    background-color: #9CDD94;
+
 }
 
 .Dairy .card {
     background-color: yellow;
-    border-radius: 10px;
+
 }
 
 .Meat .card {
-    background-color: pink;
+    background-color: #FFBFE4;
+}
+
+.Dairy .card {
+    background-color: antiquewhite;
+}
+
+.Bakery .card {
+    background-color: #FFE5BF;
+}
+
+.Household .card {
+    background-color: #BCB9FF;
+}
+
+.Toiletries .card {
+    background-color: #FFFB8E;
+}
+
+.Drinks .card {
+    background-color: #FFBA79;
+}
+
+.Other .card {
+    background-color: #B0F2FF;
 }

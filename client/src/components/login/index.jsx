@@ -1,11 +1,12 @@
 import React from "react"
+import './index.css'
 
 const Login = (props) => {
   return (
     <div className="Auth-form-container">
       <form className="Auth-form">
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign In</h3>
+          <h3 className="Auth-form-title" style={{ fontFamily: 'Poppins' }} >Sign I</h3>
           <div className="form-group mt-3">
             <label>Email address</label>
             <input
