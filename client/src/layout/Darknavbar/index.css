@@ -3,12 +3,13 @@
 
 a.nav-link {
     transition: 0.5s !important;
+    font-family: 'Poppins'
 }
 
 a.nav-link:hover {
     transition: 0.5s !important;
     color: #0D6EFD !important;
-    transform: translateY(-5px);
+    transform: translateX(5px);
 
 }
 

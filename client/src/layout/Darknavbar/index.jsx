@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { useSelector, useDispatch } from 'react-redux'
 import { logoutUser, findItem } from '../../reducer'
 import './index.css'
+import { CartModal } from '../../components'
 
 
 
@@ -76,7 +77,7 @@ function Darknavbar({ }) {
           <Navbar.Collapse id="responsive-navbar-nav">
 
 
-            <Nav className="me-auto" style={{ backgroundColor: '#bbfdc5', borderRadius: '10px' }}>
+            <Nav className="me-auto" style={{ backgroundColor: '#bbfdc5', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
               <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/home')}><i class="bi bi-house"></i> Home</Nav.Link>
               <Nav.Link style={{ color: '#444f46' }} onClick={() => navigate('/about')}><i class="bi bi-question-circle"></i> About</Nav.Link>
               {!user ? (
@@ -89,6 +90,7 @@ function Darknavbar({ }) {
                 </>
               )}
             </Nav>
+            <CartModal />
 
             {/* <Nav className="me-auto">
               <Nav.Link href="/">Home</Nav.Link>
@@ -100,9 +102,10 @@ function Darknavbar({ }) {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                style={{ width: '200px' }}
                 onChange={(e) => setSearchItem(e.target.value)} value={searchItem}
               />
-              <Button style={{ backgroundColor: '#bbfdc5', color: '#444f46' }} onClick={handleSubmit} >Search</Button>
+              <button style={{ backgroundColor: '#bbfdc5', color: '#444f46', fontFamily: 'Poppins', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', border: 'none', width: '50px' }} onClick={handleSubmit} ><i class="bi bi-search"></i></button>
             </Form>
           </Navbar.Collapse>
         </Container>
