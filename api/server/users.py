@@ -85,7 +85,7 @@ def fav(user_id):
     elif request.method == 'POST':
         try:
             request_data = json.loads(request.data)
-            if request_data[1]:
+            if request_data[1] == True:
                 User.add_favourites([user_id, request_data[0]])
                 return {'204' : 'Successfully added'}
             else:

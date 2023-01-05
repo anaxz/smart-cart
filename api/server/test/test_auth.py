@@ -45,7 +45,16 @@ def test_login_api(api):
 
     assert res.status == '200 OK'
 
-def test_signup_api(api):
+def test_login_api_fail(api):
+    data = """{ 
+        "email": "test2@test.com", 
+        "password": "wrong" 
+    }"""
+    res = api.post('/login', data=data)
+
+    assert 'Incorrect password' in res.text 
+
+def test_signup(api):
     data = """{ 
         "name": "signup test", 
         "email": "test@signup.com", 

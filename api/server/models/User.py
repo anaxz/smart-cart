@@ -11,10 +11,10 @@ class User(UserMixin):
     def __repr__(self):
         return f"User {self.name}, {self.email}"
 
-    def update(self, name, email, password):
-        self.name = name
-        self.email = email
-        self.password = password
+    # def update(self, name, email, password):
+    #     self.name = name
+    #     self.email = email
+    #     self.password = password
 
     def add_user(data):
         query = f"INSERT INTO Users (name, email, password) VALUES ('{data['name']}', '{data['email']}', '{data['password']}') RETURNING *;"
@@ -44,13 +44,13 @@ class User(UserMixin):
         print(response)
         return response
 
-    def get_all_users():
-        query = f"SELECT * FROM Users';"
-        print(query)
-        cur.execute(query)
-        response = cur.fetchall()
-        print(response)
-        return response
+    # def get_all_users():
+    #     query = f"SELECT * FROM Users';"
+    #     print(query)
+    #     cur.execute(query)
+    #     response = cur.fetchall()
+    #     print(response)
+    #     return response
 
     # def update_user(data):
     #     print('--update_user')

@@ -37,6 +37,12 @@ def test_update_user():
 
     assert mock_user.update_user().name  == 'test2'
 
+def test_get_by_id(api):
+    resp = api.get('/users/1')
+    assert resp.status == '200 OK'
+    assert len(resp.data) > 0
+
+
 def test_get_all_lists(api):
     resp = api.get('/users/1/all-shoplist')
     assert resp.status == '200 OK'
@@ -54,7 +60,7 @@ def test_add_fav(api):
     assert len(resp.data) > 0
 
 def test_delete_fav(api):
-    data = """[2, ]"""
+    data = """[2, false]"""
     resp = api.post('/users/1/favs', data=data)
     assert resp.status == '200 OK'
     assert len(resp.data) > 0
