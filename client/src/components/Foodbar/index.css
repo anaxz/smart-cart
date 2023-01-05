@@ -13,3 +13,7 @@ ul {
 .Bakery {
     background-color: green;
 }
+
+li {
+    color: white !important;
+}

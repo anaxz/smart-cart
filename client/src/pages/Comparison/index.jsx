@@ -103,7 +103,7 @@ const Comparison = () => {
             <CardGroup style={{ height: '400px', width: '70%', margin: '30px auto' }}>
                 <Card>
                     <h4 style={{ textAlign: 'center', marginTop: '20px' }}>Shopping List</h4>
-                    <div style={{ position: 'relative', width: '50%', borderRadius: '10px', backgroundColor: 'coral', margin: '20px auto', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>{items.map(item => <p>{item}</p>)}</div>
+                    <div style={{ position: 'relative', width: '50%', borderRadius: '10px', backgroundColor: '#205295', margin: '20px auto', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>{items.map(item => <p>{item}</p>)}</div>
                     {console.log(data)}
                 </Card>
                 <Card>
@@ -111,7 +111,7 @@ const Comparison = () => {
                         id="uncontrolled-tab-example"
                         className="mb-3 justify-content-center"
                         variant="pills"
-                        style={{ width: '50%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '5px 3px', borderRadius: '10px' }}
+                        style={{ width: '60%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '5px 0', borderRadius: '10px' }}
                     >
                         <Tab eventKey={1} title="Nearby Supermarkets">
                             <h5 style={{ textAlign: 'center' }}>The nearest supermarkets to your location and their average prices</h5>
