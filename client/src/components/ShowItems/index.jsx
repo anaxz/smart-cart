@@ -9,7 +9,7 @@ const ShowItems = ({ shopping, setShopping, data, category, fav, all }) => {
     // console.log(data)
     // console.log(category)
     return (
-        <Row className="justify-content-center">
+        <Row className="justify-content-center" data-testid="ShowItems-row" >
             {
                 all ?
                     data

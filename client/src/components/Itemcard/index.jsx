@@ -6,15 +6,9 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { useSelector, useDispatch } from 'react-redux'
 import { addItem } from '../../reducer'
-import useTimeout from '../../customHooks/useTimeout'
 import './index.css';
 
 function Itemcard({ data, fav }) {
-
-
-
-
-    // if(show) useTimeout(() => setShow(false), 2000) 
 
     const dispatch = useDispatch()
     const items = useSelector(state => state)
@@ -31,7 +25,6 @@ function Itemcard({ data, fav }) {
         e.preventDefault()
         dispatch(addItem(data[1]))
         setShow(prev => !prev)
-        // if(show) useTimeout(() => setShow(false), 1000) 
     }
 
     function favourite(item) {
@@ -57,7 +50,7 @@ function Itemcard({ data, fav }) {
     }
 
     return (
-        <CardGroup>
+        <CardGroup data-testid="card-group">
             <Card id="item" style={{
                 width: '18rem',
                 height: '170px',

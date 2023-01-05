@@ -22,17 +22,27 @@ function Foodbar() {
     useEffect(() => {
 
         async function getFavourites() {
-            fetch(`http://127.0.0.1:5000/users/${user}/favs`)
+            try {
+              fetch(`http://127.0.0.1:5000/users/${user}/favs`)
                 .then(res => res.json())
                 .then(res => { setFavs(Object.values(res)[0]); console.log('test'); console.log(Object.values(res)) });
+            } catch(err){
+                return err
+            }
+            
         }
 
         async function getItemData() {
-            const url = 'http://127.0.0.1:5000/products'
-            // const response = url.get()
-            fetch('http://127.0.0.1:5000/products')
-                .then(resp => resp.json())
-                .then(result => { setProductData(result); getFavourites() })
+            try {
+                const url = 'http://127.0.0.1:5000/products'
+                // const response = url.get()
+                fetch('http://127.0.0.1:5000/products')
+                    .then(resp => resp.json())
+                    .then(result => { setProductData(result); getFavourites() })
+            } catch(err){
+                return err
+            }
+            
         }
 
 
@@ -55,6 +65,7 @@ function Foodbar() {
         }}>
             <Tabs
                 defaultActiveKey="main"
+                data-testid="fill-tab-example"
                 id="fill-tab-example"
                 className="m-3 px-4 py-2"
                 fill
