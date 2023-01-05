@@ -62,31 +62,31 @@ function Foodbar() {
                 style={{ backgroundColor: '#C4DBFD', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', fontFamily: 'Jost', fontSize: '18px' }}
             >
                 <Tab eventKey="main" title="All Food">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} fav={fav} all={true} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} fav={fav} setFavs={setFavs} all={true} />
                 </Tab>
                 <Tab eventKey="bakery" title="Bakery">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="dairy" title="Dairy">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="meat" title="Meat">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="household" title="Household">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="toiletries" title="Toiletries">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="drinks" title="Drinks">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="other" title="Other">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} fav={fav} setFavs={setFavs} />
                 </Tab>
 
 
@@ -99,7 +99,7 @@ function Foodbar() {
                                 {
                                     fav
                                         // .filter(product => product[1] == 'Other')
-                                        .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} /></Col>))
+                                        .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} setFavs={setFavs} /></Col>))
                                 }
                             </Row>
                         </Tab>
