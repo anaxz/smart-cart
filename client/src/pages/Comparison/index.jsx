@@ -37,11 +37,9 @@ const Comparison = () => {
 
 
         async function getIP() {
-            let ip = ''
-
-            return fetch("http://ip-api.com/json/")
+            return fetch("https://api.ipify.org/?format=json")
                 .then(res => res.json())
-                .then(res => { console.log(res.query); ip = res.query; return ip });
+                .then(res => res.ip);
 
         }
 
