@@ -37,6 +37,9 @@ def get_price():
     
 @views.route('/nearby', methods=['POST'])
 def get_nearby():
+    print('yuh')
+    print(request.data)
+
     data = json.loads(request.data)
     print(data)
     results = Shoppinglist.get_price_by_nearby_supermarket(data['shopping'], data['ip'])
@@ -48,8 +51,6 @@ def get_top_prices():
     data = json.loads(request.data)
     print(data)
     results = Shoppinglist.get_price_by_top_supermarkets(data['shopping'])
-    # print('Before')
-    # print(results)
     return results
 
 @views.route('/savelist', methods=['POST'])
@@ -60,8 +61,4 @@ def save_list():
     print('Before')
     print(results)
     return 'List is saved'
-
-@views.route('/react')
-def react():
-    return render_template('index.html')
 
