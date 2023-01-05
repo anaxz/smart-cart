@@ -111,7 +111,7 @@ const Comparison = () => {
                         id="uncontrolled-tab-example"
                         className="mb-3 justify-content-center"
                         variant="pills"
-                        style={{ width: '100%', marginTop: '20px' }}
+                        style={{ width: '50%', margin: '20px auto 0', backgroundColor: '#c4dbfd', padding: '5px 3px', borderRadius: '10px' }}
                     >
                         <Tab eventKey={1} title="Nearby Supermarkets">
                             <h5 style={{ textAlign: 'center' }}>The nearest supermarkets to your location and their average prices</h5>

@@ -17,7 +17,7 @@ A website comparing grocery store items.
 - cd into client folder then run ```npm run dev``` to run react
 - At root folder, run ```python api/main.py``` to run flask
 
-- Goto http://127.0.0.1:5173/ for client side
+- Goto http://127.0.0.1:5173 for client side
 - Goto http://127.0.0.1:5000 for server side
 
 ### React test
@@ -33,6 +33,16 @@ A website comparing grocery store items.
 - Inside api folder run ```pytest --cov-report term-missing --cov=.``` to display missing lines
 
 ## Changelog
+- added basic react & flask setup
+- test deployemnt & add flask blueprint 
+- change files to fit non-sqlalchemy
+- add new classes and queries
+- change routes and it's responses
+- add fetch to frontend and handle event listeners
+- add more react components and its functionality
+- fixed login and displaying only elements only for logined in user
+- fixed shopping cart and search bar
+- add netlify config file
 
 ## Wins
 
