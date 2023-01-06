@@ -36,7 +36,20 @@ const links = [
   );
   
 
-// test('render "about" link', () => {
-//   render(<MockNavbar />);
-//   expect(screen.getByText("About")).toBeInTheDocument();
-// })
+test('render "about" link', () => {
+  render(<MockNavbar />);
+  expect(screen.getByText("Home")).toBeInTheDocument();
+  expect(screen.getByText("About")).toBeInTheDocument();
+  expect(screen.getByText("Login")).toBeInTheDocument();
+})
+
+test('render "about" link', () => {
+  render(<MockNavbar />);
+
+  const mockUser = null
+
+  expect(mockUser == null).toBeTruthy();
+
+  expect(screen.getByText("Saved Lists")).toBeInTheDocument();
+  expect(screen.getByText("Log out")).toBeInTheDocument();
+})
