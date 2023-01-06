@@ -37,9 +37,6 @@ def get_price():
     
 @views.route('/nearby', methods=['POST'])
 def get_nearby():
-    print('yuh')
-    print(request.data)
-
     data = json.loads(request.data)
     print(data)
     results = Shoppinglist.get_price_by_nearby_supermarket(data['shopping'], data['ip'])

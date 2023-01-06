@@ -27,46 +27,46 @@ def get_user(id):
 #     except:
 #         return {'404' : 'Issue retreiving users'}
 
-@users.route('/<int:id>', methods=['POST'])
-@login_required
-def update_user(id):
-    user = User.get_user_by_id(id)
+# @users.route('/<int:id>', methods=['POST'])
+# @login_required
+# def update_user(id):
+#     user = User.get_user_by_id(id)
 
-    if request.method == 'POST':
-        try:
-            request_data = json.loads(request.data)
-            email = request_data['email']
-            name = request_data['name']
-            old_password = request_data['old password']
-            new_password = request_data['new password']
+#     if request.method == 'POST':
+#         try:
+#             request_data = json.loads(request.data)
+#             email = request_data['email']
+#             name = request_data['name']
+#             old_password = request_data['old password']
+#             new_password = request_data['new password']
 
-            print('db user - pass')
-            print(user[3])
-            print(old_password)
+#             print('db user - pass')
+#             print(user[3])
+#             print(old_password)
 
-            if(user[3] != old_password):
-                print('not correct pass')
-                return {'404' : 'Old password incorrect'}
-            else:
-                hashed_password = generate_password_hash(new_password, method='sha256')
-                print('hash password generated')
-                data = {'id': user[0],'name': name, 'email': email, 'password': hashed_password }
-                User.update_user(data)
-                return {'204' : 'Successfully updated'}
+#             if(user[3] != old_password):
+#                 print('not correct pass')
+#                 return {'404' : 'Old password incorrect'}
+#             else:
+#                 hashed_password = generate_password_hash(new_password, method='sha256')
+#                 print('hash password generated')
+#                 data = {'id': user[0],'name': name, 'email': email, 'password': hashed_password }
+#                 User.update_user(data)
+#                 return {'204' : 'Successfully updated'}
 
-        except Exception as error:
-            return {'message' : f'Fail to update. Error: {error}'}
+#         except Exception as error:
+#             return {'message' : f'Fail to update. Error: {error}'}
 
-@users.route('/<int:id>')
-@login_required
-def delete(id):
-    try: 
-        user = User.get_user_by_id(id)
-        User.delete_user(user[0])
-        return {'204' : 'User deleted'}
+# @users.route('/<int:id>')
+# @login_required
+# def delete(id):
+#     try: 
+#         user = User.get_user_by_id(id)
+#         User.delete_user(user[0])
+#         return {'204' : 'User deleted'}
 
-    except Exception as error:
-        return {'message' : f'Cannot delete user. Error: {error}'}
+#     except Exception as error:
+#         return {'message' : f'Cannot delete user. Error: {error}'}
 
 @users.route('/<int:user_id>/favs', methods=['GET', 'POST'])
 # @login_required
@@ -85,7 +85,7 @@ def fav(user_id):
     elif request.method == 'POST':
         try:
             request_data = json.loads(request.data)
-            if request_data[1]:
+            if request_data[1] == True:
                 User.add_favourites([user_id, request_data[0]])
                 return {'204' : 'Successfully added'}
             else:
@@ -96,15 +96,15 @@ def fav(user_id):
         except Exception as error:
             return {'message' : f"Cannot update user's favourites. Error: {error}"}
 
-@users.route('/shopping-list', methods=['GET', 'POST'])
-@login_required
-def shoplist(id):
-    if request.method == 'GET':
-        try:
-            data = Shoppinglist.get_list(id)
-            return {'200' : data}
-        except Exception as error:
-            return {'message' : f"Cannot get user's shopping list. Error: {error}"}
+# @users.route('/shopping-list', methods=['GET', 'POST'])
+# @login_required
+# def shoplist(id):
+#     if request.method == 'GET':
+#         try:
+#             data = Shoppinglist.get_list(id)
+#             return {'200' : data}
+#         except Exception as error:
+#             return {'message' : f"Cannot get user's shopping list. Error: {error}"}
 
 @users.route('/<int:id>/all-shoplist', methods=['GET'])
 # @login_required
