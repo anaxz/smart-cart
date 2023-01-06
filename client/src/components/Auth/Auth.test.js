@@ -20,7 +20,7 @@ const MockAuth = () => {
     )
 }
 
-const mockChangeAuthMode = (authMode) = jest.fn(() => authMode === "signin" ? "signup" : "signin")
+const mockChangeAuthMode = jest.fn(() => authMode === "signin" ? "signup" : "signin")
 
 describe('Login', () => {
     beforeEach(() => {
