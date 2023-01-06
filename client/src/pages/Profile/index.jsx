@@ -10,7 +10,7 @@ import './index.css';
 const Profile = () => {
     const navigate = useNavigate()
 
-    if (!localStorage.getItem('user')) navigate('/home') 
+    if (!localStorage.getItem('user')) navigate('/home')
 
     const id = localStorage.getItem('user')
     const [content, setContent] = useState([])
@@ -48,10 +48,10 @@ const Profile = () => {
                 console.log(Object.values(res)[0][1]);
                 all_lists()
             });
-        
-        
-        
-    },[lists.length, products.length, items.length])
+
+
+
+    }, [lists.length, products.length, items.length])
 
     function showList(data) {
         console.log(data)
@@ -60,44 +60,44 @@ const Profile = () => {
 
     return (
         <>
-        <Darknavbar />
-   
-        <div className="profilecontainer">
-            <h1>Hello {user}!</h1>
-            <h4>Here are you saved shopping lists:</h4>
-            {
-                lists.length > 0
-                &&
-                lists[0].map((obj, i) => {
-                    // console.log(obj[1]);
-                    { return <button onClick={() => showList(obj)}>List {i+1}</button> }
-                })
-                }
-                
-                <div>
-                     
-                    {
-                        
-                        items.map(obj => {
-                        let a = products.filter(x => x[0] == obj)[0][1];
-                        console.log(a)
-                            return <li>{a}</li>
-                    }
+            <Darknavbar />
 
-                    )}
+            <div className="profilecontainer" style={{ backgroundColor: '#205295', width: '500px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+                <h1 style={{ fontFamily: 'Poppins', color: 'white' }}>Hello <span style={{ color: '#EB6440' }}>{user}!</span></h1>
+                <h4 style={{ fontFamily: 'Jost', color: 'white' }}>Here are your saved shopping lists:</h4>
+                {
+                    lists.length > 0
+                    &&
+                    lists[0].map((obj, i) => {
+                        // console.log(obj[1]);
+                        { return <button style={{ backgroundColor: '#EB6440', fontFamily: 'Poppins', width: '80px' }} onClick={() => showList(obj)}>List {i + 1}</button> }
+                    })
+                }
+
+                <div style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', width: '250px', margin: '20px auto', borderRadius: '10px', padding: '10px', backgroundColor: '#C4DBFD' }}>
+
+                    {
+
+                        items.map(obj => {
+                            let a = products.filter(x => x[0] == obj)[0][1];
+                            console.log(a)
+                            return <li style={{ fontSize: '20px', margin: '10px 0', fontFamily: 'Jost', listStyleType: 'circle', listStylePosition: 'outside', borderBottom: '3px solid #2C74B3' }}>{a}</li>
+                        }
+
+                        )}
                 </div>
             </div>
-            
-            <ListModal content={'' } />
-            
-    
-    </>
+
+            <ListModal content={''} />
+
+
+        </>
     )
 }
 export default Profile;
 
 
-function ListModal({content}) {
+function ListModal({ content }) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -109,7 +109,7 @@ function ListModal({content}) {
 
         <>
             {/* <Button id="basket" variant="danger" style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', height: '40px', fontFamily: 'Poppins', fontSize: '18px' }} onClick={handleShow} ><i className="bi bi-cart"></i> Cart</Button> */}
-            <Modal  aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
+            <Modal aria-labelledby="contained-modal-title-vcenter" centered show={show} onHide={handleClose}>
                 <Modal.Header closeButton style={{ backgroundColor: '#c4dbfd' }}>
                     <Modal.Title>Your List</Modal.Title>
                 </Modal.Header>

@@ -51,7 +51,7 @@ function CartModal(props) {
                         }><Button style={{ float: "right", marginLeft: "auto", marginBottom: '5px', backgroundColor: '#f46453', border: 'none' }} onClick={() => dispatch(deleteItem(item))}><i class="bi bi-x-square"></i></Button></OverlayTrigger></div>)}
                     </ul>
                 </Modal.Body>
-                <Modal.Footer style={{ justifyContent: 'center', fontFamily: 'Poppins' }}>
+                <Modal.Footer style={{ justifyContent: 'center', fontFamily: 'Poppins', backgroundColor: '#2C74B3' }}>
                     <Button onClick={handleClose} style={{ border: 'none', backgroundColor: 'grey' }}>
                         Close
                     </Button>
