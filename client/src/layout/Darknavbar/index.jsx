@@ -85,7 +85,7 @@ function Darknavbar({ }) {
                 <Nav.Link style={{ color: 'white', margin: '0 15px' }} onClick={() => navigate('/Auth')}><i class="bi bi-box-arrow-in-right"></i> Login</Nav.Link>
               ) : (
                 <>
-                  <Nav.Link style={{ color: 'white', margin: '0 15px' }} onClick={() => navigate('/profile')}><i class="bi bi-person"></i> Profile</Nav.Link>
+                    <Nav.Link style={{ color: 'white', margin: '0 15px' }} onClick={() => navigate('/profile')}><i class="bi bi-list-ul"></i> Saved Lists</Nav.Link>
                   <Nav.Link style={{ color: 'white', margin: '0 15px' }} onClick={() => { dispatch(logoutUser()); localStorage.setItem('user', '') }}><i class="bi bi-box-arrow-in-right"></i> Log Out</Nav.Link>
 
                 </>
