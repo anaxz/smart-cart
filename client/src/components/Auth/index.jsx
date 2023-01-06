@@ -5,7 +5,7 @@ import { loginUser } from '../../reducer'
 import { Darknavbar } from "../../layout";
 import './Auth.css'
 
-const Auth = (props) => {
+const Auth = () => {
   let [authMode, setAuthMode] = useState("signin")
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -62,8 +62,7 @@ const Auth = (props) => {
         body: JSON.stringify(data)
       }).then(response => response.json())
     } catch (err) {
-      console.log(err)
-      return err
+        return err
     }
   }
 
