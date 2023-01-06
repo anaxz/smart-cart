@@ -1,8 +1,49 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Manrope&family=Poppins&display=swap');
 
 
 
-#cardbody {
-    max-width: 200px;
-    height: 300px;
+
+
+
+#item {
+    transition: 0.5s;
+}
+
+#item:hover {
+    transition: 0.5s;
+    transform: translateY(-5px);
+}
+
+.Fruit_Veg .card {
+    background-color: #9CDD94;
+
+}
+
+.Meat .card {
+    background-color: #FFBFE4;
+}
+
+.Dairy .card {
+    background-color: antiquewhite;
+}
+
+.Bakery .card {
+    background-color: #FFE5BF;
+}
+
+.Household .card {
+    background-color: #BCB9FF;
+}
+
+.Toiletries .card {
+    background-color: #FFFB8E;
+}
+
+.Drinks .card {
+    background-color: #FFBA79;
+}
+
+.Other .card {
+    background-color: #B0F2FF;
 }

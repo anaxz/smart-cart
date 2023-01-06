@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginUser } from '../../reducer'
-
+import { Darknavbar } from "../../layout";
+import './Auth.css'
 
 const Auth = (props) => {
   let [authMode, setAuthMode] = useState("signin")
@@ -21,13 +22,13 @@ const Auth = (props) => {
     setAuthMode(authMode === "signin" ? "signup" : "signin")
   }
 
-  const loginSubmit = async(e) => {
+  const loginSubmit = async (e) => {
     e.preventDefault();
-    const data = {email: email, password: password}
+    const data = { email: email, password: password }
 
-    if(password === '') {
+    if (password === '') {
       console.log('empty pass')
-      
+
     }
     else {
       const result = await fetchLogin(data)
@@ -35,7 +36,7 @@ const Auth = (props) => {
       const id = Object.values(result)[0]
       console.log(id)
 
-      if(Object.keys(result) == 200){
+      if (Object.keys(result) == 200) {
         console.log('--login response')
         setEmail('')
         setPassword('')
@@ -48,10 +49,10 @@ const Auth = (props) => {
 
       }
     }
-    
+
   }
 
-  async function fetchLogin(data){
+  async function fetchLogin(data) {
     try {
       const url = 'https://smart-cart-flask.onrender.com'
 
@@ -60,17 +61,17 @@ const Auth = (props) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       }).then(response => response.json())
-    } catch(err){
-        console.log(err)
-        return err
+    } catch (err) {
+      console.log(err)
+      return err
     }
   }
 
-  const signupSubmit = async(e) => {
+  const signupSubmit = async (e) => {
     e.preventDefault();
-    const data = {name: name, email: email, password: password}
-    
-    if(password1 !== password2) {
+    const data = { name: name, email: email, password: password }
+
+    if (password1 !== password2) {
       console.log('repeated password dont match')
 
     } else {
@@ -78,7 +79,7 @@ const Auth = (props) => {
       console.log(result)
       const id = Object.values(result)[0]
 
-      if(Object.keys(result) == 201){
+      if (Object.keys(result) == 201) {
         console.log('--signup response')
         setEmail('')
         setPassword1('')
@@ -89,36 +90,32 @@ const Auth = (props) => {
     }
   }
 
-  async function fetchSignup(data){
+  async function fetchSignup(data) {
     try {
       const url = 'https://smart-cart-flask.onrender.com'
 
-      return await fetch(`${url}/signup`,  {
+      return await fetch(`${url}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       }).then(response => response.json())
-    } catch(err){
-        console.log(err)
-        return err
+    } catch (err) {
+      console.log(err)
+      return err
     }
   }
-  
+
   if (authMode === "signin") {
-    return (
+    return (<>
+      <Darknavbar />
       <div className="Auth-form-container">
         <form className="Auth-form" onSubmit={loginSubmit} >
           <div className="Auth-form-content">
             {/* <p className="msg-error">Login Fail</p> */}
-            <h3 className="Auth-form-title">Sign In</h3>
-            <div className="text-center">
-              Not registered yet?{" "}
-              <span className="link-primary" onClick={changeAuthMode}>
-                Sign Up
-              </span>
-            </div>
+            <h3 className="Auth-form-title" style={{ fontFamily: 'Poppins' }}>Sign In</h3>
+
             <div className="form-group mt-3">
-              <label htmlFor='email'>Email address</label>
+              <label htmlFor='email' style={{ fontFamily: 'Jost' }}>Email address</label>
               <input
                 type="email" name="email"
                 id="email" value={email}
@@ -128,7 +125,7 @@ const Auth = (props) => {
               />
             </div>
             <div className="form-group mt-3">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password" style={{ fontFamily: 'Jost' }}>Password</label>
               <input
                 type="password" name="password"
                 id="password" value={password}
@@ -138,32 +135,33 @@ const Auth = (props) => {
               />
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-primary" >
+              <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#2C74B3', border: 'none' }} >
                 Submit
               </button>
             </div>
-            <p className="text-center mt-2">
+            <div className="text-center" style={{ fontFamily: 'Jost' }}>
+              Not registered yet?{" "}
+              <span className="link-primary" onClick={changeAuthMode}>
+                Sign Up
+              </span>
+            </div>
+            {/* <p className="text-center mt-2">
               Forgot <a href="#">password?</a>
-            </p>
+            </p> */}
           </div>
         </form>
       </div>
-    )
+    </>)
   }
 
-  return (
+  return (<>
+    <Darknavbar />
     <div className="Auth-form-container">
       <form className="Auth-form" onSubmit={signupSubmit}>
         <div className="Auth-form-content">
-          <h3 className="Auth-form-title">Sign Up</h3>
-          <div className="text-center">
-            Already registered?{" "}
-            <span className="link-primary" onClick={changeAuthMode}>
-              Sign In
-            </span>
-          </div>
+          <h3 className="Auth-form-title" style={{ fontFamily: 'Poppins' }}>Sign Up</h3>
           <div className="form-group mt-3">
-            <label htmlFor="name">Full Name</label>
+            <label htmlFor="name" style={{ fontFamily: 'Jost' }}>Full Name</label>
             <input
               type="text" name="name"
               id="name" value={name}
@@ -173,7 +171,7 @@ const Auth = (props) => {
             />
           </div>
           <div className="form-group mt-3">
-            <label htmlFor="email">Email address</label>
+            <label htmlFor="email" style={{ fontFamily: 'Jost' }}>Email address</label>
             <input
               type="email" name="email"
               id="email" value={email}
@@ -183,7 +181,7 @@ const Auth = (props) => {
             />
           </div>
           <div className="form-group mt-3">
-            <label htmlFor="password1">Password</label>
+            <label htmlFor="password1" style={{ fontFamily: 'Jost' }}>Password</label>
             <input
               type="password" name="password1"
               id="password1" value={password1}
@@ -193,7 +191,7 @@ const Auth = (props) => {
             />
           </div>
           <div className="form-group mt-3">
-            <label htmlFor="password2">Repeat Password</label>
+            <label htmlFor="password2" style={{ fontFamily: 'Jost' }}>Repeat Password</label>
             <input
               type="password" name="password2"
               id="password2" value={password2}
@@ -203,17 +201,23 @@ const Auth = (props) => {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="submit" className="btn btn-primary" >
+            <button type="submit" className="btn btn-primary" style={{ backgroundColor: '#2C74B3', border: 'none' }} >
               Submit
             </button>
           </div>
-          <p className="text-center mt-2">
+          <div className="text-center" style={{ fontFamily: 'Jost' }}>
+            Already registered?{" "}
+            <span className="link-primary" onClick={changeAuthMode}>
+              Sign In
+            </span>
+          </div>
+          {/* <p className="text-center mt-2">
             Forgot <a href="#">password?</a>
-          </p>
+          </p> */}
         </div>
       </form>
     </div>
-  )
+  </>)
 }
 
 export default Auth

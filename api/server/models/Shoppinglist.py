@@ -11,10 +11,32 @@ class Shoppinglist():
         print(response)
 
     def get_all_lists(id):
-        query = f"SELECT product_id FROM Shopping_List JOIN Users_Shopping ON Shopping_List.list_id = Users_Shopping.id WHERE Users_Shopping.user_id = {id}"
+        lists_query = f"SELECT DISTINCT Shopping_List.list_id FROM Shopping_List JOIN Users_Shopping ON Shopping_List.list_id = Users_Shopping.list_id WHERE Users_Shopping.user_id = {id}"
+        cur.execute(lists_query)
+        resp = cur.fetchall()
+        print(resp)
+        x = []
+        for i in resp:
+            x.append(i[0])
+        print(x)
+
+        query = f"SELECT Shopping_List.list_id, product_id FROM Shopping_List JOIN Users_Shopping ON Shopping_List.list_id = Users_Shopping.list_id WHERE Users_Shopping.user_id = {id}"
         cur.execute(query)
         response = cur.fetchall()
         print(response)
+
+        y = []
+        for i in x:
+            arr = []
+
+            for j in response:
+                if i == j[0]:
+                    arr.append(j[1])
+            y.append(arr)
+            arr=[]
+        print(y)
+
+        return y
 
     def get_price_by_supermarket(list, supermarket):
         total = 0
@@ -59,6 +81,40 @@ class Shoppinglist():
             results.append({"supermarket": supermarket, "total": Shoppinglist.get_price_by_supermarket(list, supermarket)})
         return results
 
+    def save_list(data):
+        user_id = data[0]
+        list = data[1]
+        select_product = f"SELECT * FROM Shopping_List"
+        cur.execute(select_product)
+        response = cur.fetchall()
+        total = len(response)
+        print(response)
+
+        for item in list:
+            select_product = f"SELECT * FROM Products WHERE name = '{item}'"
+            cur.execute(select_product)
+            product_id = cur.fetchone()[0]
+
+            insert_list = f"INSERT INTO Shopping_List (list_id, product_id)  VALUES ({total}, {product_id}) RETURNING *;"
+            cur.execute(insert_list)
+            conn.commit()
+            print('Inserted')
+            resp = cur.fetchone()
+            print(resp[0])
+
+        insert = f"INSERT INTO Users_Shopping (list_id, user_id)  VALUES ({total}, {user_id}) RETURNING *;"
+        cur.execute(insert)
+        conn.commit()
+        print('Inserted')
+        res = cur.fetchone()
+        print(res[0])
+        return res[0]
+
+    def delete_list():
+        query = f"SELECT product_id FROM Shopping_List JOIN Users_Shopping ON Shopping_List.list_id = Users_Shopping.id WHERE Users_Shopping.user_id = {id}"
+        cur.execute(query)
+        response = cur.fetchall()
+        print(response)
 
 
         # for item in list:

@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Manrope&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Manrope&family=Poppins&display=swap');
+
+li {
+    color: black !important
+}
+
+#basket {
+    transition: 0.5s;
+}
+
+#basket:hover {
+    transition: 0.5s;
+    transform: translateY(5px);
+}

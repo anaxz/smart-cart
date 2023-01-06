@@ -22,24 +22,53 @@ def test_login_wrong_email():
 
 #--------
 
+# def test_login_api(api):
+#     mock_data = { 
+#         "name": "test1", 
+#         "email": "test1@email.com", 
+#         "password": "pass1" 
+#     }
+#     mock_headers = {'Content-Type': 'application/json'}
+#     res = api.post('/login', data=mock_data, headers=mock_headers)
+
+#     mock_user = User('test1', 'test1@gmail.com', 'pass1')
+#     request_data = Mock()
+
+#     assert res.json[mock_data]['name'] == 'test1'
+
 def test_login_api(api):
-    mock_data = { 
-        "name": "test1", 
-        "email": "test1@email.com", 
-        "password": "pass1" 
-    }
-    mock_headers = {'Content-Type': 'application/json'}
-    res = api.post('/login', data=mock_data, headers=mock_headers)
+    data = """{ 
+        "email": "test2@test.com", 
+        "password": "test" 
+    }"""
+    res = api.post('/login', data=data)
 
-    mock_user = User('test1', 'test1@gmail.com', 'pass1')
-    request_data = Mock()
+    assert res.status == '200 OK'
 
-    assert res.json[mock_data]['name'] == 'test1'
+def test_login_api_fail(api):
+    data = """{ 
+        "email": "test2@test.com", 
+        "password": "wrong" 
+    }"""
+    res = api.post('/login', data=data)
 
-def test_logout_api(api):
-    res = api.get('/logout')
-    assert res.json == {'200' : 'Logout successfull.'}
+    assert 'Incorrect password' in res.text 
 
-def test_logout_fail_api(api):
-    res = api.get('/logout')
-    assert res.json != {'200' : 'Logout successfull.'}
+def test_signup(api):
+    data = """{ 
+        "name": "signup test", 
+        "email": "test@signup.com", 
+        "password": "test" 
+    }"""
+    res = api.post('/signup', data=data)
+
+    assert res.status == '200 OK'
+
+
+# def test_logout_api(api):
+#     res = api.get('/logout')
+#     assert res.json == {'200' : 'Logout successfull.'}
+
+# def test_logout_fail_api(api):
+#     res = api.get('/logout')
+#     assert res.json != {'200' : 'Logout successfull.'}

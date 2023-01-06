@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom"
-import CartModal from '../CartModal';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Itemcard from '../Itemcard';
@@ -23,17 +22,27 @@ function Foodbar() {
     useEffect(() => {
 
         async function getFavourites() {
-            fetch(`https://smart-cart-flask.onrender.com/users/${user}/favs`)
+            try {
+                fetch(`https://smart-cart-flask.onrender.com/users/${user}/favs`)
                 .then(res => res.json())
                 .then(res => { setFavs(Object.values(res)[0]); console.log('test'); console.log(Object.values(res)) });
+            } catch(err){
+                return err
+            }
+            
         }
 
         async function getItemData() {
-            const url = 'https://smart-cart-flask.onrender.com/products'
-            // const response = url.get()
-            fetch('https://smart-cart-flask.onrender.com/products')
-                .then(resp => resp.json())
-                .then(result => { setProductData(result); getFavourites() })
+            try {
+                const url = 'https://smart-cart-flask.onrender.com/products'
+                // const response = url.get()
+                fetch('https://smart-cart-flask.onrender.com/products')
+                    .then(resp => resp.json())
+                    .then(result => { setProductData(result); getFavourites() })
+            } catch(err){
+                return err
+            }
+            
         }
 
 
@@ -53,40 +62,44 @@ function Foodbar() {
             padding: '1rem 5px',
             borderRadius: '10px',
             width: '70%',
-            backgroundColor: 'lightblue'
         }}>
             <Tabs
-                defaultActiveKey="profile"
+                defaultActiveKey="main"
+                data-testid="fill-tab-example"
                 id="fill-tab-example"
                 className="m-3 px-4 py-2"
                 fill
                 variant='pills'
-                style={{ backgroundColor: 'lightyellow', borderRadius: '10px' }}
+                style={{ backgroundColor: '#C4DBFD', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', fontFamily: 'Jost', fontSize: '18px' }}
             >
+                <Tab eventKey="main" title="All Food">
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} fav={fav} setFavs={setFavs} all={true} />
+                </Tab>
                 <Tab eventKey="bakery" title="Bakery">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Bakery'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="dairy" title="Dairy">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Dairy'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="meat" title="Meat">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Meat'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="fruit_and_veg" title="Fruit & Veg">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Fruit_Veg'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="household" title="Household">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Household'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="toiletries" title="Toiletries">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Toiletries'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="drinks" title="Drinks">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Drinks'} fav={fav} setFavs={setFavs} />
                 </Tab>
                 <Tab eventKey="other" title="Other">
-                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} fav={fav} />
+                    <ShowItems shopping={shopping} setShopping={setShopping} data={productData} category={'Other'} fav={fav} setFavs={setFavs} />
                 </Tab>
+
 
                 {
 
@@ -97,7 +110,7 @@ function Foodbar() {
                                 {
                                     fav
                                         // .filter(product => product[1] == 'Other')
-                                        .map(product => (<Col xs={2} className="mx-3 my-3 justify-content-center"><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} /></Col>))
+                                        .map(product => (<Col xs={2} className={`mx-3 my-3 ${product[2]} justify-content-center`}><Itemcard shopping={shopping} setShopping={setShopping} data={product} fav={fav} setFavs={setFavs} /></Col>))
                                 }
                             </Row>
                         </Tab>
@@ -107,7 +120,7 @@ function Foodbar() {
 
 
             </Tabs>
-            <CartModal />
+
 
 
         </div>

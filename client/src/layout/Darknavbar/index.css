@@ -1,1 +1,29 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Manrope&family=Raleway:wght@300&display=swap');
+
+a.nav-link {
+    transition: 0.5s !important;
+    font-family: 'Poppins'
+}
+
+a.nav-link:hover {
+    transition: 0.5s !important;
+    color: #ff9ca6 !important;
+    transform: translateX(5px);
+
+}
+
+.nav-link {
+    transition: 0.5s !important;
+}
+
+.nav-link:hover {
+    transition: 0.5s !important;
+    transform: translateY(5px);
+
+}
+
+::placeholder {
+    color: white !important;
+    font-family: 'Jost';
+}

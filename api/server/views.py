@@ -48,12 +48,14 @@ def get_top_prices():
     data = json.loads(request.data)
     print(data)
     results = Shoppinglist.get_price_by_top_supermarkets(data['shopping'])
-    print('Before')
-    print(results)
     return results
 
-
-@views.route('/react')
-def react():
-    return render_template('index.html')
+@views.route('/savelist', methods=['POST'])
+def save_list():
+    data = json.loads(request.data)
+    print(data)
+    results = Shoppinglist.save_list(data)
+    print('Before')
+    print(results)
+    return 'List is saved'
 

@@ -30,14 +30,14 @@ def login():
     # user=current_user
     # return {'200' : user }
 
-@auth.route('/logout')
-@login_required
-def logout():
-    try:
-        logout_user()
-        return {'200' : 'Logout successfull.'}
-    except Exception as error:
-        return {'message' : f'Error: {error}'}
+# @auth.route('/logout')
+# @login_required
+# def logout():
+#     try:
+#         logout_user()
+#         return {'200' : 'Logout successfull.'}
+#     except Exception as error:
+#         return {'message' : f'Error: {error}'}
 
 def get_user(email):
     try:

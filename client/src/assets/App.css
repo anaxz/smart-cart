@@ -1,10 +1,9 @@
-html {
-  background-color: lightcyan;
-}
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Manrope&family=Raleway:wght@300&display=swap');
+
+
 
 body {
-  background-color: lightcyan !important;
-  /* width: 80%; */
+  background-color: #0A2647 !important;
 }
 
 .sticky-nav {
@@ -15,6 +14,7 @@ body {
 
 button {
   border-radius: 10px !important;
+
 }
 
 /* #root {
