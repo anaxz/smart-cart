@@ -74,6 +74,7 @@ const Profile = () => {
                     })
                 }
 
+                {items.length > 0 &&
                 <div style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', width: '250px', margin: '20px auto', borderRadius: '10px', padding: '10px', backgroundColor: '#C4DBFD' }}>
 
                     {
@@ -85,7 +86,7 @@ const Profile = () => {
                         }
 
                         )}
-                </div>
+                </div>}
             </div>
 
             <ListModal content={''} />
