@@ -2,6 +2,10 @@
 
 A website comparing grocery store items.
 
+### Demo
+
+[![Watch the video](https://img.youtube.com/vi/-5I1EPvvPA0/hqdefault.jpg)](https://youtu.be/-5I1EPvvPA0)
+
 ## Installation
 - git clone this repo and cd inside it
 
